@@ -1,6 +1,6 @@
 {
   "name": "2022-migration-stories",
-  "homepage": "https://Lee-Si-Yoon.github.io/2022-migration-stories",
+  "homepage": "https://migrationstoriesproject.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy" : "npm run build",
-    "deploy" : "ghpages -d build"
+    "deploy" : "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
