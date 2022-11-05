@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { fadeInUp, fadeInFromLeft } from "../motion";
+import { fadeInUp } from "../motion";
 
 const Layout = styled(motion.div)`
   color: white;
@@ -27,7 +27,7 @@ const Poster = styled(motion.div)`
 const AboutInfo = styled.div`
   width: 50%;
   line-height: 180%;
-  margin-left: 2.5rem;
+  margin: 0 2.5rem;
 `;
 
 export default function About() {
@@ -39,7 +39,7 @@ export default function About() {
             src="/imgs/migration_poster.jpg"
             alt="migration_poster.jpg"
             width={500}
-            variants={fadeInFromLeft}
+            variants={fadeInUp}
             initial="initial"
             animate="animate"
           />

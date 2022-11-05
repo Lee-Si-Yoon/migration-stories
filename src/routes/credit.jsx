@@ -27,7 +27,7 @@ const CenterMain = styled(motion.div)`
 const CreditInfo = styled.div`
   width: 50%;
   line-height: 180%;
-  margin-left: 2.5rem;
+  margin: 0 2.5rem;
 `;
 
 export default function Credit() {
