@@ -71,12 +71,17 @@ const StartBtn = styled(motion.button)`
   bottom: 8rem;
 `;
 
+// 이거 작동하는지 모르겠
 const stagger = {
   hidden: { opacity: 0 },
   show: {
     transition: { staggerChildren: 1 },
   },
 };
+
+function randomDuration() {
+  return `duration: ${Math.random() * 2}`;
+}
 
 export default function Loader(show) {
   return (
@@ -90,32 +95,32 @@ export default function Loader(show) {
           <One
             src="/imgs/fragment/1.png"
             alt="1.png"
-            exit={{ x: -80, transition: { duration: 0.5 } }}
+            exit={{ x: -80, transition: { randomDuration } }}
           />
           <Two
             src="/imgs/fragment/2.png"
             alt="2.png"
-            exit={{ y: -160, transition: { duration: 2 } }}
+            exit={{ y: -160, transition: { randomDuration } }}
           />
           <Three
             src="/imgs/fragment/3.png"
             alt="3.png"
-            exit={{ x: -120, transition: { duration: 1.5 } }}
+            exit={{ x: -120, transition: { randomDuration } }}
           />
           <Four
             src="/imgs/fragment/4.png"
             alt="4.png"
-            exit={{ y: 100, transition: { duration: 1 } }}
+            exit={{ y: 100, transition: { randomDuration } }}
           />
           <Five
             src="/imgs/fragment/5.png"
             alt="5.png"
-            exit={{ x: 40, transition: { duration: 0.25 } }}
+            exit={{ x: 40, transition: { randomDuration } }}
           />
           <Six
             src="/imgs/fragment/6.png"
             alt="6.png"
-            exit={{ y: 200, transition: { duration: 2 } }}
+            exit={{ y: 200, transition: { randomDuration } }}
           />
         </Spacer>
       </ImageContainer>
