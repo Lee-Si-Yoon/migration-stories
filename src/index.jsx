@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import About from "./routes/about";
 import Credit from "./routes/credit";
+import Wander from "./routes/wander";
 import ErrorPage from "./error-page";
 // STYLING
 import { ThemeProvider } from "styled-components";
@@ -25,6 +26,10 @@ const routes = [
       {
         path: "credit",
         element: <Credit />,
+      },
+      {
+        path: "wander",
+        element: <Wander />,
       },
     ],
   },

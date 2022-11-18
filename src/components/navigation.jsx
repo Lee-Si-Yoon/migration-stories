@@ -31,8 +31,8 @@ export default function Nav(show) {
       <NavUl>
         <Links to={`/`}>
           <img
-            src="/imgs/migration_logo.jpg"
-            alt="migration_logo.jpg"
+            src="/imgs/logo.webp"
+            alt="logo"
             width={50}
             onClick={() => {
               show.show(true);

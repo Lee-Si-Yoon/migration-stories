@@ -1,7 +1,6 @@
 // REACT
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import Wander from "../components/wander";
 import Nav from "../components/navigation";
 import Loader from "../components/loader";
 // STYLING
@@ -17,14 +16,11 @@ const Layout = styled.div`
 
 export default function Root() {
   const [loading, setLoading] = useState(true);
-  let location = useLocation();
   return (
     <Layout>
       <Nav show={setLoading} />
-      <AnimatePresence>
-        {loading ? <Loader show={setLoading} /> : null}
-      </AnimatePresence>
-      {location.pathname === "/" ? <Wander /> : <Outlet />}
+      <AnimatePresence>{loading ? <Loader show={setLoading} /> : null}</AnimatePresence>
+      <Outlet />
     </Layout>
   );
 }
