@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 const Navigation = styled.nav`
   width: 100%;
   position: absolute;
+  z-index: 999;
 `;
 const NavUl = styled.ul`
   padding: 2rem 3rem;
@@ -40,10 +41,10 @@ export default function Nav(show) {
           />
         </Links>
         <LinkContainer>
-          <motion.li whileHover={{ y: -2.5 }}>
+          <motion.li whileHover={{ y: -2.5, fontWeight: 500 }}>
             <Links to={`about`}>ABOUT</Links>
           </motion.li>
-          <motion.li whileHover={{ y: -2.5 }}>
+          <motion.li whileHover={{ y: -2.5, fontWeight: 500 }}>
             <Links to={`credit`}>CREDIT</Links>
           </motion.li>
         </LinkContainer>
