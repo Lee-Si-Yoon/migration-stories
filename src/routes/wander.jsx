@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 // import { useLayoutEffect, useRef, useState } from "react";
 import WanderOBJ from "../components/wanderOBJ";
-import { useEffect, useState } from "react";
 
 const Layout = styled(motion.div)`
   color: ${(props) => props.theme.colors.text};
@@ -21,18 +20,7 @@ const Background = styled.img`
   width: 100%;
   height: 50%;
   bottom: 0;
-  /* opacity: 0.5; */
   background-size: 100%;
-  /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%); */
-  /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); */
-  /* object-fit: cover; */
-  /* -webkit-mask-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(rgba(0, 0, 0, 1)),
-    to(rgba(0, 0, 0, 0))
-  ); */
   mask-image: linear-gradient(to bottom, transparent 25%, white 95%);
 `;
 
