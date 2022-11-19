@@ -7,6 +7,7 @@ import Root from "./routes/root";
 import About from "./routes/about";
 import Credit from "./routes/credit";
 import Wander from "./routes/wander";
+import Story from "./routes/story";
 import ErrorPage from "./error-page";
 // STYLING
 import { ThemeProvider } from "styled-components";
@@ -30,6 +31,10 @@ const routes = [
       {
         path: "wander",
         element: <Wander />,
+      },
+      {
+        path: "story/:name",
+        element: <Story />,
       },
     ],
   },

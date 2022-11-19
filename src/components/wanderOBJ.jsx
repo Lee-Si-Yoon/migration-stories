@@ -73,8 +73,8 @@ const CancelButton = styled(motion.button)`
 const OBJ = styled(motion.img)`
   /* position: absolute; */
   cursor: pointer;
-  z-index: ${(props) => (props.focus ? 100 : 0)};
-  filter: brightness(${(props) => (props.focus ? 1.5 : 1)});
+  z-index: ${(props) => (props.$focus ? 100 : 0)};
+  filter: ${(props) => (props.$focus ? "brightness(1.5)" : "brightness(1)")};
 `;
 
 const lerp = (a, b, n) => (1 - n) * a + n * b;
@@ -189,8 +189,8 @@ export default function WanderOBJ({ imgsrc, name, func, text }) {
       };
       const f = () => {
         setPosition((pos) => ({
-          x: lerp(pos.x, targetPosition.x, 0.025),
-          y: lerp(pos.y, targetPosition.y, 0.025),
+          x: lerp(pos.x, targetPosition.x, 0.05),
+          y: lerp(pos.y, targetPosition.y, 0.05),
         }));
         timerId = requestAnimationFrame(f);
       };
@@ -203,6 +203,13 @@ export default function WanderOBJ({ imgsrc, name, func, text }) {
     setIsPaused((prev) => !prev);
     setIsClicked((prev) => !prev);
     setFocus((prev) => !prev);
+  }
+  function onHover() {
+    if (!focus) {
+      return { scale: 1.1 };
+    } else {
+      return null;
+    }
   }
 
   return (
@@ -222,8 +229,8 @@ export default function WanderOBJ({ imgsrc, name, func, text }) {
         onClick={() => {
           func(onClick);
         }}
-        focus={focus}
-        whileHover={{ scale: 1.1 }}
+        $focus={focus}
+        whileHover={onHover}
       />
       {isClicked ? (
         <Blocker>
@@ -237,10 +244,10 @@ export default function WanderOBJ({ imgsrc, name, func, text }) {
                   borderRadius: "1.5rem",
                 }}
               >
-                <LinkButton to={`/${name}`}>스토리 보기</LinkButton>
+                <LinkButton to={`/story/${name}`}>스토리 보기</LinkButton>
               </motion.div>
               <CancelButton
-                whileHover={{ y: -5, color: "black", backgroundColor: "#999" }}
+                whileHover={{ y: -5, color: "rgba(0,0,0,0)", backgroundColor: "#999" }}
                 onClick={() => {
                   func(onClick);
                 }}

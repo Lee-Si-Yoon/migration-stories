@@ -21,7 +21,7 @@ const Background = styled.img`
   height: 50%;
   bottom: 0;
   background-size: 100%;
-  mask-image: linear-gradient(to bottom, transparent 25%, white 95%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(255, 255, 255, 1) 95%);
 `;
 
 const stories = [
