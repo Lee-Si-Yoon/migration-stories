@@ -5,9 +5,12 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const Navigation = styled.nav`
-  width: 100%;
+  width: 95vw;
+  max-width: 100%;
   position: absolute;
-  z-index: 999;
+  overflow: hidden;
+  z-index: 998;
+  /* border: 3px solid blue; */
 `;
 const NavUl = styled.ul`
   padding: 2rem 3rem;

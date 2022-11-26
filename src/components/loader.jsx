@@ -13,7 +13,6 @@ const Layout = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
 `;
 const ImageContainer = styled(motion.div)`
   width: 800px;
@@ -21,6 +20,8 @@ const ImageContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border: 3px solid red; */
+  /* overflow: hidden; */
 `;
 const Spacer = styled(motion.div)`
   width: 100%;

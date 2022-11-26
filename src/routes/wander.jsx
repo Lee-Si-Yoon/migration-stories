@@ -5,15 +5,21 @@ import WanderOBJ from "../components/wanderOBJ";
 
 const Layout = styled(motion.div)`
   color: ${(props) => props.theme.colors.text};
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
   height: 100vh;
+  /* border: 2px solid green; */
+  position: relative;
+  overflow: hidden;
   /* display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column; */
 `;
 const ObjContainer = styled.div`
-  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid red; */
 `;
 const Background = styled.img`
   position: absolute;
