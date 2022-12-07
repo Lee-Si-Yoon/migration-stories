@@ -43,6 +43,11 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/:name",
+    // TODO 전시용 분리, chamikara, ting, akanain, sunyena, dpiak, kemra
+    element: <Root />,
+  },
 ];
 
 const router = createBrowserRouter(routes);

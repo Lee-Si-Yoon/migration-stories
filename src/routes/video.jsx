@@ -1,10 +1,11 @@
 // REACT
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { useLocation } from "react-router-dom";
 import ReactPlayer from "react-player";
 // STYLING
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const Layout = styled.div`
   background-color: ${(props) => props.theme.colors.background};
@@ -45,21 +46,53 @@ const VideoPlayerContainer = styled(motion.div)`
   max-height: 100%;
 `;
 
+const stories = [
+  { name: "sajana", src: "https://vimeo.com/752516468" },
+  {
+    name: "chamikara",
+    src: "https://vimeo.com/764912398",
+  },
+  { name: "kemra", src: "https://vimeo.com/764825589" },
+  { name: "sunyena", src: "https://vimeo.com/764826134" },
+  {
+    name: "ting",
+    src: "https://vimeo.com/763707073",
+  },
+  { name: "akanain", src: "https://vimeo.com/763705479" },
+  {
+    name: "dpiak",
+    src: "https://vimeo.com/770192478",
+  },
+];
+
 export default function Video() {
   const [showVideo, setShowvideo] = useState(false);
-  // let location = useLocation();
+  const [name, setName] = useState("");
+  const [playtarget, setPlayTarget] = useState("");
+  let location = useLocation();
+  useEffect(() => {
+    setName(location.pathname.split("/")[2]);
+  }, [location.pathname]);
+  useEffect(() => {
+    stories.forEach((s) => {
+      if (s.name === name) {
+        setPlayTarget(s.src);
+      } else return;
+    });
+  }, [name]);
   return (
     <Layout>
       <AnimatePresence>
         {showVideo ? (
           <VideoPlayerContainer>
+            {/* TODO uselocation 받아와서 url 변환 */}
             <ReactPlayer
               playing
               volume={1}
               width={"100%"}
               height={"100%"}
               controls={false}
-              url={`https://vimeo.com/764912398`}
+              url={`${playtarget}`}
             />
           </VideoPlayerContainer>
         ) : (
