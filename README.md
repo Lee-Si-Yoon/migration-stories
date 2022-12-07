@@ -37,8 +37,8 @@
 - [ ] WANDER
   - [ ] [팝업 글 수정]("https://docs.google.com/document/d/1Yb1yMnYyirXxnYH-4ZpCNjq4xw2zD0eWu3jyiYmxxwA/edit")
 - [ ] STORY
-  - [ ] [3D 변환]("https://drive.google.com/drive/folders/1wZ5mVGdlBqWAu05HhPiPpsjVnYYyfM9Q")
-  - [ ] [영상 링크]("https://docs.google.com/document/d/1Yb1yMnYyirXxnYH-4ZpCNjq4xw2zD0eWu3jyiYmxxwA/edit")
+  - [x] [3D 변환]("https://drive.google.com/drive/folders/1wZ5mVGdlBqWAu05HhPiPpsjVnYYyfM9Q")
+  - [x] [영상 링크]("https://docs.google.com/document/d/1Yb1yMnYyirXxnYH-4ZpCNjq4xw2zD0eWu3jyiYmxxwA/edit")
   - [ ] 스크롤을 올려서 진행해주세요
   - [ ] 이야기를 재생하시겠습니까? br (헤드폰이 있다면 헤드폰을 착용하세요)
   

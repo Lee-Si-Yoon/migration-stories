@@ -14,6 +14,7 @@ import { Dipak } from "../draco/Dipak-draco";
 import { Kemra } from "../draco/kemra-draco";
 import { Sajana2 } from "../draco/Sajana2";
 import { Sunyena } from "../draco/Sunyena-draco";
+import { Ting } from "../draco/Ting";
 import { OrbitControls } from "@react-three/drei";
 
 const Layout = styled(motion.div)`
@@ -106,13 +107,16 @@ export default function Story() {
           {/* <HTMLContent /> */}
           <Container>
             <div style={{ position: "absolute", width: "100%", height: "100%" }}>
-              <Canvas frameloop="demand" camera={{ position: [0, 0, 0], fov: 45, far: 1000 }}>
+              <Canvas
+                frameloop="demand"
+                camera={{ position: [0, 0, 0], fov: 45, far: 5000, near: 1 }}
+              >
                 <OrbitControls enableZoom={false} />
                 <ambientLight intensity={0.5} />
                 {/* <directionalLight position={[-2, 12, scrollPos + 10]} intensity={0.25} /> */}
                 {/* <directionalLight position={[20, 12, scrollPos + 10]} intensity={0.25} /> */}
                 <spotLight position={[-2, 50, scrollPos + 10]} intensity={0.25} />
-                <spotLight position={[-20, 50, scrollPos + 10]} intensity={0.25} />
+                <spotLight position={[-20, 50, scrollPos + 20]} intensity={0.25} />
                 <Suspense fallback={null}>
                   {/* TODO location 받아와서 model 변환 */}
                   {name === "sajana" ? (
@@ -127,7 +131,9 @@ export default function Story() {
                     <Akinain rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
                   ) : name === "dpiak" ? (
                     <Dipak rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
-                  ) : name === "ting" ? null : null}
+                  ) : name === "ting" ? (
+                    <Ting rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
+                  ) : null}
                 </Suspense>
               </Canvas>
             </div>
