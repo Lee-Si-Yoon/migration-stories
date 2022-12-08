@@ -1,7 +1,9 @@
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-// import { useLayoutEffect, useRef, useState } from "react";
-import WanderOBJ from "../components/wanderOBJ";
+import Loading from "../components/Loading";
+
+const WanderOBJ = React.lazy(() => import("../components/wanderOBJ"));
 
 const Layout = styled(motion.div)`
   color: ${(props) => props.theme.colors.text};
@@ -11,14 +13,13 @@ const Layout = styled(motion.div)`
   /* border: 2px solid green; */
   position: relative;
   overflow: hidden;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; */
 `;
 const ObjContainer = styled.div`
   width: 100%;
   height: 100%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   /* border: 2px solid red; */
 `;
 const Background = styled.img`
@@ -27,11 +28,8 @@ const Background = styled.img`
   height: 50%;
   bottom: 0;
   background-size: 100%;
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 25%,
-    rgba(255, 255, 255, 1) 95%
-  );
+  /* object-fit: contain; */
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(255, 255, 255, 1) 95%);
 `;
 
 const stories = [
@@ -88,10 +86,7 @@ const stories = [
       "Nhưng tôi cũng cảm thấy may vì đã từng mắc lỗi" +
       "\n" +
       "Vì nếu không mắc lỗi thì tôi không thể giỏi lên được Vì không có kinh nghiệm mà",
-    translation:
-      "근데 실수가 있으면 다행이에요" +
-      "\n" +
-      "왜냐면 실수가 없으면 진짜 못해요 경험이 없잖아요",
+    translation: "근데 실수가 있으면 다행이에요 왜냐면 실수가 없으면 진짜 못해요 경험이 없잖아요",
   },
   {
     name: "akanain",
@@ -109,8 +104,7 @@ const stories = [
       "मानिसले गर्न नसक्ने कुनै पनि कुरा छैन। यदि उनीहरूले आफ्ना विचारहरू अनुसरण गरे भने," +
       "\n" +
       " तिनीहरू जहाँ पनि जान सक्छन्।",
-    translation:
-      "사람은 할 수 없는 거는 아무거나 없어요 생각 따라서 가면 다 갈 수 있어요",
+    translation: "사람은 할 수 없는 거는 아무거나 없어요 생각 따라서 가면 다 갈 수 있어요",
   },
 ];
 
@@ -120,17 +114,22 @@ export default function Wander() {
   }
   return (
     <Layout>
-      <Background src="/imgs/wander/wanderBackground.png" alt="background" />
+      {/* TODO srcset */}
+      <Background src="/imgs/wander/wanderBackground.png" alt="background" loading="lazy" />
+
       <ObjContainer>
-        {stories.map((s) => (
-          <WanderOBJ
-            key={s.name}
-            imgsrc={s.src}
-            name={s.name}
-            text={s.text}
-            func={onClickFromOBJ}
-          />
-        ))}
+        <Suspense fallback={<Loading />}>
+          {stories.map((s) => (
+            <WanderOBJ
+              key={s.name}
+              imgsrc={s.src}
+              name={s.name}
+              text={s.text}
+              translation={s.translation}
+              func={onClickFromOBJ}
+            />
+          ))}
+        </Suspense>
       </ObjContainer>
     </Layout>
   );

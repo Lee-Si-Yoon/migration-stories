@@ -23,22 +23,26 @@ const StoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5rem;
 `;
 
 const Story = styled.p`
   text-align: center;
   font-size: 1.5rem;
+  line-height: 160%;
+  max-width: 600px;
+  min-width: 250px;
+  width: 100%;
+  @media screen and (max-width: 575.98px) {
+    width: 80%;
+  }
 `;
 
 // TODO X버튼 높이 지정하기
 const ButtonWrapper = styled.div`
   margin-top: 2rem;
-  width: 300px;
-  height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -58,6 +62,7 @@ const LinkButton = styled(Link)`
   text-decoration: none;
 `;
 const CancelButton = styled(motion.button)`
+  margin-top: 2rem;
   background-color: ${(props) => props.theme.colors.background};
   color: ${(props) => props.theme.colors.text};
   border: none;
@@ -79,7 +84,7 @@ const OBJ = styled(motion.img)`
 
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-export default function WanderOBJ({ imgsrc, name, func, text }) {
+export default function WanderOBJ({ imgsrc, name, func, text, translation }) {
   const imgRef = useRef(null);
   // ANIMATE
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -215,10 +220,12 @@ export default function WanderOBJ({ imgsrc, name, func, text }) {
   return (
     <div>
       <OBJ
+        loading="lazy"
         style={{ position: "absolute" }}
         ref={imgRef}
         src={imgsrc}
         alt={name}
+        // TODO mobile 시 작아지도록
         height={350}
         transition={{ duration: durationState }}
         animate={{
@@ -236,7 +243,16 @@ export default function WanderOBJ({ imgsrc, name, func, text }) {
         <Blocker>
           <div style={{ width: "100%", height: "50%" }}></div>
           <StoryWrapper>
-            <Story>{text}</Story>
+            <Story>
+              <div style={{ marginBottom: "1rem" }}>
+                {text.split("\n").map((t) => (
+                  <p style={{ color: "white" }}>{t}</p>
+                ))}
+              </div>
+              {translation.split("\n").map((t) => (
+                <p style={{ fontSize: "1.2rem", lineHeight: "140%" }}>{t}</p>
+              ))}
+            </Story>
             <ButtonWrapper>
               <motion.div
                 whileHover={{
@@ -247,7 +263,7 @@ export default function WanderOBJ({ imgsrc, name, func, text }) {
                 <LinkButton to={`/story/${name}`}>스토리 보기</LinkButton>
               </motion.div>
               <CancelButton
-                whileHover={{ y: -5, color: "rgba(0,0,0,0)", backgroundColor: "#999" }}
+                whileHover={{ y: -5, color: "rgba(0,0,0,100)", backgroundColor: "#999" }}
                 onClick={() => {
                   func(onClick);
                 }}

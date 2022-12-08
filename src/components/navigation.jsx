@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const Navigation = styled.nav`
-  width: 95vw;
+  width: 100vw;
   max-width: 100%;
   position: absolute;
   overflow: hidden;

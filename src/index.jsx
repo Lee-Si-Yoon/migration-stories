@@ -14,6 +14,8 @@ import ErrorPage from "./error-page";
 import { ThemeProvider } from "styled-components";
 import { DefaultTheme } from "./theme";
 import "./css/index.css";
+// const Root = React.lazy(() => import("./routes/root"));
+// const Wander = React.lazy(() => import("./routes/wander"));
 
 const routes = [
   {

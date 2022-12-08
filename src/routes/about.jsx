@@ -19,8 +19,12 @@ const Spacer = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 1440px;
-  min-width: 1080px;
-  height: 100%;
+  min-width: 600px;
+  width: 100%;
+  @media screen and (max-width: 575.98px) {
+    flex-direction: column;
+    width: 80%;
+  }
 `;
 const Poster = styled(motion.div)`
   width: 50%;
@@ -28,21 +32,16 @@ const Poster = styled(motion.div)`
   line-height: 200%;
 `;
 const AboutInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
   width: 50%;
   line-height: 160%;
-  padding: 0 0 0 100px;
   font-size: 0.8rem;
 `;
 
-const lagnuages = [
-  "Korean",
-  "English",
-  "Hindi",
-  "Khmer",
-  "Vietnamese",
-  "Sinhala",
-  "Verma",
-];
+const lagnuages = ["Korean", "English", "Hindi", "Khmer", "Vietnamese", "Sinhala", "Verma"];
 
 export default function About() {
   const [language, setLanguage] = useState(lagnuages[0]);
@@ -52,12 +51,13 @@ export default function About() {
       <Spacer>
         <Poster>
           <motion.img
-            src="/imgs/poster.webp"
+            src="/imgs/poster.jpg"
             alt="poster"
-            width={200}
-            variants={fadeInUp}
+            width={500}
+            // variants={fadeInUp}
             initial="initial"
             animate="animate"
+            loading="lazy"
           />
         </Poster>
         <AboutInfo>

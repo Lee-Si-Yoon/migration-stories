@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Layout = styled(motion.div)`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: ${(props) => props.theme.colors.background};
@@ -13,68 +13,69 @@ const Layout = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `;
 const ImageContainer = styled(motion.div)`
-  width: 800px;
-  height: 1000px;
+  min-width: 300px;
+  max-width: 800px;
+  width: 100%;
+  aspect-ratio: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 3px solid red; */
-  /* overflow: hidden; */
+  @media screen and (max-width: 575.98px) {
+    width: 80%;
+  }
 `;
 const Spacer = styled(motion.div)`
   width: 100%;
   height: 100%;
-  margin-left: 2rem;
   position: relative;
   /* border: 1px solid red; */
 `;
 const GridImgs = styled(motion.img)`
   position: absolute;
-  /* transform: scale(0.5); */
-  /* object-position: 50% 50%; */
   object-fit: scale-down;
 `;
 // 네팔어
 const One = styled(GridImgs)`
-  width: 485px;
+  width: 60%;
   top: 75%;
   left: 0;
 `;
 // 미얀마어
 const Two = styled(GridImgs)`
-  width: 400px;
+  width: 50%;
   top: 42%;
   left: 30%;
 `;
 // 베트남어
 const Three = styled(GridImgs)`
-  width: 700px;
+  width: 87.5%;
   top: 85%;
   left: 0;
 `;
 // 스리랑카어
 const Four = styled(GridImgs)`
-  width: 460px;
+  width: 57.5%;
   top: 32%;
   left: 0;
 `;
 // 영어
 const Five = styled(GridImgs)`
-  width: 341px;
+  width: 42.5%;
   left: 50%;
   top: 0;
 `;
 // 캄보디아
 const Six = styled(GridImgs)`
-  width: 74px;
+  width: 9.25%;
   top: 25%;
   left: 90%;
 `;
 // 한국어
 const Seven = styled(GridImgs)`
-  width: 250px;
+  width: 31.25%;
   top: 0;
   left: 0;
 `;
@@ -83,10 +84,13 @@ const StartBtn = styled(motion.button)`
   color: ${(props) => props.theme.colors.text};
   border: 1px solid ${(props) => props.theme.colors.text};
   border-radius: 2rem;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   font-size: 1.5rem;
-  /* position: absolute;
-  bottom: 8rem; */
+  line-height: 0%;
+  @media screen and (max-width: 575.98px) {
+    font-size: 2rem;
+    border-radius: 3rem;
+  }
 `;
 
 function randomDuration() {
@@ -95,9 +99,9 @@ function randomDuration() {
 
 export default function Loader(show) {
   return (
-    <Layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <Layout exit={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <ImageContainer>
-        <Spacer>
+        <Spacer layout>
           <One
             src="/imgs/fragment/네팔어.png"
             alt="1.png"
@@ -135,7 +139,18 @@ export default function Loader(show) {
           />
         </Spacer>
       </ImageContainer>
-      <Link to={"/wander"}>
+      <Link
+        style={{
+          // border: "3px solid pink",
+          width: "100%",
+          height: "max-content",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textDecoration: "none",
+        }}
+        to={"/wander"}
+      >
         <StartBtn
           onClick={() => {
             show.show(false);

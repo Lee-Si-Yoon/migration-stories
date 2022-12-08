@@ -102,9 +102,19 @@ export default function Video() {
             initial={{ opacity: 0 }}
           >
             {/* 이야기를 재생하시겠습니까? br (헤드폰이 있다면 헤드폰을 착용하세요) */}
-            <h1 style={{ color: "rgb(255,255,255)" }}>
-              헤드폰을 착용하셨나요?
+            <h1 style={{ color: "rgb(255,255,255)", fontSize: "1.2rem" }}>
+              이야기를 재생하시겠습니까?
             </h1>
+            <h4
+              style={{
+                color: "rgba(255,255,255)",
+                fontSize: "1rem",
+                marginTop: "0.5rem",
+                opacity: "0.8",
+              }}
+            >
+              (헤드폰이 있다면 헤드폰을 착용하세요)
+            </h4>
             <HeadphoneButton
               whileHover={{
                 backgroundColor: "rgb(255,255,255)",

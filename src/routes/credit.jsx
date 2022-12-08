@@ -80,6 +80,19 @@ export default function Credit() {
             한국문화예술위원회 (2022년 다원예술 창작지원사업)
             {/* TODO 로고 추가 */}
           </p>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              marginTop: "2rem",
+              alignItems: "center",
+              columnGap: "2rem",
+            }}
+          >
+            <img src="/imgs/partner1.png" alt="partner1" style={{ height: "30px" }} />
+            <img src="/imgs/partner2.png" alt="partner2" style={{ height: "30px" }} />
+            <img src="/imgs/partner3.png" alt="partner3" style={{ height: "30px" }} />
+          </div>
         </CreditInfo>
       </Spacer>
     </Layout>
