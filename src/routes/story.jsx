@@ -8,14 +8,16 @@ import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 // 3D
 import { Canvas } from "@react-three/fiber";
-import { Akinain } from "../draco/Akinain-draco";
-import { Chamikara } from "../draco/Chamikara-draco";
-import { Dipak } from "../draco/Dipak-draco";
-import { Kemra } from "../draco/kemra-draco";
-import { Sajana2 } from "../draco/Sajana2";
-import { Sunyena } from "../draco/Sunyena-draco";
-import { Ting } from "../draco/Ting";
-import { OrbitControls } from "@react-three/drei";
+
+import { Akinain } from "../gltf/Akinain";
+import { Chamikara } from "../gltf/Chamikara";
+import { Dipak } from "../gltf/Dipak";
+import { Kemra } from "../gltf/Kemra";
+import { Sajana } from "../gltf/Sajana";
+import { Sunyena } from "../gltf/Sunyena";
+import { Ting } from "../gltf/Ting";
+
+// import { OrbitControls } from "@react-three/drei";
 
 const Layout = styled(motion.div)`
   width: 100vw;
@@ -111,16 +113,15 @@ export default function Story() {
                 frameloop="demand"
                 camera={{ position: [0, 0, 0], fov: 45, far: 5000, near: 1 }}
               >
-                <OrbitControls enableZoom={false} />
+                {/* <OrbitControls enableZoom={false} /> */}
                 <ambientLight intensity={0.5} />
                 {/* <directionalLight position={[-2, 12, scrollPos + 10]} intensity={0.25} /> */}
                 {/* <directionalLight position={[20, 12, scrollPos + 10]} intensity={0.25} /> */}
                 <spotLight position={[-2, 50, scrollPos + 10]} intensity={0.25} />
                 <spotLight position={[-20, 50, scrollPos + 20]} intensity={0.25} />
                 <Suspense fallback={null}>
-                  {/* TODO location 받아와서 model 변환 */}
                   {name === "sajana" ? (
-                    <Sajana2 rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
+                    <Sajana rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
                   ) : name === "chamikara" ? (
                     <Chamikara rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
                   ) : name === "kemra" ? (
