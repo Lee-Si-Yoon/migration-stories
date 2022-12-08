@@ -57,7 +57,7 @@ export default function ScrollRequest() {
             />
           </svg>
         </div>
-        <h1>스크롤을 내려주세요</h1>
+        <h1>스크롤을 이용해 진행해주세요</h1>
       </motion.div>
     </motion.div>
   );

@@ -101,7 +101,10 @@ export default function Video() {
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
           >
-            <h1 style={{ color: "rgb(255,255,255)" }}>헤드폰을 착용하셨나요?</h1>
+            {/* 이야기를 재생하시겠습니까? br (헤드폰이 있다면 헤드폰을 착용하세요) */}
+            <h1 style={{ color: "rgb(255,255,255)" }}>
+              헤드폰을 착용하셨나요?
+            </h1>
             <HeadphoneButton
               whileHover={{
                 backgroundColor: "rgb(255,255,255)",
