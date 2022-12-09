@@ -17,6 +17,8 @@ import { Sajana } from "../gltf/Sajana";
 import { Sunyena } from "../gltf/Sunyena";
 import { Ting } from "../gltf/Ting";
 
+import Circle from "../components/Loading";
+
 // import { OrbitControls } from "@react-three/drei";
 
 const Layout = styled(motion.div)`
@@ -119,7 +121,7 @@ export default function Story() {
                 {/* <directionalLight position={[20, 12, scrollPos + 10]} intensity={0.25} /> */}
                 <spotLight position={[-2, 50, scrollPos + 10]} intensity={0.25} />
                 <spotLight position={[-20, 50, scrollPos + 20]} intensity={0.25} />
-                <Suspense fallback={null}>
+                <Suspense fallback={<Circle />}>
                   {name === "sajana" ? (
                     <Sajana rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
                   ) : name === "chamikara" ? (

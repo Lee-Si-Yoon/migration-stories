@@ -33,14 +33,14 @@ export default function Root() {
       <NavContainer>
         <Nav show={setLoading} />
       </NavContainer>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {loading && location.pathname === "/" ? (
           <Suspense fallback={<Circle />}>
             <Loader show={setLoading} />
           </Suspense>
         ) : null}
       </AnimatePresence>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         <Outlet />
       </AnimatePresence>
     </Layout>

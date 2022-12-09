@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Layout = styled(motion.div)`
   position: relative;
@@ -98,72 +99,85 @@ function randomDuration() {
 }
 
 export default function Loader(show) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <Layout exit={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <Layout
+      initial={false}
+      exit={loaded ? { opacity: 0 } : {}}
+      animate={loaded ? { opacity: 1 } : {}}
+    >
       <ImageContainer>
-        <Spacer layout>
+        <Spacer
+          layout
+          onLoad={() => {
+            setLoaded((prev) => !prev);
+          }}
+        >
           <One
             src="/imgs/fragment/네팔어.png"
             alt="1.png"
-            exit={{ x: -80, transition: { randomDuration } }}
+            exit={loaded ? { x: -80, transition: { randomDuration } } : {}}
           />
           <Two
             src="/imgs/fragment/미얀마어.png"
             alt="2.png"
-            exit={{ y: -160, transition: { randomDuration } }}
+            exit={loaded ? { y: -160, transition: { randomDuration } } : {}}
           />
           <Three
             src="/imgs/fragment/베트남어.png"
             alt="3.png"
-            exit={{ x: -120, transition: { randomDuration } }}
+            exit={loaded ? { x: -120, transition: { randomDuration } } : {}}
           />
           <Four
             src="/imgs/fragment/스리랑카어.png"
             alt="4.png"
-            exit={{ y: 100, transition: { randomDuration } }}
+            exit={loaded ? { y: 100, transition: { randomDuration } } : {}}
           />
           <Five
             src="/imgs/fragment/영어.png"
             alt="5.png"
-            exit={{ x: 40, transition: { randomDuration } }}
+            exit={loaded ? { x: 40, transition: { randomDuration } } : {}}
           />
           <Six
             src="/imgs/fragment/캄보디아어.png"
             alt="6.png"
-            exit={{ y: 200, transition: { randomDuration } }}
+            exit={loaded ? { y: 200, transition: { randomDuration } } : {}}
           />
           <Seven
             src="/imgs/fragment/한국어.png"
             alt="6.png"
-            exit={{ y: 200, transition: { randomDuration } }}
+            exit={loaded ? { y: 200, transition: { randomDuration } } : {}}
           />
         </Spacer>
       </ImageContainer>
-      <Link
-        style={{
-          // border: "3px solid pink",
-          width: "100%",
-          height: "max-content",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textDecoration: "none",
-        }}
-        to={"/wander"}
-      >
-        <StartBtn
-          onClick={() => {
-            show.show(false);
+      {loaded ? (
+        <Link
+          style={{
+            // border: "3px solid pink",
+            width: "max-content",
+            height: "max-content",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textDecoration: "none",
           }}
-          whileHover={{
-            backgroundColor: `rgb(255,255,255)`,
-            color: `rgb(0,0,0)`,
-            border: `0px solid rgb(0,0,0)`,
-          }}
+          to={"/wander"}
         >
-          Start
-        </StartBtn>
-      </Link>
+          <StartBtn
+            onClick={() => {
+              show.show(false);
+            }}
+            whileHover={{
+              backgroundColor: `rgb(255,255,255)`,
+              color: `rgb(0,0,0)`,
+              border: `0px solid rgb(0,0,0)`,
+            }}
+          >
+            Start
+          </StartBtn>
+        </Link>
+      ) : null}
     </Layout>
   );
 }

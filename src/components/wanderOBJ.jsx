@@ -218,7 +218,7 @@ export default function WanderOBJ({ imgsrc, name, func, text, translation }) {
   }
 
   return (
-    <div>
+    <div key={name}>
       <OBJ
         loading="lazy"
         style={{ position: "absolute" }}
@@ -245,12 +245,16 @@ export default function WanderOBJ({ imgsrc, name, func, text, translation }) {
           <StoryWrapper>
             <Story>
               <div style={{ marginBottom: "1rem" }}>
-                {text.split("\n").map((t) => (
-                  <p style={{ color: "white" }}>{t}</p>
+                {text.split("\n").map((t, i) => (
+                  <p key={i} style={{ color: "white" }}>
+                    {t}
+                  </p>
                 ))}
               </div>
-              {translation.split("\n").map((t) => (
-                <p style={{ fontSize: "1.2rem", lineHeight: "140%" }}>{t}</p>
+              {translation.split("\n").map((t, i) => (
+                <p key={i} style={{ fontSize: "1.2rem", lineHeight: "140%" }}>
+                  {t}
+                </p>
               ))}
             </Story>
             <ButtonWrapper>
