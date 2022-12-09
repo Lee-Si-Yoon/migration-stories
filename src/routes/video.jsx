@@ -44,6 +44,8 @@ const VideoPlayerContainer = styled(motion.div)`
   max-width: 100%;
   height: 100vh;
   max-height: 100%;
+  -webkit-touch-callout: none;
+  user-select: none;
 `;
 
 const stories = [

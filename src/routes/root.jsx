@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import React, { Suspense, useState } from "react";
 import Nav from "../components/navigation";
 // import Loader from "../components/loader";
-import Circle from "../components/Loading";
+import Circle from "../components/Circle";
 // STYLING
 import styled from "styled-components";
 import { AnimatePresence } from "framer-motion";

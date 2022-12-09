@@ -1,10 +1,9 @@
 // STYLING
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import ProgressiveImg from "../components/ProgressiveImg";
 
-const Layout = styled(motion.div)`
+const Layout = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
@@ -16,7 +15,7 @@ const Layout = styled(motion.div)`
   align-items: center;
   overflow: hidden;
 `;
-const ImageContainer = styled(motion.div)`
+const ImageContainer = styled.div`
   min-width: 300px;
   max-width: 800px;
   width: 100%;
@@ -28,13 +27,15 @@ const ImageContainer = styled(motion.div)`
     width: 80%;
   }
 `;
-const Spacer = styled(motion.div)`
+const Spacer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  -webkit-touch-callout: none;
+  user-select: none;
   /* border: 1px solid red; */
 `;
-const GridImgs = styled(motion.img)`
+const GridImgs = styled(ProgressiveImg)`
   position: absolute;
   object-fit: scale-down;
 `;
@@ -80,7 +81,8 @@ const Seven = styled(GridImgs)`
   top: 0;
   left: 0;
 `;
-const StartBtn = styled(motion.button)`
+
+const StartBtn = styled.button`
   background-color: ${(props) => props.theme.colors.background};
   color: ${(props) => props.theme.colors.text};
   border: 1px solid ${(props) => props.theme.colors.text};
@@ -88,96 +90,85 @@ const StartBtn = styled(motion.button)`
   padding: 2rem 2rem;
   font-size: 1.5rem;
   line-height: 0%;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.background};
+    transition: all 0.5s ease-out;
+  }
   @media screen and (max-width: 575.98px) {
     font-size: 2rem;
     border-radius: 3rem;
   }
 `;
 
-function randomDuration() {
-  return `duration: ${Math.random() * 2}`;
-}
-
 export default function Loader(show) {
-  const [loaded, setLoaded] = useState(false);
-
   return (
-    <Layout
-      initial={false}
-      exit={loaded ? { opacity: 0 } : {}}
-      animate={loaded ? { opacity: 1 } : {}}
-    >
+    <Layout>
       <ImageContainer>
-        <Spacer
-          layout
-          onLoad={() => {
-            setLoaded((prev) => !prev);
-          }}
-        >
+        <Spacer>
           <One
+            placeholderSrc="/imgs/fragment-min/네팔어-min.png"
             src="/imgs/fragment/네팔어.png"
             alt="1.png"
-            exit={loaded ? { x: -80, transition: { randomDuration } } : {}}
+            fetchpriority="high"
           />
           <Two
+            placeholderSrc="/imgs/fragment-min/미얀마어-min.png"
             src="/imgs/fragment/미얀마어.png"
             alt="2.png"
-            exit={loaded ? { y: -160, transition: { randomDuration } } : {}}
+            fetchpriority="high"
           />
           <Three
+            placeholderSrc="/imgs/fragment-min/베트남어-min.png"
             src="/imgs/fragment/베트남어.png"
             alt="3.png"
-            exit={loaded ? { x: -120, transition: { randomDuration } } : {}}
+            fetchpriority="high"
           />
           <Four
+            placeholderSrc="/imgs/fragment-min/스리랑카어-min.png"
             src="/imgs/fragment/스리랑카어.png"
             alt="4.png"
-            exit={loaded ? { y: 100, transition: { randomDuration } } : {}}
+            fetchpriority="high"
           />
           <Five
+            placeholderSrc="/imgs/fragment-min/영어-min.png"
             src="/imgs/fragment/영어.png"
             alt="5.png"
-            exit={loaded ? { x: 40, transition: { randomDuration } } : {}}
+            fetchpriority="high"
           />
           <Six
+            placeholderSrc="/imgs/fragment-min/캄보디아어-min.png"
             src="/imgs/fragment/캄보디아어.png"
             alt="6.png"
-            exit={loaded ? { y: 200, transition: { randomDuration } } : {}}
+            fetchpriority="high"
           />
           <Seven
+            placeholderSrc="/imgs/fragment-min/한국어-min.png"
             src="/imgs/fragment/한국어.png"
             alt="6.png"
-            exit={loaded ? { y: 200, transition: { randomDuration } } : {}}
+            fetchpriority="high"
           />
         </Spacer>
       </ImageContainer>
-      {loaded ? (
-        <Link
-          style={{
-            // border: "3px solid pink",
-            width: "max-content",
-            height: "max-content",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textDecoration: "none",
+      <Link
+        style={{
+          width: "max-content",
+          height: "max-content",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textDecoration: "none",
+        }}
+        to={"/wander"}
+      >
+        <StartBtn
+          onClick={() => {
+            show.show(false);
           }}
-          to={"/wander"}
         >
-          <StartBtn
-            onClick={() => {
-              show.show(false);
-            }}
-            whileHover={{
-              backgroundColor: `rgb(255,255,255)`,
-              color: `rgb(0,0,0)`,
-              border: `0px solid rgb(0,0,0)`,
-            }}
-          >
-            Start
-          </StartBtn>
-        </Link>
-      ) : null}
+          Start
+        </StartBtn>
+      </Link>
     </Layout>
   );
 }

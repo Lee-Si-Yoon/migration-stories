@@ -36,7 +36,7 @@ export default function ScrollRequest() {
           repeatType: "mirror",
         }}
       >
-        <div
+        {/* <div
           style={{
             width: "4rem",
             marginBottom: "1rem",
@@ -56,8 +56,11 @@ export default function ScrollRequest() {
               d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5"
             />
           </svg>
-        </div>
-        <h1>스크롤을 이용해 진행해주세요</h1>
+        </div> */}
+        <h1 style={{ lineHeight: "140%" }}>
+          스크롤을 이용해
+          <br /> 진행해주세요
+        </h1>
       </motion.div>
     </motion.div>
   );

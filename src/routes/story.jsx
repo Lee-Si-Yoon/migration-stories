@@ -1,5 +1,5 @@
 // REACT
-import { Suspense, useRef } from "react";
+import React, { Suspense, useRef } from "react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ScrollRequest from "../components/ScrollRequest";
@@ -9,16 +9,23 @@ import { AnimatePresence, motion } from "framer-motion";
 // 3D
 import { Canvas } from "@react-three/fiber";
 
-import { Akinain } from "../gltf/Akinain";
-import { Chamikara } from "../gltf/Chamikara";
-import { Dipak } from "../gltf/Dipak";
-import { Kemra } from "../gltf/Kemra";
-import { Sajana } from "../gltf/Sajana";
-import { Sunyena } from "../gltf/Sunyena";
-import { Ting } from "../gltf/Ting";
+// import Akinain from "../gltf/Akinain";
+// import Chamikara from "../gltf/Chamikara";
+// import Dipak from "../gltf/Dipak";
+// import Kemra from "../gltf/Kemra";
+// import Sajana from "../gltf/Sajana";
+// import Sunyena from "../gltf/Sunyena";
+// import Ting from "../gltf/Ting";
 
-import Circle from "../components/Loading";
+import ThreeLoader from "../components/ThreeLoader";
 
+const Akinain = React.lazy(() => import("../gltf/Akinain"));
+const Chamikara = React.lazy(() => import("../gltf/Chamikara"));
+const Dipak = React.lazy(() => import("../gltf/Dipak"));
+const Kemra = React.lazy(() => import("../gltf/Kemra"));
+const Sajana = React.lazy(() => import("../gltf/Sajana"));
+const Sunyena = React.lazy(() => import("../gltf/Sunyena"));
+const Ting = React.lazy(() => import("../gltf/Ting"));
 // import { OrbitControls } from "@react-three/drei";
 
 const Layout = styled(motion.div)`
@@ -121,7 +128,7 @@ export default function Story() {
                 {/* <directionalLight position={[20, 12, scrollPos + 10]} intensity={0.25} /> */}
                 <spotLight position={[-2, 50, scrollPos + 10]} intensity={0.25} />
                 <spotLight position={[-20, 50, scrollPos + 20]} intensity={0.25} />
-                <Suspense fallback={<Circle />}>
+                <Suspense fallback={<ThreeLoader />}>
                   {name === "sajana" ? (
                     <Sajana rotation={[0, 0, 0.0]} position={[0, 0, scrollPos]} />
                   ) : name === "chamikara" ? (

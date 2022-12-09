@@ -29,6 +29,11 @@ const CreditInfo = styled.div`
   line-height: 180%;
   margin: 0 2.5rem;
 `;
+const PartnerImgs = styled.img`
+  height: 30px;
+  -webkit-touch-callout: none;
+  user-select: none;
+`;
 
 export default function Credit() {
   return (
@@ -89,9 +94,9 @@ export default function Credit() {
               columnGap: "2rem",
             }}
           >
-            <img src="/imgs/partner1.png" alt="partner1" style={{ height: "30px" }} />
-            <img src="/imgs/partner2.png" alt="partner2" style={{ height: "30px" }} />
-            <img src="/imgs/partner3.png" alt="partner3" style={{ height: "30px" }} />
+            <PartnerImgs draggable="false" src="/imgs/partner1.png" alt="partner1" />
+            <PartnerImgs draggable="false" src="/imgs/partner2.png" alt="partner2" />
+            <PartnerImgs draggable="false" src="/imgs/partner3.png" alt="partner3" />
           </div>
         </CreditInfo>
       </Spacer>

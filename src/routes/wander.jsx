@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Loading from "../components/Loading";
+import Circle from "../components/Circle";
 
 const WanderOBJ = React.lazy(() => import("../components/wanderOBJ"));
 
@@ -28,6 +28,8 @@ const Background = styled.img`
   height: 50%;
   bottom: 0;
   background-size: 100%;
+  -webkit-touch-callout: none;
+  user-select: none;
   /* object-fit: contain; */
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(255, 255, 255, 1) 95%);
 `;
@@ -36,6 +38,7 @@ const stories = [
   {
     name: "sajana",
     src: "/imgs/wander/sajana.png",
+    placeholderSrc: "/imgs/wander-min/sajana-min.png",
     text:
       "हामी छुट्टिएको 9 वर्ष भयो।" +
       "\n" +
@@ -52,6 +55,7 @@ const stories = [
   {
     name: "chamikara",
     src: "/imgs/wander/chamikara.png",
+    placeholderSrc: "/imgs/wander-min/chamikara-min.png",
     text:
       "ඒ විදිහට මමත් උදව්වක් අවශ්‍ය විදේශ මිතුරන්ට නැතිනම් අලුත් විදේශිකයන්ට උදව් ලබා දෙනවා" +
       "\n" +
@@ -64,12 +68,14 @@ const stories = [
   {
     name: "kemra",
     src: "/imgs/wander/kemra.png",
+    placeholderSrc: "/imgs/wander-min/kemra-min.png",
     text: "ខ្ញុំរីករាយនឹងទិដ្ឋភាពនោះណាស់។",
     translation: "풍경 보는 거 좋아해요",
   },
   {
     name: "sunyena",
     src: "/imgs/wander/sunyena.png",
+    placeholderSrc: "/imgs/wander-min/sunyena-min.png",
     text:
       "Nếu tôi tìm cách, nếu tôi không bỏ cuộc mà tìm cách giải bài tập ấy," +
       "\n" +
@@ -82,6 +88,7 @@ const stories = [
   {
     name: "ting",
     src: "/imgs/wander/ting.png",
+    placeholderSrc: "/imgs/wander-min/ting-min.png",
     text:
       "Nhưng tôi cũng cảm thấy may vì đã từng mắc lỗi" +
       "\n" +
@@ -91,6 +98,7 @@ const stories = [
   {
     name: "akanain",
     src: "/imgs/wander/akanain.png",
+    placeholderSrc: "/imgs/wander-min/akanain-min.png",
     text:
       "သူတို့ပြောင်းလဲပေးနိုင်မယ်ဆို ရင်၊" +
       "\n" +
@@ -100,6 +108,7 @@ const stories = [
   {
     name: "dpiak",
     src: "/imgs/wander/dpiak.png",
+    placeholderSrc: "/imgs/wander-min/dpiak-min.png",
     text:
       "मानिसले गर्न नसक्ने कुनै पनि कुरा छैन। यदि उनीहरूले आफ्ना विचारहरू अनुसरण गरे भने," +
       "\n" +
@@ -118,11 +127,12 @@ export default function Wander() {
       <Background src="/imgs/wander/wanderBackground.png" alt="background" loading="lazy" />
 
       <ObjContainer>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Circle />}>
           {stories.map((s) => (
             <WanderOBJ
               key={s.name}
               imgsrc={s.src}
+              placeholderSrc={s.placeholderSrc}
               name={s.name}
               text={s.text}
               translation={s.translation}

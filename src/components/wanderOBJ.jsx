@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import ProgressiveImg from "../components/ProgressiveImg";
 
 const Blocker = styled.div`
   z-index: 99;
@@ -75,7 +76,8 @@ const CancelButton = styled(motion.button)`
   cursor: pointer;
 `;
 
-const OBJ = styled(motion.img)`
+const OBJ = styled(ProgressiveImg)``;
+const OBJWrapper = styled(motion.div)`
   /* position: absolute; */
   cursor: pointer;
   z-index: ${(props) => (props.$focus ? 100 : 0)};
@@ -84,7 +86,7 @@ const OBJ = styled(motion.img)`
 
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-export default function WanderOBJ({ imgsrc, name, func, text, translation }) {
+export default function WanderOBJ({ imgsrc, placeholderSrc, name, func, text, translation }) {
   const imgRef = useRef(null);
   // ANIMATE
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -219,14 +221,10 @@ export default function WanderOBJ({ imgsrc, name, func, text, translation }) {
 
   return (
     <div key={name}>
-      <OBJ
-        loading="lazy"
+      <OBJWrapper
+        // loading="lazy"
         style={{ position: "absolute" }}
         ref={imgRef}
-        src={imgsrc}
-        alt={name}
-        // TODO mobile 시 작아지도록
-        height={350}
         transition={{ duration: durationState }}
         animate={{
           x: position.x,
@@ -238,7 +236,15 @@ export default function WanderOBJ({ imgsrc, name, func, text, translation }) {
         }}
         $focus={focus}
         whileHover={onHover}
-      />
+      >
+        <OBJ
+          src={imgsrc}
+          alt={name}
+          placeholderSrc={placeholderSrc}
+          // TODO mobile 시 작아지도록
+          height={350}
+        />
+      </OBJWrapper>
       {isClicked ? (
         <Blocker>
           <div style={{ width: "100%", height: "50%" }}></div>
