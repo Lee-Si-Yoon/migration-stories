@@ -14,43 +14,6 @@ import ErrorPage from "./error-page";
 import { ThemeProvider } from "styled-components";
 import { DefaultTheme } from "./theme";
 import "./css/index.css";
-// const Root = React.lazy(() => import("./routes/root"));
-// const Story = React.lazy(() => import("./routes/story"));
-
-// const routes = [
-//   {
-//     path: "/",
-//     element: <Root />,
-//     errorElement: <ErrorPage />,
-//     children: [
-//       {
-//         path: "about",
-//         element: <About />,
-//       },
-//       {
-//         path: "credit",
-//         element: <Credit />,
-//       },
-//       {
-//         path: "wander",
-//         element: <Wander />,
-//       },
-//       {
-//         path: "story/:name",
-//         element: <Story />,
-//       },
-//       {
-//         path: "video/:name",
-//         element: <Video />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "/:name",
-//     // TODO 전시용 분리, chamikara, ting, akanain, sunyena, dpiak, kemra
-//     element: <Root />,
-//   },
-// ];
 
 const routes = [
   {
@@ -87,8 +50,21 @@ const routes = [
   },
 ];
 
-// React.StrictMode
 const router = createBrowserRouter(routes);
+
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
+//       <Route errorElement={<ErrorPage />}>
+//         <Route index element={<Wander />} />
+//         <Route path="story/:name" element={<Story />} />
+//         <Route path="video/:name" element={<Video />} />
+//         <Route path="about" element={<About />} />
+//         <Route path="credit" element={<Credit />} />
+//       </Route>
+//     </Route>
+//   )
+// );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

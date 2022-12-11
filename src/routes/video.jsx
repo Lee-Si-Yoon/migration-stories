@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 // import { useLocation } from "react-router-dom";
 import ReactPlayer from "react-player/lazy";
+import { isMobile } from "react-device-detect";
 // STYLING
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
@@ -91,20 +92,34 @@ export default function Video() {
       <AnimatePresence>
         {showVideo ? (
           <VideoPlayerContainer>
-            {/* TODO uselocation 받아와서 url 변환 */}
-            <ReactPlayer
-              playing
-              volume={1}
-              width={"100%"}
-              height={"100%"}
-              // controls={true}
-              // light={true}
-              url={`${playtarget}`}
-              fallback={<p>Loading...</p>}
-              onError={(err) => {
-                console.log(err);
-              }}
-            />
+            {isMobile ? (
+              <ReactPlayer
+                volume={1}
+                width={"100%"}
+                height={"100%"}
+                controls={true}
+                // light={true}
+                url={`${playtarget}`}
+                fallback={<p>Loading...</p>}
+                onError={(err) => {
+                  console.log(err);
+                }}
+              />
+            ) : (
+              <ReactPlayer
+                playing
+                volume={1}
+                width={"100%"}
+                height={"100%"}
+                // controls={true}
+                // light={true}
+                url={`${playtarget}`}
+                fallback={<p>Loading...</p>}
+                onError={(err) => {
+                  console.log(err);
+                }}
+              />
+            )}
           </VideoPlayerContainer>
         ) : (
           <HeadphoneContainer
