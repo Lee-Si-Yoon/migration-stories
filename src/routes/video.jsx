@@ -1,7 +1,7 @@
 // REACT
 import { useEffect, useState } from "react";
 // import { useLocation } from "react-router-dom";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 // STYLING
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
@@ -71,10 +71,13 @@ export default function Video() {
   const [showVideo, setShowvideo] = useState(false);
   const [name, setName] = useState("");
   const [playtarget, setPlayTarget] = useState("");
+
   let location = useLocation();
+
   useEffect(() => {
     setName(location.pathname.split("/")[2]);
   }, [location.pathname]);
+
   useEffect(() => {
     stories.forEach((s) => {
       if (s.name === name) {
@@ -82,6 +85,7 @@ export default function Video() {
       } else return;
     });
   }, [name]);
+
   return (
     <Layout>
       <AnimatePresence>
@@ -93,8 +97,13 @@ export default function Video() {
               volume={1}
               width={"100%"}
               height={"100%"}
-              controls={false}
+              // controls={true}
+              // light={true}
               url={`${playtarget}`}
+              fallback={<p>Loading...</p>}
+              onError={(err) => {
+                console.log(err);
+              }}
             />
           </VideoPlayerContainer>
         ) : (

@@ -4,6 +4,20 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ProgressiveImg from "../components/ProgressiveImg";
 
+const OBJWrapper = styled(motion.div)`
+  /* position: absolute; */
+  cursor: pointer;
+  z-index: ${(props) => (props.$focus ? 100 : 0)};
+  filter: ${(props) => (props.$focus ? "brightness(1.5)" : "brightness(1)")};
+`;
+
+const OBJ = styled(ProgressiveImg)`
+  width: 600px;
+  @media screen and (max-width: 575.98px) {
+    width: 380px;
+  }
+`;
+
 const Blocker = styled.div`
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
@@ -13,32 +27,57 @@ const Blocker = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 `;
 
 const StoryWrapper = styled.div`
   width: 100%;
-  height: 50%;
-  align-self: flex-end;
-  justify-self: flex-end;
+  height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
-const Story = styled.p`
-  text-align: center;
-  font-size: 1.5rem;
-  line-height: 160%;
+const Story = styled.div`
   max-width: 600px;
-  min-width: 250px;
+  min-width: 300px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @media screen and (max-width: 575.98px) {
+    width: 100%;
+  }
+`;
+const StoryMain = styled.div`
+  padding-bottom: 1rem;
+  p {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 160%;
+  }
   @media screen and (max-width: 575.98px) {
     width: 80%;
+    p {
+      font-size: 1.2rem;
+    }
+  }
+`;
+const StoryText = styled.div`
+  p {
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 140%;
+  }
+  @media screen and (max-width: 575.98px) {
+    width: 80%;
+    p {
+      font-size: 1rem;
+    }
   }
 `;
 
-// TODO X버튼 높이 지정하기
 const ButtonWrapper = styled.div`
   margin-top: 2rem;
   display: flex;
@@ -64,9 +103,9 @@ const LinkButton = styled(Link)`
 `;
 const CancelButton = styled(motion.button)`
   margin-top: 2rem;
-  background-color: ${(props) => props.theme.colors.background};
-  color: ${(props) => props.theme.colors.text};
-  border: none;
+  background: none;
+  color: white;
+  border: 1px solid white;
   width: 3rem;
   height: 3rem;
   border-radius: 1.5rem;
@@ -76,17 +115,16 @@ const CancelButton = styled(motion.button)`
   cursor: pointer;
 `;
 
-const OBJ = styled(ProgressiveImg)``;
-const OBJWrapper = styled(motion.div)`
-  /* position: absolute; */
-  cursor: pointer;
-  z-index: ${(props) => (props.$focus ? 100 : 0)};
-  filter: ${(props) => (props.$focus ? "brightness(1.5)" : "brightness(1)")};
-`;
-
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-export default function WanderOBJ({ imgsrc, placeholderSrc, name, func, text, translation }) {
+export default function WanderOBJ({
+  imgsrc,
+  placeholderSrc,
+  name,
+  func,
+  text,
+  translation,
+}) {
   const imgRef = useRef(null);
   // ANIMATE
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -102,15 +140,20 @@ export default function WanderOBJ({ imgsrc, placeholderSrc, name, func, text, tr
   function resetPosition() {
     let bool = false;
     if (
-      imgRef.current.getBoundingClientRect().x < 0 - imgRef.current.getBoundingClientRect().width ||
+      imgRef.current.getBoundingClientRect().x <
+        0 - imgRef.current.getBoundingClientRect().width ||
       imgRef.current.getBoundingClientRect().x > window.innerWidth ||
       imgRef.current.getBoundingClientRect().y <
         0 - imgRef.current.getBoundingClientRect().height ||
       imgRef.current.getBoundingClientRect().y > window.innerHeight
     ) {
       let targetPosition = {
-        x: window.innerWidth / 2 - imgRef.current.getBoundingClientRect().width / 2,
-        y: window.innerHeight / 2 - imgRef.current.getBoundingClientRect().height / 2,
+        x:
+          window.innerWidth / 2 -
+          imgRef.current.getBoundingClientRect().width / 2,
+        y:
+          window.innerHeight / 2 -
+          imgRef.current.getBoundingClientRect().height / 2,
       };
       bool = true;
       setOpacity(0);
@@ -191,8 +234,12 @@ export default function WanderOBJ({ imgsrc, placeholderSrc, name, func, text, tr
       setDuration(0);
       let timerId;
       let targetPosition = {
-        x: window.innerWidth / 2 - imgRef.current.getBoundingClientRect().width / 2,
-        y: window.innerHeight / 2 - imgRef.current.getBoundingClientRect().height,
+        x:
+          window.innerWidth / 2 -
+          imgRef.current.getBoundingClientRect().width / 2,
+        y:
+          window.innerHeight / 2 -
+          imgRef.current.getBoundingClientRect().height,
       };
       const f = () => {
         setPosition((pos) => ({
@@ -237,31 +284,23 @@ export default function WanderOBJ({ imgsrc, placeholderSrc, name, func, text, tr
         $focus={focus}
         whileHover={onHover}
       >
-        <OBJ
-          src={imgsrc}
-          alt={name}
-          placeholderSrc={placeholderSrc}
-          // TODO mobile 시 작아지도록
-          height={350}
-        />
+        <OBJ src={imgsrc} alt={name} placeholderSrc={placeholderSrc} />
       </OBJWrapper>
       {isClicked ? (
         <Blocker>
-          <div style={{ width: "100%", height: "50%" }}></div>
+          <div className="blank" style={{ width: "100%", height: "40%" }}></div>
           <StoryWrapper>
             <Story>
-              <div style={{ marginBottom: "1rem" }}>
+              <StoryMain>
                 {text.split("\n").map((t, i) => (
-                  <p key={i} style={{ color: "white" }}>
-                    {t}
-                  </p>
+                  <p key={i}>{t}</p>
                 ))}
-              </div>
-              {translation.split("\n").map((t, i) => (
-                <p key={i} style={{ fontSize: "1.2rem", lineHeight: "140%" }}>
-                  {t}
-                </p>
-              ))}
+              </StoryMain>
+              <StoryText>
+                {translation.split("\n").map((t, i) => (
+                  <p key={i}>{t}</p>
+                ))}
+              </StoryText>
             </Story>
             <ButtonWrapper>
               <motion.div
@@ -273,7 +312,6 @@ export default function WanderOBJ({ imgsrc, placeholderSrc, name, func, text, tr
                 <LinkButton to={`/story/${name}`}>스토리 보기</LinkButton>
               </motion.div>
               <CancelButton
-                whileHover={{ y: -5, color: "rgba(0,0,0,100)", backgroundColor: "#999" }}
                 onClick={() => {
                   func(onClick);
                 }}
@@ -286,7 +324,11 @@ export default function WanderOBJ({ imgsrc, placeholderSrc, name, func, text, tr
                   stroke="currentColor"
                   className="w-6 h-6"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </CancelButton>
             </ButtonWrapper>

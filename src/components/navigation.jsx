@@ -18,18 +18,28 @@ const NavUl = styled.ul`
   align-items: center;
   justify-content: space-between;
   color: ${(props) => props.theme.colors.text};
+  img {
+    width: 50px;
+  }
+  @media screen and (max-width: 575.98px) {
+    padding: 1rem 2rem;
+  }
 `;
 const Links = styled(Link)`
   color: ${(props) => props.theme.colors.text};
   text-decoration: none;
   outline: none;
+  font-size: 1rem;
+  @media screen and (max-width: 575.98px) {
+    font-size: 1.2rem;
+  }
 `;
 const LinkContainer = styled.div`
   display: flex;
-  column-gap: 2rem;
+  column-gap: 2.5rem;
 `;
 
-export default function Nav(show) {
+export default function Nav({ show }) {
   return (
     <Navigation>
       <NavUl>
@@ -37,9 +47,8 @@ export default function Nav(show) {
           <img
             src="/imgs/logo.webp"
             alt="logo"
-            width={50}
             onClick={() => {
-              show.show(true);
+              show(true);
             }}
           />
         </Links>

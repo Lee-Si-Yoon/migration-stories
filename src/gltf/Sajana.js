@@ -12,7 +12,11 @@ export default function Sajana(props) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <group name="Camera002" position={[0, 0, -0.16]} rotation={[Math.PI / 2, 0, 0]} />
+        <group
+          name="Camera002"
+          position={[0, 0, -0.16]}
+          rotation={[Math.PI / 2, 0, 0]}
+        />
         <group
           name="rubber"
           position={[0.56, -0.44, -7.23]}
@@ -500,8 +504,16 @@ export default function Sajana(props) {
             geometry={nodes.Mesh001_2.geometry}
             material={materials["Material #2675"]}
           />
-          <mesh name="Mesh001_3" geometry={nodes.Mesh001_3.geometry} material={materials.yallo} />
-          <mesh name="Mesh001_4" geometry={nodes.Mesh001_4.geometry} material={materials.steel} />
+          <mesh
+            name="Mesh001_3"
+            geometry={nodes.Mesh001_3.geometry}
+            material={materials.yallo}
+          />
+          <mesh
+            name="Mesh001_4"
+            geometry={nodes.Mesh001_4.geometry}
+            material={materials.steel}
+          />
           <mesh
             name="Mesh001_5"
             geometry={nodes.Mesh001_5.geometry}
@@ -512,14 +524,26 @@ export default function Sajana(props) {
             geometry={nodes.Mesh001_6.geometry}
             material={materials["Material #2677"]}
           />
-          <mesh name="Mesh001_7" geometry={nodes.Mesh001_7.geometry} material={materials.red} />
+          <mesh
+            name="Mesh001_7"
+            geometry={nodes.Mesh001_7.geometry}
+            material={materials.red}
+          />
           <mesh
             name="Mesh001_8"
             geometry={nodes.Mesh001_8.geometry}
             material={materials.Standardmaterial_3}
           />
-          <mesh name="Mesh001_9" geometry={nodes.Mesh001_9.geometry} material={materials.waith} />
-          <mesh name="Mesh001_10" geometry={nodes.Mesh001_10.geometry} material={materials.green} />
+          <mesh
+            name="Mesh001_9"
+            geometry={nodes.Mesh001_9.geometry}
+            material={materials.waith}
+          />
+          <mesh
+            name="Mesh001_10"
+            geometry={nodes.Mesh001_10.geometry}
+            material={materials.green}
+          />
           <mesh
             name="Mesh001_11"
             geometry={nodes.Mesh001_11.geometry}
@@ -535,7 +559,11 @@ export default function Sajana(props) {
             geometry={nodes.Mesh001_13.geometry}
             material={materials["Material #2679"]}
           />
-          <mesh name="Mesh001_14" geometry={nodes.Mesh001_14.geometry} material={materials.saman} />
+          <mesh
+            name="Mesh001_14"
+            geometry={nodes.Mesh001_14.geometry}
+            material={materials.saman}
+          />
           <mesh
             name="Mesh001_15"
             geometry={nodes.Mesh001_15.geometry}
@@ -656,7 +684,11 @@ export default function Sajana(props) {
             material={materials["Material3.001"]}
           />
         </group>
-        <group name="개체_282002" position={[260.57, -146.9, 4.84]} scale={3.24}>
+        <group
+          name="개체_282002"
+          position={[260.57, -146.9, 4.84]}
+          scale={3.24}
+        >
           <mesh
             name="개체_282003"
             geometry={nodes.개체_282003.geometry}

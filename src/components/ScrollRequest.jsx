@@ -1,29 +1,36 @@
 // STYLING
-// import styled from "styled-components";
+import styled from "styled-components";
 import { motion } from "framer-motion";
+
+const Wrapper = styled(motion.div)`
+  width: 10rem;
+  height: 4rem;
+  position: absolute;
+  bottom: 8rem;
+  @media screen and (max-width: 575.98px) {
+    bottom: 4rem;
+  }
+`;
+const TextContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  h1 {
+    text-align: center;
+    line-height: 140%;
+  }
+`;
 
 export default function ScrollRequest() {
   return (
-    <motion.div
-      style={{
-        width: "10rem",
-        height: "4rem",
-        position: "absolute",
-        bottom: "10rem",
-      }}
+    <Wrapper
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
     >
-      <motion.div
-        style={{
-          color: "white",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+      <TextContainer
         initial={{
           y: -4,
         }}
@@ -36,32 +43,11 @@ export default function ScrollRequest() {
           repeatType: "mirror",
         }}
       >
-        {/* <div
-          style={{
-            width: "4rem",
-            marginBottom: "1rem",
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </div> */}
-        <h1 style={{ lineHeight: "140%" }}>
+        <h1>
           스크롤을 이용해
           <br /> 진행해주세요
         </h1>
-      </motion.div>
-    </motion.div>
+      </TextContainer>
+    </Wrapper>
   );
 }

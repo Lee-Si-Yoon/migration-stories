@@ -1,13 +1,13 @@
 // REACT
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import React, { Suspense, useState } from "react";
 import Nav from "../components/navigation";
-// import Loader from "../components/loader";
 import Circle from "../components/Circle";
 // STYLING
 import styled from "styled-components";
 import { AnimatePresence } from "framer-motion";
-const Loader = React.lazy(() => import("../components/loader"));
+// LAZY
+const Loader = React.lazy(() => import("../components/Loader"));
 
 const Layout = styled.div`
   background-color: ${(props) => props.theme.colors.background};
@@ -25,23 +25,21 @@ const NavContainer = styled.div`
 
 export default function Root() {
   const [loading, setLoading] = useState(true);
-  let location = useLocation();
-  // console.log(location.pathname);
 
   return (
     <Layout>
       <NavContainer>
         <Nav show={setLoading} />
       </NavContainer>
+
       <AnimatePresence initial={false}>
-        {loading && location.pathname === "/" ? (
+        {loading ? (
           <Suspense fallback={<Circle />}>
             <Loader show={setLoading} />
           </Suspense>
-        ) : null}
-      </AnimatePresence>
-      <AnimatePresence initial={false}>
-        <Outlet />
+        ) : (
+          <Outlet />
+        )}
       </AnimatePresence>
     </Layout>
   );

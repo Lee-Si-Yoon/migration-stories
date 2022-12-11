@@ -1,7 +1,13 @@
 import { Html, useProgress } from "@react-three/drei";
+// import { useEffect } from "react";
 
 export default function Loader() {
   const { progress } = useProgress();
+  // useEffect(() => {
+  //   if (loaded) {
+  //     loadingFunc(true);
+  //   }
+  // }, [loadingFunc, loaded]);
   return (
     <Html center>
       <div

@@ -17,7 +17,7 @@ const fadeInFromLeft = {
 
 const fadeInUp = {
   initial: {
-    y: 60,
+    y: 40,
     opacity: 0,
   },
   animate: {
@@ -26,7 +26,7 @@ const fadeInUp = {
     transition: {
       duration: 1,
       ease: easing,
-      delay: 0.2,
+      delay: 0.1,
     },
   },
 };

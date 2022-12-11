@@ -17,6 +17,41 @@ import "./css/index.css";
 // const Root = React.lazy(() => import("./routes/root"));
 // const Story = React.lazy(() => import("./routes/story"));
 
+// const routes = [
+//   {
+//     path: "/",
+//     element: <Root />,
+//     errorElement: <ErrorPage />,
+//     children: [
+//       {
+//         path: "about",
+//         element: <About />,
+//       },
+//       {
+//         path: "credit",
+//         element: <Credit />,
+//       },
+//       {
+//         path: "wander",
+//         element: <Wander />,
+//       },
+//       {
+//         path: "story/:name",
+//         element: <Story />,
+//       },
+//       {
+//         path: "video/:name",
+//         element: <Video />,
+//       },
+//     ],
+//   },
+//   {
+//     path: "/:name",
+//     // TODO 전시용 분리, chamikara, ting, akanain, sunyena, dpiak, kemra
+//     element: <Root />,
+//   },
+// ];
+
 const routes = [
   {
     path: "/",
@@ -24,15 +59,7 @@ const routes = [
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "about",
-        element: <About />,
-      },
-      {
-        path: "credit",
-        element: <Credit />,
-      },
-      {
-        path: "wander",
+        path: "/",
         element: <Wander />,
       },
       {
@@ -43,15 +70,24 @@ const routes = [
         path: "video/:name",
         element: <Video />,
       },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "credit",
+        element: <Credit />,
+      },
     ],
   },
   {
-    path: "/:name",
-    // TODO 전시용 분리, chamikara, ting, akanain, sunyena, dpiak, kemra
-    element: <Root />,
+    path: "/ex",
+    element: <Wander />,
+    errorElement: <ErrorPage />,
   },
 ];
 
+// React.StrictMode
 const router = createBrowserRouter(routes);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

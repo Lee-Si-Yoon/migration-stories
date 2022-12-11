@@ -1,9 +1,10 @@
 // STYLING
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import ProgressiveImg from "../components/ProgressiveImg";
+import { motion } from "framer-motion";
+import ProgressiveImg from "./ProgressiveImg";
 
-const Layout = styled.div`
+const Layout = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100vh;
@@ -17,12 +18,13 @@ const Layout = styled.div`
 `;
 const ImageContainer = styled.div`
   min-width: 300px;
-  max-width: 800px;
+  max-width: 600px;
   width: 100%;
   aspect-ratio: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid white; */
   @media screen and (max-width: 575.98px) {
     width: 80%;
   }
@@ -103,7 +105,11 @@ const StartBtn = styled.button`
 
 export default function Loader(show) {
   return (
-    <Layout>
+    <Layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <ImageContainer>
         <Spacer>
           <One
@@ -159,7 +165,7 @@ export default function Loader(show) {
           alignItems: "center",
           textDecoration: "none",
         }}
-        to={"/wander"}
+        to={"/"}
       >
         <StartBtn
           onClick={() => {
