@@ -43,28 +43,9 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/ex",
-    element: <Wander />,
-    errorElement: <ErrorPage />,
-  },
 ];
 
 const router = createBrowserRouter(routes);
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
-//       <Route errorElement={<ErrorPage />}>
-//         <Route index element={<Wander />} />
-//         <Route path="story/:name" element={<Story />} />
-//         <Route path="video/:name" element={<Video />} />
-//         <Route path="about" element={<About />} />
-//         <Route path="credit" element={<Credit />} />
-//       </Route>
-//     </Route>
-//   )
-// );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
