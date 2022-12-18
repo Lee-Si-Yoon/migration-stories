@@ -1,20 +1,20 @@
 # Migration Stories
 
-## 해야할 일
-
-- [ ] wander 시작 위치 중앙으로
-- [ ] 3d scroll에 smooth scrolling
-- [ ] 네비게이션 분리
+<div align="center">
+  <a href="https://migrationstoriesproject.net/">
+    Sample Link
+  </a>
+</div>
 
 ---
 
-### ref
+## ref
 
 - three.js ref. [link](https://github.com/wrongakram/R3F-Chairs/blob/master/src/App.js)
 
 ---
 
-#### 준비해야할 것들
+## ToDo
 
 - [ ] 12월 9일까지 홈페이지 완성
 
