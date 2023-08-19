@@ -124,7 +124,7 @@ const stories = [
 ];
 
 export default function Wander() {
-  function onClickFromOBJ(func) {
+  function onClickFromOBJ(func: VoidFunction) {
     func();
   }
   return (

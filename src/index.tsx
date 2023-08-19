@@ -1,7 +1,11 @@
 // REACT
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  RouteObject,
+} from "react-router-dom";
 // ROUTING
 import Root from "./routes/root";
 import About from "./routes/about";
@@ -15,31 +19,31 @@ import { ThemeProvider } from "styled-components";
 import { DefaultTheme } from "./theme";
 import "./css/index.css";
 
-const routes = [
+const routes: RouteObject[] = [
   {
     path: "/",
-    element: <Root />,
+    Component: Root,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <Wander />,
+        Component: Wander,
       },
       {
         path: "story/:name",
-        element: <Story />,
+        Component: Story,
       },
       {
         path: "video/:name",
-        element: <Video />,
+        Component: Video,
       },
       {
         path: "about",
-        element: <About />,
+        Component: About,
       },
       {
         path: "credit",
-        element: <Credit />,
+        Component: Credit,
       },
     ],
   },
@@ -47,7 +51,7 @@ const routes = [
 
 const router = createBrowserRouter(routes);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={DefaultTheme}>

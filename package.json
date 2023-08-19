@@ -1,41 +1,19 @@
 {
-  "name": "2022-migration-stories",
-  "homepage": "https://migrationstoriesproject.net",
+  "name": "migration-stories",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@react-three/drei": "^9.40.5",
-    "@react-three/fiber": "^8.9.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "dotenv": "^16.0.3",
-    "framer-motion": "^7.6.4",
-    "gh-pages": "^4.0.0",
-    "gsap": "^3.11.3",
-    "react": "^18.2.0",
-    "react-device-detect": "^2.2.2",
-    "react-dom": "^18.2.0",
-    "react-player": "^2.11.0",
-    "react-router-dom": "^6.4.3",
-    "react-scripts": "5.0.1",
-    "styled-components": "^5.3.6",
-    "three": "^0.146.0",
-    "web-vitals": "^2.1.4"
-  },
+  "homepage": "https://migrationstoriesproject.net",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
+    "depcheck": "depcheck --config=.depcheckrc.json",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject",
+    "postinstall": "husky install",
+    "lint": "eslint src --ext js,jsx . --fix",
+    "lint-staged": "sort-package-json",
+    "start": "cross-env GENERATE_SOURCEMAP=false react-scripts start",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -48,5 +26,42 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.40.5",
+    "@react-three/fiber": "^8.9.1",
+    "@testing-library/jest-dom": "^6.0.1",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "framer-motion": "^10.16.0",
+    "gh-pages": "^6.0.0",
+    "react": "^18.2.0",
+    "react-device-detect": "^2.2.2",
+    "react-dom": "^18.2.0",
+    "react-player": "^2.11.0",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "5.0.1",
+    "styled-components": "^6.0.7",
+    "three": "^0.155.0",
+    "typescript": "^5.1.6",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.47.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.0"
   }
 }

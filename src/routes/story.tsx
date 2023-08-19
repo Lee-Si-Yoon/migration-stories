@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 // REACT
 import React, { Suspense, useRef } from "react";
 import { useEffect, useState } from "react";
@@ -55,23 +56,30 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function map_range(value, low1, high1, low2, high2) {
+function map_range(
+  value: number,
+  low1: number,
+  high1: number,
+  low2: number,
+  high2: number
+): number {
   return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
 }
 
 export default function Story() {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | undefined>();
   const [isScrolling, setScrolling] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
   const [scrollEnd, setEnd] = useState(false);
   const [name, setName] = useState("");
 
-  let scrollingID = useRef(null);
+  let scrollingID = useRef<NodeJS.Timeout>();
   let location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
+      if (!containerRef.current) return;
       containerRef.current.style.height = "500vh";
     }, 1000);
   }, []);
@@ -88,13 +96,14 @@ export default function Story() {
 
   function logic() {
     setScrolling(false);
-    window.clearTimeout(scrollingID);
+    clearTimeout(scrollingID.current);
+    if (!containerRef.current) return;
     const ratio =
       window.scrollY / (containerRef.current.offsetHeight - window.innerHeight);
     const percentage = map_range(ratio, 0, 1, 15, 100);
     setScrollPos(percentage);
     // FIXED 끝에 도착했을때 스크롤 안뜨게끔 - navigate 방식으로 해결
-    scrollingID = setTimeout(function () {
+    scrollingID.current = setTimeout(function () {
       setScrolling(true);
       // console.log("scrolling stoped");
     }, 2000);
@@ -124,7 +133,7 @@ export default function Story() {
   return (
     <>
       <Layout
-        ref={containerRef}
+        ref={containerRef as React.MutableRefObject<HTMLDivElement>}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >

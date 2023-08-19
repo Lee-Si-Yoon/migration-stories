@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 // import { fadeInUp, stagger } from "../motion";
@@ -159,6 +160,7 @@ const stagger = {
 
 export default function About() {
   const [language, setLanguage] = useState(lagnuages[0]);
+  const texts = Texts as any;
 
   return (
     <Layout
@@ -179,6 +181,7 @@ export default function About() {
           <ButtonContainer variants={fadeInUp}>
             {lagnuages.map((l) => (
               <button
+                key={l}
                 onClick={() => {
                   setLanguage(l);
                 }}
@@ -188,9 +191,9 @@ export default function About() {
             ))}
           </ButtonContainer>
           <TextConatiner variants={fadeInUp}>
-            <h2>{Texts[language].title}</h2>
-            {Texts[language].text.split("\n").map((t) => (
-              <p>{t}</p>
+            <h2>{texts[language].title}</h2>
+            {texts[language].text.split("\n").map((t: string) => (
+              <p key={t}>{t}</p>
             ))}
           </TextConatiner>
         </AboutContainer>

@@ -1,3 +1,4 @@
+import React from "react";
 // REACT
 import { Link } from "react-router-dom";
 // STYLING
@@ -39,7 +40,11 @@ const LinkContainer = styled.div`
   column-gap: 2.5rem;
 `;
 
-export default function Nav({ show }) {
+interface NavProps {
+  show: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Nav({ show }: NavProps) {
   return (
     <Navigation>
       <NavUl>
