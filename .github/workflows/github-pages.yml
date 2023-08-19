@@ -2,22 +2,22 @@
 name: Build and Deploy React App to Github Pages
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Build
-      run: npm install
-    
-    - name: Deploy
-      run: |
-        git config --global user.name "Lee SiYoon"
-        git config --global user.email "dlduqehd1@gmail.com"
-        git remote set-url origin https://x-acess-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        npm run deploy
+      - name: Build
+        run: yarn install
+
+      - name: Deploy
+        run: |
+          git config --global user.name "Lee SiYoon"
+          git config --global user.email "dlduqehd1@gmail.com"
+          git remote set-url origin https://x-acess-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          npm run deploy
