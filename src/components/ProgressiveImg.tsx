@@ -28,8 +28,10 @@ export default function ProgressiveImg({
       setImgSrc(src);
     };
   }, [src]);
+
   const loadingProp =
     placeholderSrc && imgSrc === placeholderSrc ? "loading" : "loaded";
+
   return (
     <ProgressiveImage
       {...{ src: imgSrc, ...props }}

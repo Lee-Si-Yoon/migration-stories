@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ProgressiveImg from "./ProgressiveImg";
+import { lerp } from "../utils/math";
 
 const OBJWrapper = styled(motion.div)<{ $focus: boolean }>`
   /* position: absolute; */
@@ -115,13 +116,10 @@ const CancelButton = styled(motion.button)`
   cursor: pointer;
 `;
 
-const lerp = (a: number, b: number, n: number): number => (1 - n) * a + n * b;
-
 interface WanderOBJProps {
   imgsrc: string;
   placeholderSrc: string;
   name: string;
-  func: any;
   text: string;
   translation: string;
 }
@@ -130,7 +128,6 @@ export default function WanderOBJ({
   imgsrc,
   placeholderSrc,
   name,
-  func,
   text,
   translation,
 }: WanderOBJProps) {
@@ -280,9 +277,7 @@ export default function WanderOBJ({
           y: position.y,
           opacity: opacity,
         }}
-        onClick={() => {
-          func(onClick);
-        }}
+        onClick={onClick}
         $focus={focus}
         whileHover={focus ? { scale: 1 } : { scale: 1.1 }}
       >
@@ -313,11 +308,7 @@ export default function WanderOBJ({
               >
                 <LinkButton to={`/story/${name}`}>스토리 보기</LinkButton>
               </motion.div>
-              <CancelButton
-                onClick={() => {
-                  func(onClick);
-                }}
-              >
+              <CancelButton onClick={onClick}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -13,6 +13,7 @@
     "lint": "eslint src --ext js,jsx . --fix",
     "lint-staged": "sort-package-json",
     "start": "cross-env GENERATE_SOURCEMAP=false react-scripts start",
+    "stylelint": "stylelint **/*.scss --fix",
     "test": "react-scripts test"
   },
   "browserslist": {
@@ -43,6 +44,7 @@
     "@types/react-dom": "^18.2.7",
     "framer-motion": "^10.16.0",
     "gh-pages": "^6.0.0",
+    "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
@@ -62,6 +64,10 @@
     "eslint": "^8.47.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.33.2",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "stylelint": "^15.10.3",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-recommended": "^13.0.0",
+    "stylelint-config-standard-scss": "^10.0.0"
   }
 }
