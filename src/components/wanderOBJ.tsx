@@ -157,7 +157,7 @@ export default function WanderOBJ({
         0 - imgRef.current.getBoundingClientRect().height ||
       imgRef.current.getBoundingClientRect().y > window.innerHeight
     ) {
-      let targetPosition = {
+      const targetPosition = {
         x:
           window.innerWidth / 2 -
           imgRef.current.getBoundingClientRect().width / 2,
@@ -185,7 +185,7 @@ export default function WanderOBJ({
           }
         }
         intervalId = setInterval(fadeIn, 25);
-        // setOpacity(fadeIn);
+        // setOpacity(fadeIn());
       }, 1000);
     } else {
       bool = false;
@@ -211,7 +211,6 @@ export default function WanderOBJ({
   // }
 
   // 기본 렌더
-
   useLayoutEffect(() => {
     if (isPaused) {
       let timerId: number;
@@ -219,12 +218,11 @@ export default function WanderOBJ({
       // let turningSpeed = Math.random() - 0.8;
       let velocity = 0.5 + Math.random() * 1;
       const f = () => {
-        // resetPosition();
-        if (resetPosition()?.bool) {
-          direction = Math.random() * Math.PI * 2;
-          // turningSpeed = Math.random() - 0.8;
-          velocity = 0.5 + Math.random() * 1;
-        }
+        // if (resetPosition()?.bool) {
+        //   direction = Math.random() * Math.PI * 2;
+        //   // turningSpeed = Math.random() - 0.8;
+        //   velocity = 0.5 + Math.random() * 1;
+        // }
         // direction = direction + turningSpeed * 0.01;
         setPosition((pos) => ({
           x: pos.x + Math.sin(direction) * velocity,

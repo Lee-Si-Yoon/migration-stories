@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 // REACT
 import React, { Suspense, useRef } from "react";
 import { useEffect, useState } from "react";

@@ -181,6 +181,7 @@ export default function About() {
           <ButtonContainer variants={fadeInUp}>
             {lagnuages.map((l) => (
               <button
+                key={l}
                 onClick={() => {
                   setLanguage(l);
                 }}
