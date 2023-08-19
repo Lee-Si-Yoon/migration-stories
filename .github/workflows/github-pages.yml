@@ -20,4 +20,4 @@ jobs:
           git config --global user.name "Lee SiYoon"
           git config --global user.email "dlduqehd1@gmail.com"
           git remote set-url origin https://x-acess-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          npm run deploy
+          CI='false' npm run deploy
