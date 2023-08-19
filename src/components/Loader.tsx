@@ -1,3 +1,4 @@
+import React from "react";
 // STYLING
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -103,7 +104,11 @@ const StartBtn = styled.button`
   }
 `;
 
-export default function Loader(show) {
+export default function Loader({
+  show,
+}: {
+  show: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <Layout
       initial={{ opacity: 0 }}
@@ -116,43 +121,36 @@ export default function Loader(show) {
             placeholderSrc="/imgs/fragment-min/네팔어-min.png"
             src="/imgs/fragment/네팔어.png"
             alt="1.png"
-            fetchpriority="high"
           />
           <Two
             placeholderSrc="/imgs/fragment-min/미얀마어-min.png"
             src="/imgs/fragment/미얀마어.png"
             alt="2.png"
-            fetchpriority="high"
           />
           <Three
             placeholderSrc="/imgs/fragment-min/베트남어-min.png"
             src="/imgs/fragment/베트남어.png"
             alt="3.png"
-            fetchpriority="high"
           />
           <Four
             placeholderSrc="/imgs/fragment-min/스리랑카어-min.png"
             src="/imgs/fragment/스리랑카어.png"
             alt="4.png"
-            fetchpriority="high"
           />
           <Five
             placeholderSrc="/imgs/fragment-min/영어-min.png"
             src="/imgs/fragment/영어.png"
             alt="5.png"
-            fetchpriority="high"
           />
           <Six
             placeholderSrc="/imgs/fragment-min/캄보디아어-min.png"
             src="/imgs/fragment/캄보디아어.png"
             alt="6.png"
-            fetchpriority="high"
           />
           <Seven
             placeholderSrc="/imgs/fragment-min/한국어-min.png"
             src="/imgs/fragment/한국어.png"
             alt="6.png"
-            fetchpriority="high"
           />
         </Spacer>
       </ImageContainer>
@@ -169,7 +167,7 @@ export default function Loader(show) {
       >
         <StartBtn
           onClick={() => {
-            show.show(false);
+            show(false);
           }}
         >
           Start

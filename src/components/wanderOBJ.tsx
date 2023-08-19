@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ProgressiveImg from "../components/ProgressiveImg";
+import ProgressiveImg from "./ProgressiveImg";
 
-const OBJWrapper = styled(motion.div)`
+const OBJWrapper = styled(motion.div)<{ $focus: boolean }>`
   /* position: absolute; */
   cursor: pointer;
   z-index: ${(props) => (props.$focus ? 100 : 0)};
@@ -115,7 +115,16 @@ const CancelButton = styled(motion.button)`
   cursor: pointer;
 `;
 
-const lerp = (a, b, n) => (1 - n) * a + n * b;
+const lerp = (a: number, b: number, n: number): number => (1 - n) * a + n * b;
+
+interface WanderOBJProps {
+  imgsrc: string;
+  placeholderSrc: string;
+  name: string;
+  func: any;
+  text: string;
+  translation: string;
+}
 
 export default function WanderOBJ({
   imgsrc,
@@ -124,8 +133,8 @@ export default function WanderOBJ({
   func,
   text,
   translation,
-}) {
-  const imgRef = useRef(null);
+}: WanderOBJProps) {
+  const imgRef = useRef<HTMLImageElement | null>(null);
   // ANIMATE
   const [position, setPosition] = useState({ x: 0, y: 0 });
   // STYLING
@@ -139,6 +148,7 @@ export default function WanderOBJ({
   // 화면 벗어났을때 boolean 반환
   function resetPosition() {
     let bool = false;
+    if (!imgRef.current) return;
     if (
       imgRef.current.getBoundingClientRect().x <
         0 - imgRef.current.getBoundingClientRect().width ||
@@ -165,7 +175,7 @@ export default function WanderOBJ({
       // TODO 이거 안됨, 서서히 생기게 만들기
       setTimeout(() => {
         let alpha = 0;
-        let intervalId = 0;
+        let intervalId: NodeJS.Timeout;
         function fadeIn() {
           if (alpha > 1) {
             alpha = alpha + 0.1;
@@ -175,7 +185,7 @@ export default function WanderOBJ({
           }
         }
         intervalId = setInterval(fadeIn, 25);
-        setOpacity(fadeIn);
+        // setOpacity(fadeIn);
       }, 1000);
     } else {
       bool = false;
@@ -204,13 +214,13 @@ export default function WanderOBJ({
 
   useLayoutEffect(() => {
     if (isPaused) {
-      let timerId;
+      let timerId: number;
       let direction = Math.random() * Math.PI * 2;
       // let turningSpeed = Math.random() - 0.8;
       let velocity = 0.5 + Math.random() * 1;
       const f = () => {
         // resetPosition();
-        if (resetPosition().bool) {
+        if (resetPosition()?.bool) {
           direction = Math.random() * Math.PI * 2;
           // turningSpeed = Math.random() - 0.8;
           velocity = 0.5 + Math.random() * 1;
@@ -231,8 +241,9 @@ export default function WanderOBJ({
   // 클릭시 중앙으로
   useLayoutEffect(() => {
     if (isClicked) {
+      if (!imgRef.current) return;
       setDuration(0);
-      let timerId;
+      let timerId: number;
       let targetPosition = {
         x:
           window.innerWidth / 2 -
@@ -258,13 +269,6 @@ export default function WanderOBJ({
     setIsClicked((prev) => !prev);
     setFocus((prev) => !prev);
   }
-  function onHover() {
-    if (!focus) {
-      return { scale: 1.1 };
-    } else {
-      return null;
-    }
-  }
 
   return (
     <div key={name}>
@@ -282,7 +286,7 @@ export default function WanderOBJ({
           func(onClick);
         }}
         $focus={focus}
-        whileHover={onHover}
+        whileHover={focus ? { scale: 1 } : { scale: 1.1 }}
       >
         <OBJ src={imgsrc} alt={name} placeholderSrc={placeholderSrc} />
       </OBJWrapper>

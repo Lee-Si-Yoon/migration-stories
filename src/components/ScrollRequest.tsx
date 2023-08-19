@@ -1,3 +1,4 @@
+import React from "react";
 // STYLING
 import styled from "styled-components";
 import { motion } from "framer-motion";
