@@ -134,6 +134,7 @@ export default function WanderOBJ({
   const imgRef = useRef<HTMLImageElement | null>(null);
   // ANIMATE
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [centered, setCentered] = useState<boolean>(false);
   // STYLING
   const [opacity, setOpacity] = useState(1);
   const [durationState, setDuration] = useState(0);
@@ -142,121 +143,71 @@ export default function WanderOBJ({
   const [isClicked, setIsClicked] = useState(false);
   const [focus, setFocus] = useState(false);
 
-  // 화면 벗어났을때 boolean 반환
-  function resetPosition() {
-    let bool = false;
-    if (!imgRef.current) return;
-    if (
-      imgRef.current.getBoundingClientRect().x <
-        0 - imgRef.current.getBoundingClientRect().width ||
-      imgRef.current.getBoundingClientRect().x > window.innerWidth ||
-      imgRef.current.getBoundingClientRect().y <
-        0 - imgRef.current.getBoundingClientRect().height ||
-      imgRef.current.getBoundingClientRect().y > window.innerHeight
-    ) {
-      const targetPosition = {
-        x:
-          window.innerWidth / 2 -
-          imgRef.current.getBoundingClientRect().width / 2,
-        y:
-          window.innerHeight / 2 -
-          imgRef.current.getBoundingClientRect().height / 2,
-      };
-      bool = true;
-      setOpacity(0);
-      setDuration(0.25);
-      setPosition((pos) => ({
-        x: lerp(pos.x, targetPosition.x, 1),
-        y: lerp(pos.y, targetPosition.y, 1),
-      }));
-      // TODO 이거 안됨, 서서히 생기게 만들기
-      setTimeout(() => {
-        let alpha = 0;
-        let intervalId: NodeJS.Timeout;
-        function fadeIn() {
-          if (alpha > 1) {
-            alpha = alpha + 0.1;
-            return alpha;
-          } else {
-            clearInterval(intervalId);
+  // 기본 렌더
+  React.useEffect(() => {
+    if (!isPaused) return;
+    let timerId: number;
+    let direction = Math.random() * Math.PI * 2;
+    // let turningSpeed = Math.random() - 0.8;
+    let velocity = 0.5 + Math.random() * 1;
+    const f = () => {
+      if (!imgRef.current) return;
+      const { x, y, width, height } = imgRef.current.getBoundingClientRect();
+      if (
+        x + width < 0 ||
+        x > window.innerWidth ||
+        y + height < 0 ||
+        y > window.innerHeight
+      ) {
+        const targetPosition = {
+          x: window.innerWidth / 2 - width / 2,
+          y: window.innerHeight / 2 - height / 2,
+        };
+        setOpacity(0);
+        setPosition({
+          x: targetPosition.x,
+          y: targetPosition.y,
+        });
+        setCentered(true);
+      } else {
+        if (centered) {
+          setOpacity((prevOpacity) => lerp(prevOpacity, 1, 0.05));
+          if (opacity > 0.95) {
+            setCentered(false);
           }
         }
-        intervalId = setInterval(fadeIn, 25);
-        // setOpacity(fadeIn());
-      }, 1000);
-    } else {
-      bool = false;
-    }
-    return { bool };
-  }
-
-  // 모서리 접근시
-  // function nearBorder() {
-  //   if (
-  //     imgRef.current.getBoundingClientRect().x < 0 ||
-  //     imgRef.current.getBoundingClientRect().x >
-  //       window.innerWidth - imgRef.current.getBoundingClientRect().width / 2 ||
-  //     imgRef.current.getBoundingClientRect().y < 0 ||
-  //     imgRef.current.getBoundingClientRect().y >
-  //       window.innerHeight - imgRef.current.getBoundingClientRect().height / 2
-  //   ) {
-  //     // imgRef.current.style.opacity = 0;
-  //     setOpacity(0);
-  //   } else {
-  //     setOpacity(1);
-  //   }
-  // }
-
-  // 기본 렌더
-  useLayoutEffect(() => {
-    if (isPaused) {
-      let timerId: number;
-      let direction = Math.random() * Math.PI * 2;
-      // let turningSpeed = Math.random() - 0.8;
-      let velocity = 0.5 + Math.random() * 1;
-      const f = () => {
-        // if (resetPosition()?.bool) {
-        //   direction = Math.random() * Math.PI * 2;
-        //   // turningSpeed = Math.random() - 0.8;
-        //   velocity = 0.5 + Math.random() * 1;
-        // }
-        // direction = direction + turningSpeed * 0.01;
         setPosition((pos) => ({
           x: pos.x + Math.sin(direction) * velocity,
           y: pos.y + Math.cos(direction) * velocity,
         }));
-        timerId = requestAnimationFrame(f);
-      };
+      }
 
       timerId = requestAnimationFrame(f);
-      return () => cancelAnimationFrame(timerId);
-    }
-  }, [isPaused]);
+    };
+    timerId = requestAnimationFrame(f);
+
+    return () => cancelAnimationFrame(timerId);
+  }, [isPaused, centered]);
 
   // 클릭시 중앙으로
-  useLayoutEffect(() => {
-    if (isClicked) {
-      if (!imgRef.current) return;
-      setDuration(0);
-      let timerId: number;
-      let targetPosition = {
-        x:
-          window.innerWidth / 2 -
-          imgRef.current.getBoundingClientRect().width / 2,
-        y:
-          window.innerHeight / 2 -
-          imgRef.current.getBoundingClientRect().height,
-      };
-      const f = () => {
-        setPosition((pos) => ({
-          x: lerp(pos.x, targetPosition.x, 0.05),
-          y: lerp(pos.y, targetPosition.y, 0.05),
-        }));
-        timerId = requestAnimationFrame(f);
-      };
+  React.useEffect(() => {
+    if (!isClicked || !imgRef.current) return;
+    const { width, height } = imgRef.current.getBoundingClientRect();
+    setDuration(0);
+    let timerId: number;
+    let targetPosition = {
+      x: window.innerWidth / 2 - width / 2,
+      y: window.innerHeight / 2 - height,
+    };
+    const f = () => {
+      setPosition((pos) => ({
+        x: lerp(pos.x, targetPosition.x, 0.05),
+        y: lerp(pos.y, targetPosition.y, 0.05),
+      }));
       timerId = requestAnimationFrame(f);
-      return () => cancelAnimationFrame(timerId);
-    }
+    };
+    timerId = requestAnimationFrame(f);
+    return () => cancelAnimationFrame(timerId);
   }, [isClicked]);
 
   function onClick() {

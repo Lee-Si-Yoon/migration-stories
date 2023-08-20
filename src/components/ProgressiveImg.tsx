@@ -1,13 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-
-const ProgressiveImage = styled.img<{ loadingProp: "loading" | "loaded" }>`
-  filter: ${(props) =>
-    props.loadingProp === "loading" ? "blur(10px)" : "blur(0px)"};
-  /* clip-path: ${(props) =>
-    props.loadingProp === "loading" ? "inset(0)" : null}; */
-  transition: filter 0.5s linear;
-`;
 
 interface ProgressiveImgProps {
   placeholderSrc: string;
@@ -29,15 +20,19 @@ export default function ProgressiveImg({
     };
   }, [src]);
 
-  const loadingProp =
-    placeholderSrc && imgSrc === placeholderSrc ? "loading" : "loaded";
-
   return (
-    <ProgressiveImage
+    <img
       {...{ src: imgSrc, ...props }}
       alt={props.alt || ""}
       draggable="false"
-      loadingProp={loadingProp}
+      // loadingprop={loadingprop}
+      style={{
+        filter:
+          placeholderSrc && imgSrc === placeholderSrc
+            ? "blur(10px)"
+            : "blur(0px)",
+        transition: "filter 0.5s linear",
+      }}
     />
   );
 }
