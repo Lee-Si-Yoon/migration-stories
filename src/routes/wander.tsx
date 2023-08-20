@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Circle from "../components/Circle";
+import Circle from "../components/loading-circle/loading-circle";
 
 const WanderOBJ = React.lazy(() => import("../components/wanderOBJ"));
 
@@ -124,9 +124,6 @@ const stories = [
 ];
 
 export default function Wander() {
-  function onClickFromOBJ(func: VoidFunction) {
-    func();
-  }
   return (
     <Layout>
       {/* TODO srcset */}
@@ -147,7 +144,6 @@ export default function Wander() {
               name={s.name}
               text={s.text}
               translation={s.translation}
-              func={onClickFromOBJ}
             />
           ))}
         </Suspense>

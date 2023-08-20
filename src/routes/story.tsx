@@ -9,14 +9,7 @@ import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 // 3D
 import { Canvas } from "@react-three/fiber";
-
-// import Akinain from "../gltf/Akinain";
-// import Chamikara from "../gltf/Chamikara";
-// import Dipak from "../gltf/Dipak";
-// import Kemra from "../gltf/Kemra";
-// import Sajana from "../gltf/Sajana";
-// import Sunyena from "../gltf/Sunyena";
-// import Ting from "../gltf/Ting";
+import { lerpRange } from "../utils/math";
 
 import ThreeLoader from "../components/ThreeLoader";
 
@@ -27,8 +20,6 @@ const Kemra = React.lazy(() => import("../gltf/Kemra"));
 const Sajana = React.lazy(() => import("../gltf/Sajana"));
 const Sunyena = React.lazy(() => import("../gltf/Sunyena"));
 const Ting = React.lazy(() => import("../gltf/Ting"));
-
-// import { OrbitControls } from "@react-three/drei";
 
 const Layout = styled(motion.div)`
   width: 100vw;
@@ -55,16 +46,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-function map_range(
-  value: number,
-  low1: number,
-  high1: number,
-  low2: number,
-  high2: number
-): number {
-  return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
-}
 
 export default function Story() {
   const containerRef = useRef<HTMLDivElement | undefined>();
@@ -100,7 +81,7 @@ export default function Story() {
     if (!containerRef.current) return;
     const ratio =
       window.scrollY / (containerRef.current.offsetHeight - window.innerHeight);
-    const percentage = map_range(ratio, 0, 1, 15, 100);
+    const percentage = lerpRange(ratio, 0, 1, 15, 100);
     setScrollPos(percentage);
     // FIXED 끝에 도착했을때 스크롤 안뜨게끔 - navigate 방식으로 해결
     scrollingID.current = setTimeout(function () {
