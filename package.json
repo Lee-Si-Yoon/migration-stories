@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://migrationstoriesproject.net",
   "scripts": {
-    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "vite build",
     "depcheck": "depcheck --config=.depcheckrc.json",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -12,7 +12,7 @@
     "postinstall": "husky install",
     "lint": "eslint src --ext js,jsx . --fix",
     "lint-staged": "sort-package-json",
-    "start": "cross-env GENERATE_SOURCEMAP=false react-scripts start",
+    "start": "vite",
     "stylelint": "stylelint **/*.scss --fix",
     "test": "react-scripts test"
   },
@@ -60,14 +60,19 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.47.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.33.2",
     "husky": "^8.0.0",
+    "sass": "^1.66.1",
     "stylelint": "^15.10.3",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-recommended": "^13.0.0",
-    "stylelint-config-standard-scss": "^10.0.0"
+    "stylelint-config-standard-scss": "^10.0.0",
+    "vite": "^4.4.9",
+    "vite-plugin-svgr": "^3.2.0",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }
