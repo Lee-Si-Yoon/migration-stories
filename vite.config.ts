@@ -11,5 +11,5 @@ export default defineConfig({
     svgrPlugin(),
     splitVendorChunkPlugin(),
   ],
-  base: "/<REPO>/",
+  base: "/migration-stories/",
 });
