@@ -11,7 +11,5 @@ export default defineConfig({
     svgrPlugin(),
     splitVendorChunkPlugin(),
   ],
-  build: {
-    outDir: "./build",
-  },
+  base: "/<REPO>/",
 });

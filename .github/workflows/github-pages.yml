@@ -3,21 +3,43 @@ name: Build and Deploy React App to Github Pages
 on:
   push:
     branches: [main]
-jobs:
-  build-and-deploy:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
+  # Actions 탭에서 수동으로 워크플로우를 실행할 수 있도록 구성
+  workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v3
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
       - name: Build
-        run: yarn install
-
-      - name: Deploy
-        run: |
-          git config --global user.name "Lee SiYoon"
-          git config --global user.email "dlduqehd1@gmail.com"
-          git remote set-url origin https://x-acess-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          CI='false' npm run deploy
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # dist 디렉터리 업로드
+          path: "./dist"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
