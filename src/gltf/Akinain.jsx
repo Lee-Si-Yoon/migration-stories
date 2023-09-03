@@ -9,7 +9,11 @@ export default function Akinain(props) {
   const { nodes, materials } = useGLTF("/akinain.gltf");
   return (
     <group {...props} dispose={null}>
-      <group position={[-2.08, -0.98, -16.74]} rotation={[Math.PI / 2, 0, 2.44]} scale={0.01}>
+      <group
+        position={[-2.08, -0.98, -16.74]}
+        rotation={[Math.PI / 2, 0, 2.44]}
+        scale={0.01}
+      >
         <group position={[-106.1, 8.8, 3.51]}>
           <group position={[106.1, -70.4, -50.83]}>
             <mesh
@@ -17,13 +21,19 @@ export default function Akinain(props) {
               material={materials["Plastic Polycarbonate #1"]}
             />
           </group>
-          <group position={[-2565.14, 2226.26, -586.17]} rotation={[-1.97, -0.47, 2.74]}>
+          <group
+            position={[-2565.14, 2226.26, -586.17]}
+            rotation={[-1.97, -0.47, 2.74]}
+          >
             <mesh
               geometry={nodes["36days_b002"].geometry}
               material={materials["Plastic Polycarbonate #1"]}
             />
           </group>
-          <group position={[-4214.34, 4716.14, -429.08]} rotation={[-1.97, -0.47, 2.74]}>
+          <group
+            position={[-4214.34, 4716.14, -429.08]}
+            rotation={[-1.97, -0.47, 2.74]}
+          >
             <mesh
               geometry={nodes["36days_b004"].geometry}
               material={materials["Plastic Polycarbonate #1"]}
@@ -169,7 +179,11 @@ export default function Akinain(props) {
           position={[0, -6303.78, -5033.33]}
         />
       </group>
-      <group position={[0.11, -1.5, -10.18]} rotation={[0.9, 0, 0]} scale={0.01}>
+      <group
+        position={[0.11, -1.5, -10.18]}
+        rotation={[0.9, 0, 0]}
+        scale={0.01}
+      >
         <mesh
           geometry={nodes.Object_1001.geometry}
           material={materials["Material_2.001"]}
@@ -379,18 +393,53 @@ export default function Akinain(props) {
           scale={-23.67}
         />
       </group>
-      <group position={[0.89, -1.38, -14.9]} rotation={[-2.3, -0.79, -1.99]} scale={4.37}>
-        <mesh geometry={nodes.Mesh.geometry} material={materials["Material #2 Slot #1"]} />
-        <mesh geometry={nodes.Mesh_1.geometry} material={materials["3M_6200_RUBBER"]} />
-        <mesh geometry={nodes.Mesh_2.geometry} material={materials["3M_6200_BUCKLE"]} />
-        <mesh geometry={nodes.Mesh_3.geometry} material={materials["3M_6200_PLASTIC GREY"]} />
-        <mesh geometry={nodes.Mesh_4.geometry} material={materials["3M_FILTER SEAL"]} />
-        <mesh geometry={nodes.Mesh_5.geometry} material={materials["3M_6200_ELASTIC"]} />
+      <group
+        position={[0.89, -1.38, -14.9]}
+        rotation={[-2.3, -0.79, -1.99]}
+        scale={4.37}
+      >
+        <mesh
+          geometry={nodes.Mesh.geometry}
+          material={materials["Material #2 Slot #1"]}
+        />
+        <mesh
+          geometry={nodes.Mesh_1.geometry}
+          material={materials["3M_6200_RUBBER"]}
+        />
+        <mesh
+          geometry={nodes.Mesh_2.geometry}
+          material={materials["3M_6200_BUCKLE"]}
+        />
+        <mesh
+          geometry={nodes.Mesh_3.geometry}
+          material={materials["3M_6200_PLASTIC GREY"]}
+        />
+        <mesh
+          geometry={nodes.Mesh_4.geometry}
+          material={materials["3M_FILTER SEAL"]}
+        />
+        <mesh
+          geometry={nodes.Mesh_5.geometry}
+          material={materials["3M_6200_ELASTIC"]}
+        />
       </group>
-      <group position={[0.99, -1.46, -14.83]} rotation={[-2.3, -0.79, -1.99]} scale={4.37}>
-        <mesh geometry={nodes.Mesh001.geometry} material={materials["3M_FILTER_FABRIC"]} />
-        <mesh geometry={nodes.Mesh001_1.geometry} material={materials["3M_FILTER SEAL"]} />
-        <mesh geometry={nodes.Mesh001_2.geometry} material={materials["3M_FILTER_GREY"]} />
+      <group
+        position={[0.99, -1.46, -14.83]}
+        rotation={[-2.3, -0.79, -1.99]}
+        scale={4.37}
+      >
+        <mesh
+          geometry={nodes.Mesh001.geometry}
+          material={materials["3M_FILTER_FABRIC"]}
+        />
+        <mesh
+          geometry={nodes.Mesh001_1.geometry}
+          material={materials["3M_FILTER SEAL"]}
+        />
+        <mesh
+          geometry={nodes.Mesh001_2.geometry}
+          material={materials["3M_FILTER_GREY"]}
+        />
       </group>
       <mesh
         geometry={nodes.Object_1261.geometry}
@@ -422,18 +471,53 @@ export default function Akinain(props) {
         material={materials.Material_2}
         position={[292.62, -459.14, -1500.17]}
       />
-      <group position={[-1.36, -0.11, -33.82]} rotation={[1.4, 0.46, 0.55]} scale={4.37}>
-        <mesh geometry={nodes.Mesh002.geometry} material={materials["Material #2 Slot #1"]} />
-        <mesh geometry={nodes.Mesh002_1.geometry} material={materials["3M_6200_RUBBER"]} />
-        <mesh geometry={nodes.Mesh002_2.geometry} material={materials["3M_6200_BUCKLE"]} />
-        <mesh geometry={nodes.Mesh002_3.geometry} material={materials["3M_6200_PLASTIC GREY"]} />
-        <mesh geometry={nodes.Mesh002_4.geometry} material={materials["3M_FILTER SEAL"]} />
-        <mesh geometry={nodes.Mesh002_5.geometry} material={materials["3M_6200_ELASTIC"]} />
+      <group
+        position={[-1.36, -0.11, -33.82]}
+        rotation={[1.4, 0.46, 0.55]}
+        scale={4.37}
+      >
+        <mesh
+          geometry={nodes.Mesh002.geometry}
+          material={materials["Material #2 Slot #1"]}
+        />
+        <mesh
+          geometry={nodes.Mesh002_1.geometry}
+          material={materials["3M_6200_RUBBER"]}
+        />
+        <mesh
+          geometry={nodes.Mesh002_2.geometry}
+          material={materials["3M_6200_BUCKLE"]}
+        />
+        <mesh
+          geometry={nodes.Mesh002_3.geometry}
+          material={materials["3M_6200_PLASTIC GREY"]}
+        />
+        <mesh
+          geometry={nodes.Mesh002_4.geometry}
+          material={materials["3M_FILTER SEAL"]}
+        />
+        <mesh
+          geometry={nodes.Mesh002_5.geometry}
+          material={materials["3M_6200_ELASTIC"]}
+        />
       </group>
-      <group position={[-1.42, 0.01, -33.84]} rotation={[1.4, 0.46, 0.55]} scale={4.37}>
-        <mesh geometry={nodes.Mesh003.geometry} material={materials["default"]} />
-        <mesh geometry={nodes.Mesh003_1.geometry} material={materials["3M_FILTER SEAL"]} />
-        <mesh geometry={nodes.Mesh003_2.geometry} material={materials["3M_FILTER_GREY"]} />
+      <group
+        position={[-1.42, 0.01, -33.84]}
+        rotation={[1.4, 0.46, 0.55]}
+        scale={4.37}
+      >
+        <mesh
+          geometry={nodes.Mesh003.geometry}
+          material={materials["default"]}
+        />
+        <mesh
+          geometry={nodes.Mesh003_1.geometry}
+          material={materials["3M_FILTER SEAL"]}
+        />
+        <mesh
+          geometry={nodes.Mesh003_2.geometry}
+          material={materials["3M_FILTER_GREY"]}
+        />
       </group>
       <mesh
         geometry={nodes.Object_1296.geometry}

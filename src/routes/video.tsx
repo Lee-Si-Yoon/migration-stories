@@ -1,7 +1,7 @@
 // REACT
 import React, { useEffect, useState } from "react";
 // import { useLocation } from "react-router-dom";
-import ReactPlayer from "react-player/lazy";
+import ReactPlayer from "react-player";
 import { isMobile } from "react-device-detect";
 // STYLING
 import styled from "styled-components";
@@ -97,7 +97,7 @@ export default function Video() {
                 volume={1}
                 width={"100%"}
                 height={"100%"}
-                controls={true}
+                // controls={true}
                 // light={true}
                 url={`${playtarget}`}
                 fallback={<p>Loading...</p>}
@@ -111,7 +111,7 @@ export default function Video() {
                 volume={1}
                 width={"100%"}
                 height={"100%"}
-                // controls={true}
+                controls={true}
                 // light={true}
                 url={`${playtarget}`}
                 fallback={<p>Loading...</p>}
