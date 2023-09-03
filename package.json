@@ -7,7 +7,7 @@
     "build": "vite build",
     "depcheck": "depcheck --config=.depcheckrc.json",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "eject": "react-scripts eject",
     "postinstall": "husky install",
     "lint": "eslint src --ext js,jsx . --fix",
