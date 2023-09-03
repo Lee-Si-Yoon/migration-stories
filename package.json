@@ -12,6 +12,7 @@
     "postinstall": "husky install",
     "lint": "eslint src --ext js,jsx . --fix",
     "lint-staged": "sort-package-json",
+    "preview": "vite preview",
     "start": "vite",
     "stylelint": "stylelint **/*.scss --fix",
     "test": "react-scripts test"
