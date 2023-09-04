@@ -5,6 +5,21 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ProgressiveImg from "./ProgressiveImg";
 
+import nepalMin from "../imgs/fragment-min/네팔어-min.png";
+import nepal from "../imgs/fragment/네팔어.png";
+import myanmarMin from "../imgs/fragment-min/미얀마어-min.png";
+import myanmar from "../imgs/fragment/미얀마어.png";
+import vietnamMin from "../imgs/fragment-min/베트남어-min.png";
+import vietnam from "../imgs/fragment/베트남어.png";
+import sriLankaMin from "../imgs/fragment-min/스리랑카어-min.png";
+import sriLanka from "../imgs/fragment/스리랑카어.png";
+import englishMin from "../imgs/fragment-min/영어-min.png";
+import english from "../imgs/fragment/영어.png";
+import cambodiaMin from "../imgs/fragment-min/캄보디아어-min.png";
+import cambodia from "../imgs/fragment/캄보디아어.png";
+import koreaMin from "../imgs/fragment-min/한국어-min.png";
+import korea from "../imgs/fragment/한국어.png";
+
 const Layout = styled(motion.div)`
   position: relative;
   width: 100%;
@@ -117,41 +132,13 @@ export default function Loader({
     >
       <ImageContainer>
         <Spacer>
-          <One
-            placeholderSrc="/imgs/fragment-min/네팔어-min.png"
-            src="/imgs/fragment/네팔어.png"
-            alt="1.png"
-          />
-          <Two
-            placeholderSrc="/imgs/fragment-min/미얀마어-min.png"
-            src="/imgs/fragment/미얀마어.png"
-            alt="2.png"
-          />
-          <Three
-            placeholderSrc="/imgs/fragment-min/베트남어-min.png"
-            src="/imgs/fragment/베트남어.png"
-            alt="3.png"
-          />
-          <Four
-            placeholderSrc="/imgs/fragment-min/스리랑카어-min.png"
-            src="/imgs/fragment/스리랑카어.png"
-            alt="4.png"
-          />
-          <Five
-            placeholderSrc="/imgs/fragment-min/영어-min.png"
-            src="/imgs/fragment/영어.png"
-            alt="5.png"
-          />
-          <Six
-            placeholderSrc="/imgs/fragment-min/캄보디아어-min.png"
-            src="/imgs/fragment/캄보디아어.png"
-            alt="6.png"
-          />
-          <Seven
-            placeholderSrc="/imgs/fragment-min/한국어-min.png"
-            src="/imgs/fragment/한국어.png"
-            alt="6.png"
-          />
+          <One placeholderSrc={nepalMin} src={nepal} alt="1.png" />
+          <Two placeholderSrc={myanmarMin} src={myanmar} alt="2.png" />
+          <Three placeholderSrc={vietnamMin} src={vietnam} alt="3.png" />
+          <Four placeholderSrc={sriLankaMin} src={sriLanka} alt="4.png" />
+          <Five placeholderSrc={englishMin} src={english} alt="5.png" />
+          <Six placeholderSrc={cambodiaMin} src={cambodia} alt="6.png" />
+          <Seven placeholderSrc={koreaMin} src={korea} alt="6.png" />
         </Spacer>
       </ImageContainer>
       <Link

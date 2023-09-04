@@ -5,6 +5,23 @@ import Circle from "../components/loading-circle/loading-circle";
 
 const WanderOBJ = React.lazy(() => import("../components/wanderOBJ"));
 
+import sajana from "../imgs/wander/sajana.png";
+import sajanaMin from "../imgs/wander-min/sajana-min.png";
+import chamikara from "../imgs/wander/chamikara.png";
+import chamikaraMin from "../imgs/wander-min/chamikara-min.png";
+import kemra from "../imgs/wander/kemra.png";
+import kemraMin from "../imgs/wander-min/kemra-min.png";
+import sunyena from "../imgs/wander/sunyena.png";
+import sunyenaMin from "../imgs/wander-min/sunyena-min.png";
+import ting from "../imgs/wander/ting.png";
+import tingMin from "../imgs/wander-min/ting-min.png";
+import akanain from "../imgs/wander/akanain.png";
+import akanainMin from "../imgs/wander-min/akanain-min.png";
+import dpiak from "../imgs/wander/dpiak.png";
+import dpiakMin from "../imgs/wander-min/dipak-min.png";
+
+import wanderBackground from "../imgs/wander/wanderBackground.png";
+
 const Layout = styled(motion.div)`
   color: ${(props) => props.theme.colors.text};
   width: 100vw;
@@ -41,8 +58,8 @@ const Background = styled.img`
 const stories = [
   {
     name: "sajana",
-    src: "/imgs/wander/sajana.png",
-    placeholderSrc: "/imgs/wander-min/sajana-min.png",
+    src: sajana,
+    placeholderSrc: sajanaMin,
     text:
       "हामी छुट्टिएको 9 वर्ष भयो।" +
       "\n" +
@@ -58,8 +75,8 @@ const stories = [
   },
   {
     name: "chamikara",
-    src: "/imgs/wander/chamikara.png",
-    placeholderSrc: "/imgs/wander-min/chamikara-min.png",
+    src: chamikara,
+    placeholderSrc: chamikaraMin,
     text:
       "ඒ විදිහට මමත් උදව්වක් අවශ්‍ය විදේශ මිතුරන්ට නැතිනම් අලුත් විදේශිකයන්ට උදව් ලබා දෙනවා" +
       "\n" +
@@ -71,15 +88,15 @@ const stories = [
   },
   {
     name: "kemra",
-    src: "/imgs/wander/kemra.png",
-    placeholderSrc: "/imgs/wander-min/kemra-min.png",
+    src: kemra,
+    placeholderSrc: kemraMin,
     text: "ខ្ញុំរីករាយនឹងទិដ្ឋភាពនោះណាស់។",
     translation: "풍경 보는 거 좋아해요",
   },
   {
     name: "sunyena",
-    src: "/imgs/wander/sunyena.png",
-    placeholderSrc: "/imgs/wander-min/sunyena-min.png",
+    src: sunyena,
+    placeholderSrc: sunyenaMin,
     text:
       "Nếu tôi tìm cách, nếu tôi không bỏ cuộc mà tìm cách giải bài tập ấy," +
       "\n" +
@@ -91,8 +108,8 @@ const stories = [
   },
   {
     name: "ting",
-    src: "/imgs/wander/ting.png",
-    placeholderSrc: "/imgs/wander-min/ting-min.png",
+    src: ting,
+    placeholderSrc: tingMin,
     text:
       "Nhưng tôi cũng cảm thấy may vì đã từng mắc lỗi" +
       "\n" +
@@ -102,8 +119,8 @@ const stories = [
   },
   {
     name: "akanain",
-    src: "/imgs/wander/akanain.png",
-    placeholderSrc: "/imgs/wander-min/akanain-min.png",
+    src: akanain,
+    placeholderSrc: akanainMin,
     text:
       "သူတို့ပြောင်းလဲပေးနိုင်မယ်ဆို ရင်၊" +
       "\n" +
@@ -112,8 +129,8 @@ const stories = [
   },
   {
     name: "dpiak",
-    src: "/imgs/wander/dpiak.png",
-    placeholderSrc: "/imgs/wander-min/dpiak-min.png",
+    src: dpiak,
+    placeholderSrc: dpiakMin,
     text:
       "मानिसले गर्न नसक्ने कुनै पनि कुरा छैन। यदि उनीहरूले आफ्ना विचारहरू अनुसरण गरे भने," +
       "\n" +
@@ -129,7 +146,7 @@ export default function Wander() {
       {/* TODO srcset */}
       <Background
         draggable="false"
-        src="/imgs/wander/wanderBackground.png"
+        src={wanderBackground}
         alt="background"
         loading="lazy"
       />

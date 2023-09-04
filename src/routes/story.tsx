@@ -13,13 +13,13 @@ import { lerpRange } from "../utils/math";
 
 import ThreeLoader from "../components/ThreeLoader";
 
-const Akinain = React.lazy(() => import("../gltf/Akinain"));
-const Chamikara = React.lazy(() => import("../gltf/Chamikara"));
-const Dipak = React.lazy(() => import("../gltf/Dipak"));
-const Kemra = React.lazy(() => import("../gltf/Kemra"));
-const Sajana = React.lazy(() => import("../gltf/Sajana"));
-const Sunyena = React.lazy(() => import("../gltf/Sunyena"));
-const Ting = React.lazy(() => import("../gltf/Ting"));
+const Akinain = React.lazy(() => import("../gltf/Akinain.jsx"));
+const Chamikara = React.lazy(() => import("../gltf/Chamikara.jsx"));
+const Dipak = React.lazy(() => import("../gltf/Dipak.jsx"));
+const Kemra = React.lazy(() => import("../gltf/Kemra.jsx"));
+const Sajana = React.lazy(() => import("../gltf/Sajana.jsx"));
+const Sunyena = React.lazy(() => import("../gltf/Sunyena.jsx"));
+const Ting = React.lazy(() => import("../gltf/Ting.jsx"));
 
 const Layout = styled(motion.div)`
   width: 100vw;
@@ -105,7 +105,6 @@ export default function Story() {
       setEnd(true);
       setScrolling(false);
       navigate(`/video/${name}`);
-      // redirect(`/video/${location.pathname.split("/")[2]}`);
     } else {
       setEnd(false);
     }

@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   RouteObject,
+  Navigate,
 } from "react-router-dom";
 // ROUTING
 import Root from "./routes/root";
@@ -21,7 +22,7 @@ import "./css/index.css";
 
 const routes: RouteObject[] = [
   {
-    path: "/",
+    path: "",
     Component: Root,
     errorElement: <ErrorPage />,
     children: [
@@ -45,11 +46,15 @@ const routes: RouteObject[] = [
         path: "credit",
         Component: Credit,
       },
+      {
+        path: "*",
+        Component: () => <Navigate to="/" />,
+      },
     ],
   },
 ];
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, { basename: "/migration-stories" });
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(

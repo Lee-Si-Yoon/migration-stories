@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Texts } from "../aboutText";
 import { useState } from "react";
 
+import poster from "../imgs/poster.jpg";
+
 // TODO css 좀 고치기
 
 const Layout = styled(motion.div)`
@@ -170,12 +172,7 @@ export default function About() {
     >
       <Spacer>
         <PosterContainer>
-          <Poster
-            draggable="false"
-            src="/imgs/poster.jpg"
-            alt="poster"
-            loading="lazy"
-          />
+          <Poster draggable="false" src={poster} alt="poster" loading="lazy" />
         </PosterContainer>
         <AboutContainer variants={stagger} initial="hidden" animate="show">
           <ButtonContainer variants={fadeInUp}>
