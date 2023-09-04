@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+import partner1 from "../imgs/partner1.png";
+import partner2 from "../imgs/partner2.png";
+import partner3 from "../imgs/partner3.png";
+
 const Layout = styled(motion.div)`
   width: 100%;
   max-width: 100%;
@@ -176,9 +180,9 @@ export default function Credit() {
             </p>
           </TextContainer>
           <PartnerContainer>
-            <img draggable="false" src="/imgs/partner1.png" alt="partner1" />
-            <img draggable="false" src="/imgs/partner2.png" alt="partner2" />
-            <img draggable="false" src="/imgs/partner3.png" alt="partner3" />
+            <img draggable="false" src={partner1} alt="partner1" />
+            <img draggable="false" src={partner2} alt="partner2" />
+            <img draggable="false" src={partner3} alt="partner3" />
           </PartnerContainer>
         </CreditInfo>
       </Spacer>

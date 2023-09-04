@@ -12,4 +12,5 @@ export default defineConfig({
     splitVendorChunkPlugin(),
   ],
   base: "/migration-stories/",
+  assetsInclude: ["**/*.gltf", "**/*.png"],
 });

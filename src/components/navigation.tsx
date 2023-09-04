@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+import logo from "../imgs/logo.webp";
+
 const Navigation = styled.nav`
   width: 100vw;
   max-width: 100%;
@@ -49,13 +51,7 @@ export default function Nav({ show }: NavProps) {
     <Navigation>
       <NavUl>
         <Links to={`/`}>
-          <img
-            src="/imgs/logo.webp"
-            alt="logo"
-            onClick={() => {
-              show(true);
-            }}
-          />
+          <img src={logo} alt="logo" onClick={() => show(true)} />
         </Links>
         <LinkContainer>
           <motion.li whileHover={{ y: -2.5, fontWeight: 500 }}>
