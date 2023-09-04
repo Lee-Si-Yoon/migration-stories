@@ -54,7 +54,7 @@ const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes, { basename: "/migration-stories" });
+const router = createBrowserRouter(routes);
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
