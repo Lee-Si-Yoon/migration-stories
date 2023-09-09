@@ -1,58 +1,11 @@
-// REACT
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  RouteObject,
-  Navigate,
-} from "react-router-dom";
-// ROUTING
-import Root from "./routes/root";
-import About from "./routes/about";
-import Credit from "./routes/credit";
-import Wander from "./routes/wander";
-import Story from "./routes/story";
-import Video from "./routes/video";
-import ErrorPage from "./error-page";
-// STYLING
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { DefaultTheme } from "./theme";
-import "./css/index.css";
 
-const routes: RouteObject[] = [
-  {
-    path: "",
-    Component: Root,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        Component: Wander,
-      },
-      {
-        path: "story/:name",
-        Component: Story,
-      },
-      {
-        path: "video/:name",
-        Component: Video,
-      },
-      {
-        path: "about",
-        Component: About,
-      },
-      {
-        path: "credit",
-        Component: Credit,
-      },
-      {
-        path: "*",
-        Component: () => <Navigate to="/" />,
-      },
-    ],
-  },
-];
+import routes from "./routes/routes";
+import { DefaultTheme } from "./theme";
+import "./index.scss";
 
 const router = createBrowserRouter(routes);
 

@@ -1,9 +1,7 @@
-import React from "react";
-// REACT
-import { Link } from "react-router-dom";
-// STYLING
-import styled from "styled-components";
 import { motion } from "framer-motion";
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import logo from "../imgs/logo.webp";
 

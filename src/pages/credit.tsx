@@ -1,6 +1,6 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
 
 import partner1 from "../imgs/partner1.png";
 import partner2 from "../imgs/partner2.png";

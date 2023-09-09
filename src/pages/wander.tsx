@@ -1,26 +1,25 @@
+import { motion } from "framer-motion";
 import React, { Suspense } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import Circle from "../components/loading-circle/loading-circle";
 
 const WanderOBJ = React.lazy(() => import("../components/wanderOBJ"));
 
-import sajana from "../imgs/wander/sajana.png";
-import sajanaMin from "../imgs/wander-min/sajana-min.png";
-import chamikara from "../imgs/wander/chamikara.png";
-import chamikaraMin from "../imgs/wander-min/chamikara-min.png";
-import kemra from "../imgs/wander/kemra.png";
-import kemraMin from "../imgs/wander-min/kemra-min.png";
-import sunyena from "../imgs/wander/sunyena.png";
-import sunyenaMin from "../imgs/wander-min/sunyena-min.png";
-import ting from "../imgs/wander/ting.png";
-import tingMin from "../imgs/wander-min/ting-min.png";
+import Circle from "../components/loading-circle/loading-circle";
 import akanain from "../imgs/wander/akanain.png";
-import akanainMin from "../imgs/wander-min/akanain-min.png";
+import chamikara from "../imgs/wander/chamikara.png";
 import dpiak from "../imgs/wander/dpiak.png";
-import dpiakMin from "../imgs/wander-min/dipak-min.png";
-
+import kemra from "../imgs/wander/kemra.png";
+import sajana from "../imgs/wander/sajana.png";
+import sunyena from "../imgs/wander/sunyena.png";
+import ting from "../imgs/wander/ting.png";
 import wanderBackground from "../imgs/wander/wanderBackground.png";
+import akanainMin from "../imgs/wander-min/akanain-min.png";
+import chamikaraMin from "../imgs/wander-min/chamikara-min.png";
+import dpiakMin from "../imgs/wander-min/dipak-min.png";
+import kemraMin from "../imgs/wander-min/kemra-min.png";
+import sajanaMin from "../imgs/wander-min/sajana-min.png";
+import sunyenaMin from "../imgs/wander-min/sunyena-min.png";
+import tingMin from "../imgs/wander-min/ting-min.png";
 
 const Layout = styled(motion.div)`
   color: ${(props) => props.theme.colors.text};

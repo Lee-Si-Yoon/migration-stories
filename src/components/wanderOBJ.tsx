@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import ProgressiveImg from "./ProgressiveImg";
 import { lerp } from "../utils/math";
 

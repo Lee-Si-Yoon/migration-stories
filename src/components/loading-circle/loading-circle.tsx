@@ -1,4 +1,5 @@
 import React from "react";
+
 import classes from "./loading-circle.module.scss";
 
 interface LoadingCircleProps {

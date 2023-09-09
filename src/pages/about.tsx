@@ -1,13 +1,9 @@
-import React from "react";
-import styled from "styled-components";
 import { motion } from "framer-motion";
-// import { fadeInUp, stagger } from "../motion";
+import React, { useState } from "react";
+import styled from "styled-components";
+
 import { Texts } from "../aboutText";
-import { useState } from "react";
-
 import poster from "../imgs/poster.jpg";
-
-// TODO css 좀 고치기
 
 const Layout = styled(motion.div)`
   width: 100%;

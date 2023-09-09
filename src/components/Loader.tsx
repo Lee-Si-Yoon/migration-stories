@@ -1,24 +1,23 @@
-import React from "react";
-// STYLING
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import ProgressiveImg from "./ProgressiveImg";
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import nepalMin from "../imgs/fragment-min/네팔어-min.png";
+import ProgressiveImg from "./ProgressiveImg";
 import nepal from "../imgs/fragment/네팔어.png";
-import myanmarMin from "../imgs/fragment-min/미얀마어-min.png";
 import myanmar from "../imgs/fragment/미얀마어.png";
-import vietnamMin from "../imgs/fragment-min/베트남어-min.png";
 import vietnam from "../imgs/fragment/베트남어.png";
-import sriLankaMin from "../imgs/fragment-min/스리랑카어-min.png";
 import sriLanka from "../imgs/fragment/스리랑카어.png";
-import englishMin from "../imgs/fragment-min/영어-min.png";
 import english from "../imgs/fragment/영어.png";
-import cambodiaMin from "../imgs/fragment-min/캄보디아어-min.png";
 import cambodia from "../imgs/fragment/캄보디아어.png";
-import koreaMin from "../imgs/fragment-min/한국어-min.png";
 import korea from "../imgs/fragment/한국어.png";
+import nepalMin from "../imgs/fragment-min/네팔어-min.png";
+import myanmarMin from "../imgs/fragment-min/미얀마어-min.png";
+import vietnamMin from "../imgs/fragment-min/베트남어-min.png";
+import sriLankaMin from "../imgs/fragment-min/스리랑카어-min.png";
+import englishMin from "../imgs/fragment-min/영어-min.png";
+import cambodiaMin from "../imgs/fragment-min/캄보디아어-min.png";
+import koreaMin from "../imgs/fragment-min/한국어-min.png";
 
 const Layout = styled(motion.div)`
   position: relative;
