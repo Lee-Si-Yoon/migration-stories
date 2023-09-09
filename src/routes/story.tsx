@@ -1,17 +1,15 @@
 /* eslint-disable react/no-unknown-property */
-// REACT
-import React, { Suspense, useRef } from "react";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import ScrollRequest from "../components/ScrollRequest";
-// STYLING
-import styled from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
-// 3D
+
 import { Canvas } from "@react-three/fiber";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { Suspense, useRef , useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+import ScrollRequest from "../components/ScrollRequest";
+import ThreeLoader from "../components/ThreeLoader";
 import { lerpRange } from "../utils/math";
 
-import ThreeLoader from "../components/ThreeLoader";
 
 const Akinain = React.lazy(() => import("../gltf/Akinain.jsx"));
 const Chamikara = React.lazy(() => import("../gltf/Chamikara.jsx"));

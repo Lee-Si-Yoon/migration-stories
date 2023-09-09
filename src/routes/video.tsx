@@ -1,12 +1,9 @@
-// REACT
-import React, { useEffect, useState } from "react";
-// import { useLocation } from "react-router-dom";
-import ReactPlayer from "react-player";
-import { isMobile } from "react-device-detect";
-// STYLING
-import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
+import ReactPlayer from "react-player";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 
 const Layout = styled.div`
   background-color: ${(props) => props.theme.colors.background};

@@ -1,12 +1,12 @@
-// REACT
-import { Outlet } from "react-router-dom";
-import React, { Suspense, useState } from "react";
-import Nav from "../components/navigation";
-import Circle from "../components/loading-circle/loading-circle";
-// STYLING
-import styled from "styled-components";
 import { AnimatePresence } from "framer-motion";
-// LAZY
+import React, { Suspense, useState } from "react";
+import { Outlet } from "react-router-dom";
+import styled from "styled-components";
+
+import Circle from "../components/loading-circle/loading-circle";
+import Nav from "../components/navigation";
+
+
 const Loader = React.lazy(() => import("../components/Loader"));
 
 const Layout = styled.div`
