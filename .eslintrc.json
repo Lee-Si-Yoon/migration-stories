@@ -28,7 +28,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "react", "import"],
   "rules": {
@@ -82,6 +83,8 @@
       }
     ],
     "import/no-unresolved": "off",
-    "import/named": "warn"
+    "import/named": "warn",
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error"
   }
 }
