@@ -112,7 +112,5 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": false /* Skip type checking all .d.ts files. */
-  },
-  "exclude": ["node_modules", "public", "**/*.json", "dist/**/*"],
-  "include": ["./src/index.tsx", "./src/globals.d.ts"]
+  }
 }

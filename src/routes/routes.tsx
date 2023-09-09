@@ -1,14 +1,14 @@
 import React from "react";
-import type { RouteObject} from "react-router-dom";
+import type { RouteObject } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-import ErrorPage from "./error-page";
-import About from "./routes/about";
-import Credit from "./routes/credit";
-import Root from "./routes/root";
-import Story from "./routes/story";
-import Video from "./routes/video";
-import Wander from "./routes/wander";
+import ErrorPage from "../error-page";
+import About from "../pages/about";
+import Credit from "../pages/credit";
+import Root from "../pages/root";
+import Story from "../pages/story";
+import Video from "../pages/video";
+import Wander from "../pages/wander";
 
 const sharedRoutes: RouteObject[] = [
   {

@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import routes from "./paths";
+import routes from "./routes/routes";
 import { DefaultTheme } from "./theme";
-import "./css/index.css";
+import "./index.scss";
 
 const router = createBrowserRouter(routes);
 
