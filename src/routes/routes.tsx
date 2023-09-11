@@ -11,6 +11,7 @@ import Story from "../pages/story";
 import Video from "../pages/video";
 import Wander from "../pages/wander";
 import { Header22, Header23 } from "../pages/wrapper/header";
+import { LazyWrapper } from "../pages/wrapper/suspense-fallback";
 
 const sharedRoutes: RouteObject[] = [
   {
@@ -69,11 +70,7 @@ const routes: RouteObject[] = [
   {
     path: "",
     errorElement: <ErrorPage />,
-    Component: () => (
-      <React.Suspense fallback={<span>loading...</span>}>
-        <Outlet />
-      </React.Suspense>
-    ),
+    Component: LazyWrapper,
     children: [
       {
         index: true,
