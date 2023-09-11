@@ -1,14 +1,16 @@
 import React from "react";
 import type { RouteObject } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-import ErrorPage from "../error-page";
+const ErrorPage = React.lazy(() => import("../error-page"));
+const IndexPage = React.lazy(() => import("../pages/index"));
 import About from "../pages/about";
 import Credit from "../pages/credit";
 import Root from "../pages/root";
 import Story from "../pages/story";
 import Video from "../pages/video";
 import Wander from "../pages/wander";
+import { Header22, Header23 } from "../pages/wrapper/header";
 
 const sharedRoutes: RouteObject[] = [
   {
@@ -67,16 +69,24 @@ const routes: RouteObject[] = [
   {
     path: "",
     errorElement: <ErrorPage />,
+    Component: () => (
+      <React.Suspense fallback={<span>loading...</span>}>
+        <Outlet />
+      </React.Suspense>
+    ),
     children: [
       {
         index: true,
+        Component: IndexPage,
       },
       {
         path: "22",
+        Component: Header22,
         children: [...sharedRoutes, ...routes22],
       },
       {
         path: "23",
+        Component: Header23,
         children: [...sharedRoutes, ...routes23],
       },
       {
