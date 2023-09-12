@@ -1,37 +1,44 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import classes from "./header.module.scss";
+import logo from "../../imgs/logo.webp";
 import Paths from "../../routes/paths";
 
 function AboutLink({ year }: { year: 22 | 23 }) {
   return (
-    <Link to={Paths[year].about} key={`${year}-about`}>
-      about
-    </Link>
+    <motion.li whileHover={{ y: -2.5, fontWeight: 500 }} key={`${year}-about`}>
+      <Link className={classes.Link} to={Paths[year].about}>
+        about
+      </Link>
+    </motion.li>
   );
 }
 
 function CreditLink({ year }: { year: 22 | 23 }) {
   return (
-    <Link to={Paths[year].credit} key={`${year}-credit`}>
-      credit
-    </Link>
+    <motion.li whileHover={{ y: -2.5, fontWeight: 500 }} key={`${year}-credit`}>
+      <Link to={Paths[year].credit} className={classes.Link}>
+        credit
+      </Link>
+    </motion.li>
   );
 }
 
 function Logo() {
   return (
     <Link to={Paths.default} key={`logo`}>
-      logo
+      <img src={logo} alt="logo" draggable={false} width={50} />
     </Link>
   );
 }
 
 function ProgramLink() {
   return (
-    <Link to={Paths[23].program} key={"program"}>
-      program
-    </Link>
+    <motion.li whileHover={{ y: -2.5, fontWeight: 500 }} key={"program"}>
+      <Link to={Paths[23].program}>program</Link>
+    </motion.li>
   );
 }
 

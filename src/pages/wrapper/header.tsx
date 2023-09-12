@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 import { AboutLink, CreditLink, Logo, ProgramLink } from "./header-items";
+import classes from "./header.module.scss";
 
 function Header({
   headerItems,
@@ -10,9 +11,11 @@ function Header({
 }): JSX.Element {
   return (
     <>
-      <nav>
-        <div>{headerItems[0].map((item) => item)}</div>
-        <div>{headerItems[1].map((item) => item)}</div>
+      <nav className={classes.NavContainer}>
+        <ul>{headerItems[0].map((item) => item)}</ul>
+        <ul className={classes.LinkContainer}>
+          {headerItems[1].map((item) => item)}
+        </ul>
       </nav>
       <Outlet />
     </>
