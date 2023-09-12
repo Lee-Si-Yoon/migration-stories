@@ -29,7 +29,7 @@ function Logo() {
 
 function ProgramLink() {
   return (
-    <Link to={Paths[23].program.default} key={"program"}>
+    <Link to={Paths[23].program} key={"program"}>
       program
     </Link>
   );
