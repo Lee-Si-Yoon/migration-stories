@@ -1,0 +1,120 @@
+.Layout {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  @media screen and (width <= 35.9988rem) {
+    flex-direction: column;
+  }
+
+  .Container22 {
+    min-width: 12.5rem;
+    max-width: 25rem;
+    width: 100%;
+    aspect-ratio: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    // border: 1px solid white;
+
+    @media screen and (width <= 35.9988rem) {
+      width: 80%;
+    }
+
+    .Spacer {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      user-select: none;
+    }
+
+    .GridImgs {
+      position: absolute;
+      object-fit: scale-down;
+    }
+
+    .Nepal {
+      width: 60%;
+      top: 75%;
+      left: 0;
+    }
+
+    .Myanmar {
+      width: 50%;
+      top: 42%;
+      left: 30%;
+    }
+
+    .Vietnam {
+      width: 87.5%;
+      top: 85%;
+      left: 0;
+    }
+
+    .SriLanka {
+      width: 57.5%;
+      top: 32%;
+      left: 0;
+    }
+
+    .English {
+      width: 42.5%;
+      left: 50%;
+      top: 0;
+    }
+
+    .Cambodia {
+      width: 9.25%;
+      top: 25%;
+      left: 90%;
+    }
+
+    .Korea {
+      width: 31.25%;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .Container23 {
+    min-width: 12.5rem;
+    max-width: 25rem;
+    width: 100%;
+    aspect-ratio: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // border: 1px solid white;
+
+    @media screen and (width <= 35.9988rem) {
+      width: 80%;
+    }
+  }
+
+  .LinkButton {
+    background-color: black;
+    color: white;
+    border: 0.0625rem solid white;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 0%;
+
+    &:hover {
+      background-color: white;
+      color: black;
+      transition: all 0.5s ease-out;
+    }
+
+    @media screen and (width <= 35.9988rem) {
+      padding: 2rem;
+      font-size: 2rem;
+      border-radius: 3rem;
+    }
+  }
+}

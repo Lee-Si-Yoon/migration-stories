@@ -4,11 +4,13 @@ interface ProgressiveImgProps {
   placeholderSrc: string;
   alt: string;
   src: string;
+  className?: string;
 }
 
 export default function ProgressiveImg({
   placeholderSrc,
   src,
+  className,
   ...props
 }: ProgressiveImgProps) {
   const [imgSrc, setImgSrc] = useState(placeholderSrc || src);
@@ -24,8 +26,9 @@ export default function ProgressiveImg({
     <img
       {...{ src: imgSrc, ...props }}
       alt={props.alt || ""}
+      className={className}
+      loading="lazy"
       draggable="false"
-      // loadingprop={loadingprop}
       style={{
         filter:
           placeholderSrc && imgSrc === placeholderSrc
