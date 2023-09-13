@@ -7,17 +7,14 @@ const paths23 = (base: string) => ({
   ...shared(base),
   wander: `${base}/wander`,
   video: `${base}/video/:name`,
-  program: {
-    default: `${base}/program`,
-    pattern: `${base}/program/:programName`,
-  },
+  program: `${base}/program`,
 });
 
 const paths22 = (base: string) => ({
   ...shared(base),
   wander: `${base}/wander`,
-  story: `${base}/story/:name`,
-  video: `${base}/video/:name`,
+  story: `${base}/story`,
+  video: `${base}/video`,
 });
 
 const Paths = {

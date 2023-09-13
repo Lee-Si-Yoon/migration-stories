@@ -2,21 +2,24 @@ import React from "react";
 import type { RouteObject } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-import ErrorPage from "../error-page";
-import About from "../pages/about";
-import Credit from "../pages/credit";
-import Root from "../pages/root";
-import Story from "../pages/story";
-import Video from "../pages/video";
-import Wander from "../pages/wander";
+const ErrorPage = React.lazy(() => import("../error-page"));
+const IndexPage = React.lazy(() => import("../pages/index"));
+const Wander22 = React.lazy(() => import("../pages/wander/wander-22"));
+const Wander23 = React.lazy(() => import("../pages/wander/wander-23"));
+const StoryPage = React.lazy(() => import("../pages/story/story"));
+const VideoPage = React.lazy(() => import("../pages/video/video"));
+const About22Page = React.lazy(() => import("../pages/about/about-22"));
+const About23Page = React.lazy(() => import("../pages/about/about-23"));
+const Credit22Page = React.lazy(() => import("../pages/credit/credit-22"));
+const Credit23Page = React.lazy(() => import("../pages/credit/credit-23"));
+const ProgramPage = React.lazy(() => import("../pages/program/program"));
+const ProgramDetailPage = React.lazy(
+  () => import("../pages/program/program-detail")
+);
+import { Header22, Header23 } from "../pages/wrapper/header";
+import { LazyWrapper } from "../pages/wrapper/suspense-fallback";
 
 const sharedRoutes: RouteObject[] = [
-  {
-    path: "credit",
-  },
-  {
-    path: "about",
-  },
   {
     index: true,
     Component: () => <Navigate to="/" />,
@@ -30,30 +33,45 @@ const sharedRoutes: RouteObject[] = [
 const routes22: RouteObject[] = [
   {
     path: "wander",
+    Component: Wander22,
   },
   {
     path: "story/:name",
+    Component: StoryPage,
   },
   {
     path: "video/:name",
+    Component: VideoPage,
+  },
+  {
+    path: "credit",
+    Component: Credit22Page,
+  },
+  {
+    path: "about",
+    Component: About22Page,
   },
 ];
 
 const routes23: RouteObject[] = [
   {
     path: "wander",
+    Component: Wander23,
   },
   {
     path: "video/:name",
+    Component: VideoPage,
   },
   {
     path: "program",
     children: [
       {
         index: true,
+        Component: ProgramPage,
       },
       {
         path: ":programName",
+        Component: ProgramDetailPage,
       },
       {
         path: "*",
@@ -61,22 +79,34 @@ const routes23: RouteObject[] = [
       },
     ],
   },
+  {
+    path: "credit",
+    Component: Credit23Page,
+  },
+  {
+    path: "about",
+    Component: About23Page,
+  },
 ];
 
 const routes: RouteObject[] = [
   {
     path: "",
     errorElement: <ErrorPage />,
+    Component: LazyWrapper,
     children: [
       {
         index: true,
+        Component: IndexPage,
       },
       {
         path: "22",
+        Component: Header22,
         children: [...sharedRoutes, ...routes22],
       },
       {
         path: "23",
+        Component: Header23,
         children: [...sharedRoutes, ...routes23],
       },
       {

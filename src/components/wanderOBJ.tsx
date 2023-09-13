@@ -3,7 +3,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import ProgressiveImg from "./ProgressiveImg";
+import ProgressiveImg from "./utils/progressive-image";
 import { lerp } from "../utils/math";
 
 const OBJWrapper = styled(motion.div)<{ $focus: boolean }>`

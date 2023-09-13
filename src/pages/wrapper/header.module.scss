@@ -1,0 +1,27 @@
+.NavContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+
+  @media screen and (width <= 35.9988rem) {
+    padding: 0.75rem 0;
+  }
+}
+
+.LinkContainer {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  column-gap: 2.5rem;
+  padding-right: 3rem;
+
+  @media screen and (width <= 35.9988rem) {
+    padding-right: 2rem;
+  }
+}
+
+.Link {
+  font-size: 1rem;
+}
