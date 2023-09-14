@@ -185,6 +185,7 @@ export default function About() {
           </ButtonContainer>
           <TextConatiner variants={fadeInUp}>
             <h2>{texts[language].title}</h2>
+            {/* TODO: break line */}
             {texts[language].text.split("\n").map((t: string) => (
               <p key={t}>{t}</p>
             ))}

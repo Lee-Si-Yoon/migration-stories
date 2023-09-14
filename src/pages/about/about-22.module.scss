@@ -1,0 +1,128 @@
+.Layout {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+
+  @media screen and (width <= 35.9988rem) {
+    height: 50%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .PosterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    @media screen and (width <= 35.9988rem) {
+      width: 100%;
+      padding-top: var(--header-height-mobile);
+    }
+
+    img {
+      object-fit: cover;
+
+      @media screen and (width <= 35.9988rem) {
+        height: 100%;
+      }
+    }
+  }
+
+  .AboutContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    @media screen and (width <= 35.9988rem) {
+      width: 100%;
+      padding-bottom: 2rem;
+    }
+
+    .ButtonContainer {
+      width: 37.5rem;
+      padding: 2rem 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+
+      button {
+        all: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        color: white;
+        border: 0.0625rem solid white;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        white-space: nowrap;
+        font-size: 1rem;
+        line-height: 150%;
+      }
+
+      button:hover {
+        background-color: white;
+        color: black;
+        border: none;
+        transition: all 0.5s ease-out;
+        cursor: pointer;
+      }
+
+      @media screen and (width <= 35.9988rem) {
+        width: 25rem;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1.5rem;
+        row-gap: 1rem;
+        padding-bottom: 3rem;
+
+        button {
+          font-size: 1.2rem;
+        }
+      }
+
+      .Selected {
+        background-color: white;
+        color: black;
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      margin-top: 0;
+      line-height: 160%;
+      text-align: center;
+
+      @media screen and (width <= 35.9988rem) {
+        font-size: 1.8rem;
+        width: 90%;
+        line-height: 180%;
+      }
+    }
+
+    .TextContainer {
+      width: 37.5rem;
+      height: 35rem;
+      overflow-y: auto;
+
+      p {
+        line-height: 180%;
+        word-break: keep-all;
+        word-wrap: break-word;
+      }
+
+      @media screen and (width <= 35.9988rem) {
+        width: 90%;
+
+        p {
+          font-size: 1.2rem;
+          line-height: 200%;
+        }
+      }
+    }
+  }
+}
