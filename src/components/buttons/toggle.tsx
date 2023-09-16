@@ -3,35 +3,28 @@ import {
   type AriaToggleButtonProps,
   useFocusRing,
   useToggleButton,
+  mergeProps,
 } from "react-aria";
 import { useToggleState } from "react-stately";
 
 import classes from "./button.module.scss";
-import type { OverridableProps } from "../../utils/polymorphic-type";
 
-type ToggleBaseProps = {
+interface ToggleProps extends AriaToggleButtonProps {
   className?: string;
-} & React.PropsWithChildren;
-type ButtonProps<T extends React.ElementType> = OverridableProps<
-  T,
-  ToggleBaseProps
-> &
-  AriaToggleButtonProps<"button">;
+}
 
-function Toggle<T extends React.ElementType = "button">(
-  props: ButtonProps<T>
-): React.JSX.Element {
-  const { as, className, children = "-", ...rest } = props;
-  const Component = as ?? "button";
+function Toggle(props: ToggleProps): React.JSX.Element {
+  const { className, children = "-" } = props;
 
   const ariaRef = React.useRef<HTMLButtonElement>(null);
   const state = useToggleState(props);
   const { buttonProps, isPressed } = useToggleButton(props, state, ariaRef);
 
   const { isFocusVisible, focusProps } = useFocusRing();
+  const mergedProps = mergeProps(focusProps, buttonProps);
 
   return (
-    <Component
+    <button
       ref={ariaRef}
       className={[classes.Button, className].join(" ")}
       style={{
@@ -46,12 +39,10 @@ function Toggle<T extends React.ElementType = "button">(
           : "black",
         color: state.isSelected ? "black" : "white",
       }}
-      {...rest}
-      {...buttonProps}
-      {...focusProps}
+      {...mergedProps}
     >
       {children}
-    </Component>
+    </button>
   );
 }
 

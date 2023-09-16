@@ -1,48 +1,37 @@
 import React from "react";
-import { useButton, type AriaButtonOptions, useFocusRing } from "react-aria";
+import {
+  useButton,
+  type AriaButtonProps,
+  useFocusRing,
+  mergeProps,
+} from "react-aria";
 
 import classes from "./button.module.scss";
-import type { OverridableProps } from "../../utils/polymorphic-type";
 
-type ButtonBaseProps = {
+interface ButtonProps extends AriaButtonProps {
   className?: string;
-} & React.PropsWithChildren;
-type ButtonProps<T extends React.ElementType> = OverridableProps<
-  T,
-  ButtonBaseProps
-> &
-  AriaButtonOptions<"button">;
+}
 
-function Button<T extends React.ElementType = "button">(
-  props: ButtonProps<T>
-): React.JSX.Element {
-  const { as, className, children = "-", ...rest } = props;
-  const Component = as ?? "button";
+function Button(props: ButtonProps) {
+  const { className, children = "-" } = props;
 
   const ariaRef = React.useRef<HTMLButtonElement>(null);
-  let { buttonProps } = useButton(
-    {
-      ...props,
-      elementType: Component,
-    },
-    ariaRef
-  );
+  let { buttonProps } = useButton(props, ariaRef);
   const { isFocusVisible, focusProps } = useFocusRing();
+  const mergedProps = mergeProps(focusProps, buttonProps);
 
   return (
-    <Component
+    <button
       ref={ariaRef}
       className={[classes.Button, className].join(" ")}
       style={{
         outline: isFocusVisible ? "2px solid gray" : "none",
         outlineOffset: 2,
       }}
-      {...rest}
-      {...buttonProps}
-      {...focusProps}
+      {...mergedProps}
     >
       {children}
-    </Component>
+    </button>
   );
 }
 
