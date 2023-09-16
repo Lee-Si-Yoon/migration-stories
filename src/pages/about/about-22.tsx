@@ -1,10 +1,10 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import React from "react";
 
 import classes from "./about-22.module.scss";
-import { stagger, fadeInUp } from "./animation";
 import contentRaw from "./content-22.json";
 import languagesRaw from "./languages.json";
+import Button from "../../components/button/button";
 import poster from "../../imgs/poster.jpg";
 
 interface Content {
@@ -25,28 +25,29 @@ function About22Page() {
   const [language, setLanguage] = React.useState<string>(
     languages.languages[0]
   );
+
   return (
     <div className={classes.Layout}>
       <div className={classes.PosterContainer}>
         <img width={560} src={poster} draggable={false} loading="lazy" />
       </div>
-      <motion.div variants={stagger} className={classes.AboutContainer}>
-        <motion.div variants={fadeInUp} className={classes.ButtonContainer}>
+      <div className={classes.AboutContainer}>
+        <div className={classes.ButtonContainer}>
           {languages.languages.map((lang: string) => (
-            <button
+            <Button
               key={lang}
               onClick={() => setLanguage(lang)}
               className={[language === lang && classes.Selected].join(" ")}
             >
               {lang}
-            </button>
+            </Button>
           ))}
-        </motion.div>
+        </div>
         <h2>{texts[language].title}</h2>
-        <motion.div variants={fadeInUp} className={classes.TextContainer}>
+        <div className={classes.TextContainer}>
           <p>{texts[language].text}</p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
