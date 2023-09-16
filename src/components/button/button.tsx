@@ -1,33 +1,53 @@
-import { motion } from "framer-motion";
 import React from "react";
+import { useButton, type AriaButtonOptions, useFocusRing } from "react-aria";
 
 import classes from "./button.module.scss";
+import type { OverridableProps } from "../../utils/polymorphic-type";
 
 type ButtonBaseProps = {
   className?: string;
-  onClick?: VoidFunction;
 } & React.PropsWithChildren;
+type ButtonProps<T extends React.ElementType> = OverridableProps<
+  T,
+  ButtonBaseProps
+> &
+  AriaButtonOptions<"button">;
 
-function Button(
-  { children = "-", onClick, className, ...rest }: ButtonBaseProps,
-  ref: React.Ref<HTMLButtonElement>
+function Button<T extends React.ElementType = "button">(
+  props: ButtonProps<T>
 ): React.JSX.Element {
+  const { as, className, children = "-", ...rest } = props;
+  const Component = as ?? "button";
+
+  const ariaRef = React.useRef<HTMLButtonElement>(null);
+  let { buttonProps } = useButton(
+    {
+      ...props,
+      elementType: Component,
+    },
+    ariaRef
+  );
+  const { isFocusVisible, focusProps } = useFocusRing();
+
   return (
-    <motion.button
-      ref={ref}
-      {...rest}
-      onClick={onClick}
+    <Component
+      ref={ariaRef}
       className={[classes.Button, className].join(" ")}
+      style={{
+        outline: isFocusVisible ? "2px solid gray" : "none",
+        outlineOffset: 2,
+      }}
+      {...rest}
+      {...buttonProps}
+      {...focusProps}
     >
       {children}
-    </motion.button>
+    </Component>
   );
 }
 
 export type ButtonType = typeof Button;
 
-const ButtonComponent = React.forwardRef(Button);
+Button.displayName = "Button";
 
-ButtonComponent.displayName = "Button";
-
-export default motion(Button, { forwardMotionProps: true });
+export default Button;

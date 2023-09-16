@@ -76,7 +76,9 @@ function IndexPage() {
             alt="7.png"
           />
         </div>
-        <Button onClick={() => navigate(Paths[22].wander)}>to 2022</Button>
+        <Button as="a" onPress={() => navigate(Paths[22].wander)}>
+          to 2022
+        </Button>
       </div>
       <Link to={Paths[23].wander} className={classes.Container23}>
         to 23

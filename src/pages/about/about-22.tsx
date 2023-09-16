@@ -36,7 +36,7 @@ function About22Page() {
           {languages.languages.map((lang: string) => (
             <Button
               key={lang}
-              onClick={() => setLanguage(lang)}
+              onPress={() => setLanguage(lang)}
               className={[language === lang && classes.Selected].join(" ")}
             >
               {lang}
