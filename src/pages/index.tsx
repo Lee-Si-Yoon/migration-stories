@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import classes from "./index.module.scss";
-import Button from "../components/button/button";
+import Button from "../components/buttons/button";
 import ProgressiveImg from "../components/utils/progressive-image";
 import nepal from "../imgs/fragment/네팔어.png";
 import myanmar from "../imgs/fragment/미얀마어.png";

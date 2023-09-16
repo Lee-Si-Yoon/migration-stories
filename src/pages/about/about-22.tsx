@@ -4,7 +4,7 @@ import React from "react";
 import classes from "./about-22.module.scss";
 import contentRaw from "./content-22.json";
 import languagesRaw from "./languages.json";
-import Button from "../../components/button/button";
+import Toggle from "../../components/buttons/toggle";
 import poster from "../../imgs/poster.jpg";
 
 interface Content {
@@ -34,13 +34,13 @@ function About22Page() {
       <div className={classes.AboutContainer}>
         <div className={classes.ButtonContainer}>
           {languages.languages.map((lang: string) => (
-            <Button
+            <Toggle
               key={lang}
               onPress={() => setLanguage(lang)}
-              className={[language === lang && classes.Selected].join(" ")}
+              isSelected={lang === language}
             >
               {lang}
-            </Button>
+            </Toggle>
           ))}
         </div>
         <h2>{texts[language].title}</h2>
