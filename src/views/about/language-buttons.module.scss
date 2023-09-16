@@ -9,4 +9,14 @@
     grid-template-columns: repeat(3, 1fr);
     width: calc(100% - 1.5rem);
   }
+
+  div {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+
+    button {
+      width: 100%;
+    }
+  }
 }

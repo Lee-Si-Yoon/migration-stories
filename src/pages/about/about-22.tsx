@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
 import classes from "./about-22.module.scss";
@@ -18,9 +18,19 @@ interface Languages {
   languages: string[];
 }
 
+const props = {
+  initial: { opacity: 0, display: "none", y: 40 },
+  animate: { opacity: 1, display: "initial", y: 0 },
+  exit: { opacity: 0, display: "none" },
+  transition: {
+    duration: 1,
+    delay: 0.1,
+    ease: [0.6, -0.5, 0.01, 0.99],
+  },
+};
+
 const texts = JSON.parse(JSON.stringify(contentRaw)) as Content;
 const languages = JSON.parse(JSON.stringify(languagesRaw)) as Languages;
-
 function About22Page() {
   const [language, setLanguage] = React.useState<string>(
     languages.languages[0]
@@ -37,10 +47,22 @@ function About22Page() {
           currentLanguage={language}
           setLanguage={setLanguage}
         />
-        <h2>{texts[language].title}</h2>
-        <div className={classes.TextContainer}>
-          <p>{texts[language].text}</p>
-        </div>
+        <AnimatePresence>
+          <motion.h2
+            key={`${language}-title`}
+            className={classes.Title}
+            {...props}
+          >
+            {texts[language].title}
+          </motion.h2>
+          <motion.div
+            key={`${language}-text`}
+            className={classes.TextContainer}
+            {...props}
+          >
+            <p>{texts[language].text}</p>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
