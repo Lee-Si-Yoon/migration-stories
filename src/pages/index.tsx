@@ -25,12 +25,7 @@ function IndexPage() {
   const navigate = useNavigate();
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={classes.Layout}
-    >
+    <div className={classes.Layout}>
       <div className={classes.Container22}>
         <div className={classes.Spacer}>
           <ProgressiveImg
@@ -81,7 +76,7 @@ function IndexPage() {
       <Link to={Paths[23].wander} className={classes.Container23}>
         to 23
       </Link>
-    </motion.div>
+    </div>
   );
 }
 

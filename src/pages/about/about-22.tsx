@@ -6,6 +6,7 @@ import contentRaw from "./content-22.json";
 import languagesRaw from "./languages.json";
 import Toggle from "../../components/buttons/toggle";
 import poster from "../../imgs/poster.jpg";
+import LanguageButtons from "../../views/about/language-buttons";
 
 interface Content {
   [key: string]: {
@@ -32,17 +33,11 @@ function About22Page() {
         <img width={500} src={poster} draggable={false} loading="lazy" />
       </div>
       <div className={classes.AboutContainer}>
-        <div className={classes.ButtonContainer}>
-          {languages.languages.map((lang: string) => (
-            <Toggle
-              key={lang}
-              onPress={() => setLanguage(lang)}
-              isSelected={lang === language}
-            >
-              {lang}
-            </Toggle>
-          ))}
-        </div>
+        <LanguageButtons
+          data={languages}
+          currentLanguage={language}
+          setLanguage={setLanguage}
+        />
         <h2>{texts[language].title}</h2>
         <div className={classes.TextContainer}>
           <p>{texts[language].text}</p>
