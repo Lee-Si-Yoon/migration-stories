@@ -7,6 +7,6 @@
 
   @media screen and (width <= 48rem) {
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
+    width: calc(100% - 1.5rem);
   }
 }

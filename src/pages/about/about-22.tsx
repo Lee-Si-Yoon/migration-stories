@@ -4,7 +4,6 @@ import React from "react";
 import classes from "./about-22.module.scss";
 import contentRaw from "./content-22.json";
 import languagesRaw from "./languages.json";
-import Toggle from "../../components/buttons/toggle";
 import poster from "../../imgs/poster.jpg";
 import LanguageButtons from "../../views/about/language-buttons";
 
@@ -30,7 +29,7 @@ function About22Page() {
   return (
     <div className={classes.Layout}>
       <div className={classes.PosterContainer}>
-        <img width={500} src={poster} draggable={false} loading="lazy" />
+        <img src={poster} draggable={false} loading="lazy" />
       </div>
       <div className={classes.AboutContainer}>
         <LanguageButtons
