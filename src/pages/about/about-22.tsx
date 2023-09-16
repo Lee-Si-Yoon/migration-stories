@@ -29,7 +29,7 @@ function About22Page() {
   return (
     <div className={classes.Layout}>
       <div className={classes.PosterContainer}>
-        <img width={560} src={poster} draggable={false} loading="lazy" />
+        <img width={500} src={poster} draggable={false} loading="lazy" />
       </div>
       <div className={classes.AboutContainer}>
         <div className={classes.ButtonContainer}>
