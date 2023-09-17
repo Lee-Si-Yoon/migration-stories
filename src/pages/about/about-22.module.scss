@@ -67,6 +67,8 @@
       p {
         @include typography.font("Body1", "white");
 
+        white-space: pre-line;
+
         @media screen and (width <= 48rem) {
           line-height: 180%;
         }

@@ -1,22 +1,12 @@
 const fadeInUp = {
-  hidden: {
-    y: -60,
-    opacity: 0,
-  },
-  show: {
-    y: 0,
-    opacity: 1,
-  },
-};
-
-const stagger = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+  initial: { opacity: 0, display: "none", y: 40 },
+  animate: { opacity: 1, display: "initial", y: 0 },
+  exit: { opacity: 0, display: "none" },
+  transition: {
+    duration: 1,
+    delay: 0.1,
+    ease: [0.6, -0.5, 0.01, 0.99],
   },
 };
 
-export { fadeInUp, stagger };
+export { fadeInUp };

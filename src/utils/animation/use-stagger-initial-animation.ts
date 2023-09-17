@@ -13,8 +13,8 @@ function useStaggerInitialAnimation({
   options = { duration: 0.2, delay: stagger(0.1) },
 }: {
   targetChild: ElementOrSelector;
-  keyFrames?: DOMKeyframesDefinition | undefined;
-  options?: DynamicAnimationOptions | undefined;
+  keyFrames?: DOMKeyframesDefinition;
+  options?: DynamicAnimationOptions;
 }) {
   const [scope, animate] = useAnimate();
 

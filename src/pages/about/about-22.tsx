@@ -2,32 +2,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
 import classes from "./about-22.module.scss";
+import { fadeInUp } from "./animation";
 import contentRaw from "./content-22.json";
-import languagesRaw from "./languages.json";
-import poster from "../../imgs/poster.jpg";
+import languagesRaw from "./languages-22.json";
+import type { Content, Languages } from "./model";
+import poster from "../../imgs/poster/poster-22.jpg";
 import LanguageButtons from "../../views/about/language-buttons";
-
-interface Content {
-  [key: string]: {
-    title: string;
-    text: string;
-  };
-}
-
-interface Languages {
-  languages: string[];
-}
-
-const props = {
-  initial: { opacity: 0, display: "none", y: 40 },
-  animate: { opacity: 1, display: "initial", y: 0 },
-  exit: { opacity: 0, display: "none" },
-  transition: {
-    duration: 1,
-    delay: 0.1,
-    ease: [0.6, -0.5, 0.01, 0.99],
-  },
-};
 
 const texts = JSON.parse(JSON.stringify(contentRaw)) as Content;
 const languages = JSON.parse(JSON.stringify(languagesRaw)) as Languages;
@@ -39,7 +19,7 @@ function About22Page() {
   return (
     <div className={classes.Layout}>
       <div className={classes.PosterContainer}>
-        <img src={poster} draggable={false} loading="lazy" />
+        <img alt="poster" src={poster} draggable={false} loading="lazy" />
       </div>
       <div className={classes.AboutContainer}>
         <LanguageButtons
@@ -51,14 +31,14 @@ function About22Page() {
           <motion.h2
             key={`${language}-title`}
             className={classes.Title}
-            {...props}
+            {...fadeInUp}
           >
             {texts[language].title}
           </motion.h2>
           <motion.div
             key={`${language}-text`}
             className={classes.TextContainer}
-            {...props}
+            {...fadeInUp}
           >
             <p>{texts[language].text}</p>
           </motion.div>
