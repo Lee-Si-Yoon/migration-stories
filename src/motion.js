@@ -30,6 +30,7 @@ const fadeInUp = {
     },
   },
 };
+
 const stagger = {
   animate: {
     transition: {

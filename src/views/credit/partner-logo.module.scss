@@ -1,0 +1,22 @@
+.Logos {
+  display: flex;
+  width: 37.5rem;
+  gap: 2rem;
+  padding-top: 2rem;
+
+  @media screen and (width <= 48rem) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+  }
+
+  img {
+    width: 30%;
+    object-fit: contain;
+
+    @media screen and (width <= 48rem) {
+      width: 50%;
+    }
+  }
+}

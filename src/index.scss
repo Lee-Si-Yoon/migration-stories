@@ -4,8 +4,11 @@ body,
 html,
 #root {
   height: 100%;
-  background-color: black;
-  color: white;
+  width: 100%;
+
+  @media screen and (width <= 48rem) {
+    min-width: 100% !important;
+  }
 }
 
 body {
@@ -17,6 +20,8 @@ body {
   overflow: auto;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  background-color: black;
+  color: white;
 }
 
 body::-webkit-scrollbar {

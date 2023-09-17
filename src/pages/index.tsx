@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import classes from "./index.module.scss";
+import Button from "../components/buttons/button";
 import ProgressiveImg from "../components/utils/progressive-image";
 import nepal from "../imgs/fragment/네팔어.png";
 import myanmar from "../imgs/fragment/미얀마어.png";
@@ -21,13 +22,10 @@ import koreaMin from "../imgs/fragment-min/한국어-min.png";
 import Paths from "../routes/paths";
 
 function IndexPage() {
+  const navigate = useNavigate();
+
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={classes.Layout}
-    >
+    <div className={classes.Layout}>
       <div className={classes.Container22}>
         <div className={classes.Spacer}>
           <ProgressiveImg
@@ -73,14 +71,12 @@ function IndexPage() {
             alt="7.png"
           />
         </div>
-        <Link to={Paths[22].wander} className={classes.LinkButton}>
-          to 2022
-        </Link>
+        <Button onPress={() => navigate(Paths[22].wander)}>to 2022</Button>
       </div>
       <Link to={Paths[23].wander} className={classes.Container23}>
         to 23
       </Link>
-    </motion.div>
+    </div>
   );
 }
 

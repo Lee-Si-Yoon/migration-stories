@@ -1,4 +1,3 @@
-import { AnimatePresence } from "framer-motion";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
@@ -10,11 +9,9 @@ function Loader() {
 
 function LazyWrapper() {
   return (
-    <AnimatePresence initial={false}>
-      <React.Suspense fallback={<Circle />}>
-        <Outlet />
-      </React.Suspense>
-    </AnimatePresence>
+    <React.Suspense fallback={<Circle />}>
+      <Outlet />
+    </React.Suspense>
   );
 }
 

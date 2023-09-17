@@ -3,10 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  height: 8rem;
+  position: fixed;
+  top: 0;
 
   @media screen and (width <= 35.9988rem) {
-    padding: 0.75rem 0;
+    height: 6rem;
+    position: initial;
   }
 }
 
