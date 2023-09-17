@@ -1,0 +1,18 @@
+@use "../../variables.scss";
+@use "../../typography.scss";
+
+.TitlesContainer {
+  p {
+    @include typography.font("Display1", "white");
+
+    text-align: center;
+    margin: 0;
+    line-height: 200%;
+
+    @media screen and (width <= 48rem) {
+      @include typography.font("Header1", "white");
+
+      line-height: 200%;
+    }
+  }
+}
