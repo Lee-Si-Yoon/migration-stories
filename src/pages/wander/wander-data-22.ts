@@ -1,23 +1,27 @@
-import {
-  akanain,
-  chamikara,
-  dipak,
-  kemra,
-  sajana,
-  sunyena,
-  ting,
-} from "../../imgs/wander/index";
-import {
-  akanainMin,
-  chamikaraMin,
-  dipakMin,
-  kemraMin,
-  sajanaMin,
-  sunyenaMin,
-  tingMin,
-} from "../../imgs/wander-min/index";
+import akanain from "../../imgs/wander/akanain.png";
+import chamikara from "../../imgs/wander/chamikara.png";
+import dipak from "../../imgs/wander/dpiak.png";
+import kemra from "../../imgs/wander/kemra.png";
+import sajana from "../../imgs/wander/sajana.png";
+import sunyena from "../../imgs/wander/sunyena.png";
+import ting from "../../imgs/wander/ting.png";
+import akanainMin from "../../imgs/wander-min/akanain-min.png";
+import chamikaraMin from "../../imgs/wander-min/chamikara-min.png";
+import dipakMin from "../../imgs/wander-min/dipak-min.png";
+import kemraMin from "../../imgs/wander-min/kemra-min.png";
+import sajanaMin from "../../imgs/wander-min/sajana-min.png";
+import sunyenaMin from "../../imgs/wander-min/sunyena-min.png";
+import tingMin from "../../imgs/wander-min/ting-min.png";
 
-const stories = [
+interface StoriesProp {
+  name: string;
+  src: string;
+  placeholderSrc: string;
+  text: string;
+  translation: string;
+}
+
+const stories: Array<StoriesProp> = [
   {
     name: "sajana",
     src: sajana,

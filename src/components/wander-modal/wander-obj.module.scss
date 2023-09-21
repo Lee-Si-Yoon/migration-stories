@@ -1,0 +1,22 @@
+.MovingObject {
+  position: absolute;
+  cursor: pointer;
+
+  img {
+    width: 37.5rem;
+
+    @media screen and (width <= 48rem) {
+      width: 23.75rem;
+    }
+  }
+}
+
+.Focused {
+  transform: scale(1.1);
+}
+
+.Clicked {
+  transform: scale(1.1);
+  z-index: 101;
+  filter: brightness(1.5);
+}
