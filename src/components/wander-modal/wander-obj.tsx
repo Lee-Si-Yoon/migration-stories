@@ -30,14 +30,13 @@ function WanderOBJ({
   const imgRef = React.useRef<HTMLDivElement>(null);
   // ANIMATE
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
-  const [centered, setCentered] = React.useState<boolean>(false);
   // STYLING
   const [opacity, setOpacity] = React.useState(1);
   const [durationState, setDuration] = React.useState(0);
+  const [centered, setCentered] = React.useState<boolean>(false);
   // INTERACTIONS
   const [isPaused, setIsPaused] = React.useState(true);
   const [isClicked, setIsClicked] = React.useState(false);
-  const [focus, setFocus] = React.useState(false);
 
   React.useEffect(() => {
     if (!isPaused) return;
@@ -53,15 +52,8 @@ function WanderOBJ({
         y + height < 0 ||
         y > window.innerHeight
       ) {
-        const targetPosition = {
-          x: window.innerWidth / 2 - width / 2,
-          y: window.innerHeight / 2 - height / 2,
-        };
         setOpacity(0);
-        setPosition({
-          x: targetPosition.x,
-          y: targetPosition.y,
-        });
+        setPosition({ x: 0, y: 0 });
         setCentered(true);
       } else {
         if (centered) {
@@ -86,14 +78,13 @@ function WanderOBJ({
   // 클릭시 중앙으로
   React.useEffect(() => {
     if (!isClicked || !imgRef.current) return;
-    const { width, height } = imgRef.current.getBoundingClientRect();
+    const { height } = imgRef.current.getBoundingClientRect();
     setDuration(0);
     let timerId: number;
     let targetPosition = {
       x: 0,
-      y: 0 - height,
+      y: 0 - height * 0.5,
     };
-    console.log(targetPosition, window.innerWidth);
     const f = () => {
       setPosition((pos) => ({
         x: lerp(pos.x, targetPosition.x, 0.05),
@@ -109,7 +100,6 @@ function WanderOBJ({
     <>
       <WanderModal state={state}>
         <WanderDialog
-          title={name}
           onClose={() => {
             state.close();
             setIsPaused((prev) => !prev);
@@ -117,20 +107,23 @@ function WanderOBJ({
           }}
           onSubmit={() => navigate(`${Paths[22].story}/${name}`)}
         >
-          <p>{text}</p>
-          <p>{translation}</p>
+          <div className={classes.Modal}>
+            <p className={classes.ModalText}>{text}</p>
+            <p className={classes.ModalTranslation}>{translation}</p>
+          </div>
         </WanderDialog>
       </WanderModal>
       <motion.div
         ref={imgRef}
         role="presentation"
         onClick={() => {
-          state.open();
-          setIsPaused((prev) => !prev);
-          setIsClicked((prev) => !prev);
+          if (!isClicked) {
+            state.open();
+            setIsPaused((prev) => !prev);
+            setIsClicked((prev) => !prev);
+          }
         }}
         className={[
-          focus ? classes.Focused : "",
           isClicked ? classes.Clicked : "",
           classes.MovingObject,
         ].join(" ")}

@@ -12,8 +12,15 @@ interface WanderModalProps extends AriaModalOverlayProps {
 }
 
 function WanderModal({ state, children, ...props }: WanderModalProps) {
-  let ref = React.useRef(null);
-  let { modalProps, underlayProps } = useModalOverlay(props, state, ref);
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [size, setSize] = React.useState<{ width: number; height: number }>();
+  const { modalProps, underlayProps } = useModalOverlay(props, state, ref);
+
+  React.useEffect(() => {
+    if (!ref.current) return;
+    const { width, height } = ref.current.getBoundingClientRect();
+    setSize({ width, height });
+  }, [ref.current]);
 
   if (!state.isOpen) return null;
 
@@ -28,9 +35,6 @@ function WanderModal({ state, children, ...props }: WanderModalProps) {
           bottom: 0,
           right: 0,
           background: "rgba(0, 0, 0, 0.5)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
         }}
         {...underlayProps}
       >
@@ -38,7 +42,14 @@ function WanderModal({ state, children, ...props }: WanderModalProps) {
           {...modalProps}
           ref={ref}
           style={{
-            border: "1px solid gray",
+            position: "absolute",
+            top: "50%",
+            left: `calc(50% - ${size ? size.width / 2 : 0}px)`,
+            transform: "transition(-50%, -50%)",
+            width: size?.width,
+            willChange: "transform",
+            opacity: size ? 1 : 0,
+            border: "none",
           }}
         >
           {children}
