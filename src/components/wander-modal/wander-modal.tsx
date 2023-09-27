@@ -6,6 +6,8 @@ import {
 } from "react-aria";
 import { type OverlayTriggerState } from "react-stately";
 
+import classes from "./wander-modal.module.scss";
+
 interface WanderModalProps extends AriaModalOverlayProps {
   state: OverlayTriggerState;
   children: React.ReactNode;
@@ -26,21 +28,11 @@ function WanderModal({ state, children, ...props }: WanderModalProps) {
 
   return (
     <Overlay>
-      <div
-        style={{
-          position: "fixed",
-          zIndex: 100,
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          background: "rgba(0, 0, 0, 0.5)",
-        }}
-        {...underlayProps}
-      >
+      <div className={classes.OverlayBackground} {...underlayProps}>
         <div
           {...modalProps}
           ref={ref}
+          className={classes.Modal}
           style={{
             position: "absolute",
             top: "50%",
@@ -49,7 +41,6 @@ function WanderModal({ state, children, ...props }: WanderModalProps) {
             width: size?.width,
             willChange: "transform",
             opacity: size ? 1 : 0,
-            border: "none",
           }}
         >
           {children}
