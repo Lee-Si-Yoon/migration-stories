@@ -1,7 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import { AboutLink, CreditLink, Logo, ProgramLink } from "./header-items";
+import {
+  AboutLink,
+  CreditLink,
+  Logo22,
+  Logo23,
+  ProgramLink,
+} from "./header-items";
 import classes from "./header.module.scss";
 
 function Header({
@@ -42,12 +48,12 @@ class ComposeItems {
 }
 
 const headerItems22 = new ComposeItems()
-  .addToLeft(Logo())
+  .addToLeft(Logo22())
   .addToRight([AboutLink({ year: 22 }), CreditLink({ year: 22 })])
   .build();
 
 const headerItems23 = new ComposeItems()
-  .addToLeft(Logo())
+  .addToLeft(Logo23())
   .addToRight([
     ProgramLink(),
     AboutLink({ year: 23 }),

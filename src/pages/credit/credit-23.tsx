@@ -4,9 +4,14 @@ import contentJSON from "./content-23.json";
 import classes from "./credit-22.module.scss";
 import type { Content as ContentProps } from "./model";
 import titlesJSON from "./title-23.json";
-// import { partner1, partner2, partner3 } from "../../imgs/partners/2022";
+import {
+  partner1,
+  partner2,
+  partner3,
+  partner4,
+} from "../../imgs/partners/2023";
 import Content from "../../views/credit/content";
-// import PartnerLogos from "../../views/credit/partner-logos";
+import PartnerLogos from "../../views/credit/partner-logos";
 import Title from "../../views/credit/title";
 
 interface Titles {
@@ -17,7 +22,7 @@ const { titles } = JSON.parse(JSON.stringify(titlesJSON)) as Titles;
 const { info, participants, creators, partners } = JSON.parse(
   JSON.stringify(contentJSON)
 ) as ContentProps;
-// const partnerLogos = [partner1, partner2, partner3];
+const partnerLogos = [partner1, partner2, partner3, partner4];
 
 function Credit23Page() {
   return (
@@ -33,7 +38,7 @@ function Credit23Page() {
           partners={partners}
         />
         {/* TODO: 2023 partners logos */}
-        {/* <PartnerLogos data={partnerLogos} /> */}
+        <PartnerLogos data={partnerLogos} />
       </div>
     </div>
   );
