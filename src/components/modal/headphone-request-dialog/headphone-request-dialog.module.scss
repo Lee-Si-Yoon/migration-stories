@@ -1,0 +1,30 @@
+@use "../../../typography.scss";
+
+.Dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .Content {
+    h1 {
+      @include typography.font("Header2", "white");
+
+      text-align: center;
+    }
+
+    h4 {
+      @include typography.font("Body1", "gray");
+
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  .ButtonWrapper {
+    margin-top: 1.5rem;
+
+    .ConfirmButton {
+      padding: 0.5rem 1.25rem;
+    }
+  }
+}

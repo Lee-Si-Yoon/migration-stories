@@ -6,14 +6,17 @@ import {
 } from "react-aria";
 import { type OverlayTriggerState } from "react-stately";
 
-import classes from "./wander-modal.module.scss";
+import classes from "./modal.module.scss";
 
-interface WanderModalProps extends AriaModalOverlayProps {
+type ModalVariant = "wander" | "primary";
+
+interface ModalProps extends AriaModalOverlayProps {
   state: OverlayTriggerState;
   children: React.ReactNode;
+  variant?: ModalVariant;
 }
 
-function WanderModal({ state, children, ...props }: WanderModalProps) {
+function Modal({ state, children, variant = "primary", ...props }: ModalProps) {
   const ref = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState<{ width: number; height: number }>();
   const { modalProps, underlayProps } = useModalOverlay(props, state, ref);
@@ -26,6 +29,24 @@ function WanderModal({ state, children, ...props }: WanderModalProps) {
 
   if (!state.isOpen) return null;
 
+  const getVariantStyle = (variant: ModalVariant): React.CSSProperties => {
+    if (variant === "wander")
+      return {
+        position: "absolute",
+        top: "50%",
+        left: `calc(50% - ${size ? size.width / 2 : 0}px)`,
+        width: size?.width,
+        opacity: size ? 1 : 0,
+      };
+    else
+      return {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%,-50%)",
+      };
+  };
+
   return (
     <Overlay>
       <div className={classes.OverlayBackground} {...underlayProps}>
@@ -33,15 +54,7 @@ function WanderModal({ state, children, ...props }: WanderModalProps) {
           {...modalProps}
           ref={ref}
           className={classes.Modal}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: `calc(50% - ${size ? size.width / 2 : 0}px)`,
-            transform: "transition(-50%, -50%)",
-            width: size?.width,
-            willChange: "transform",
-            opacity: size ? 1 : 0,
-          }}
+          style={getVariantStyle(variant)}
         >
           {children}
         </div>
@@ -50,6 +63,6 @@ function WanderModal({ state, children, ...props }: WanderModalProps) {
   );
 }
 
-WanderModal.displayName = "WanderModal";
+Modal.displayName = "Modal";
 
-export default WanderModal;
+export default Modal;

@@ -1,15 +1,10 @@
-@use "../../variables.scss";
-@use "../../typography.scss";
+@use "../../../variables.scss";
+@use "../../../typography.scss";
 
 .Dialog {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: none;
-
-  :focus {
-    outline: none;
-  }
 
   .Content {
     display: flex;

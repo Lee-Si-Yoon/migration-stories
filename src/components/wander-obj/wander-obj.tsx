@@ -3,11 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useOverlayTriggerState } from "react-stately";
 
-import WanderDialog from "./wander-dialog";
-import WanderModal from "./wander-modal";
 import classes from "./wander-obj.module.scss";
 import Paths from "../../routes/paths";
 import { lerp } from "../../utils/math";
+import Modal from "../modal/modal";
+import WanderDialog from "../modal/wander-dialog/wander-dialog";
 import ProgressiveImg from "../utils/progressive-image";
 
 interface WanderOBJProps {
@@ -98,7 +98,7 @@ function WanderOBJ({
 
   return (
     <>
-      <WanderModal state={state}>
+      <Modal state={state} variant="wander">
         <WanderDialog
           onClose={() => {
             state.close();
@@ -112,7 +112,7 @@ function WanderOBJ({
             <p className={classes.ModalTranslation}>{translation}</p>
           </div>
         </WanderDialog>
-      </WanderModal>
+      </Modal>
       <motion.div
         ref={imgRef}
         role="presentation"

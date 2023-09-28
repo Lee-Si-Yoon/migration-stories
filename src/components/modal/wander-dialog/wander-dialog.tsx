@@ -2,7 +2,7 @@ import React from "react";
 import { useDialog, type AriaDialogProps } from "react-aria";
 
 import classes from "./wander-dialog.module.scss";
-import Button from "../buttons/button";
+import Button from "../../buttons/button";
 
 interface DialogProps extends AriaDialogProps {
   children: React.ReactNode;
