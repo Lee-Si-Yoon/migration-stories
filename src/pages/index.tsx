@@ -19,6 +19,8 @@ import sriLankaMin from "../imgs/fragment-min/스리랑카어-min.png";
 import englishMin from "../imgs/fragment-min/영어-min.png";
 import cambodiaMin from "../imgs/fragment-min/캄보디아어-min.png";
 import koreaMin from "../imgs/fragment-min/한국어-min.png";
+import logo23Min from "../imgs/logo/logo23-min.webp";
+import logo23 from "../imgs/logo/logo23.webp";
 import Paths from "../routes/paths";
 
 function IndexPage() {
@@ -73,9 +75,14 @@ function IndexPage() {
         </div>
         <Button onPress={() => navigate(Paths[22].wander)}>to 2022</Button>
       </div>
-      <Link to={Paths[23].wander} className={classes.Container23}>
-        to 23
-      </Link>
+      <div className={classes.Container23}>
+        <ProgressiveImg
+          placeholderSrc={logo23Min}
+          src={logo23}
+          alt="logo23.png"
+        />
+        <Button onPress={() => navigate(Paths[23].wander)}>to 2023</Button>
+      </div>
     </div>
   );
 }

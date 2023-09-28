@@ -1,33 +1,27 @@
 .Layout {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  padding: 0 20rem;
 
-  @media screen and (width <= 35.9988rem) {
+  @media screen and (width <= 36rem) {
     flex-direction: column;
+    padding: 0;
   }
 
   .Container22 {
-    min-width: 12.5rem;
-    max-width: 25rem;
     width: 100%;
-    aspect-ratio: 0.8;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
-    // border: 1px solid white;
-
-    @media screen and (width <= 35.9988rem) {
-      width: 80%;
-    }
-
     .Spacer {
+      min-width: 12.5rem;
+      max-width: 25rem;
       width: 100%;
-      height: 100%;
+      aspect-ratio: 0.8;
       position: relative;
       user-select: none;
     }
@@ -81,18 +75,23 @@
   }
 
   .Container23 {
-    min-width: 12.5rem;
-    max-width: 25rem;
     width: 100%;
-    aspect-ratio: 0.8;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
-    // border: 1px solid white;
+    img {
+      width: 100%;
+      object-fit: scale-down;
+      min-width: 12.5rem;
+      max-width: 35rem;
+    }
 
-    @media screen and (width <= 35.9988rem) {
-      width: 80%;
+    button {
+      margin-top: -2rem;
+      z-index: 1;
     }
   }
 }
