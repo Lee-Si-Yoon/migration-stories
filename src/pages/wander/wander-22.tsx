@@ -1,12 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import Paths from "../../routes/paths";
+import classes from "./wander-22.module.scss";
+import stories from "./wander-data-22";
+import WanderOBJ from "../../components/wander-modal/wander-obj";
+import wanderBackground from "../../imgs/wander/wanderBackground.png";
 
 function Wander22Page() {
   return (
-    <div>
-      <Link to={`${Paths[22].story}/name`}>to story</Link>
+    <div className={classes.Container}>
+      <img
+        src={wanderBackground}
+        loading="lazy"
+        draggable={false}
+        alt="background"
+        className={classes.BackgroundImage}
+      />
+      {stories.map((story) => (
+        <WanderOBJ
+          key={story.name}
+          imgsrc={story.src}
+          placeholderSrc={story.placeholderSrc}
+          translation={story.translation}
+          text={story.text}
+          name={story.name}
+        />
+      ))}
     </div>
   );
 }

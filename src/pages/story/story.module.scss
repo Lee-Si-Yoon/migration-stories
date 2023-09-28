@@ -1,0 +1,45 @@
+@use "../../typography.scss";
+
+.Container {
+  width: 100%;
+  height: 100%;
+
+  .StickyContainer {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+  }
+}
+
+.Fallback {
+  // width: 100vw;
+  // height: 100vh;
+  // position: absolute;
+  @include typography.font("Header2", "white");
+
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // text-align: center;
+}
+
+.ScrollRequest {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: 2rem;
+
+  @media screen and (width <= 48rem) {
+    bottom: 0.5rem;
+  }
+
+  h1 {
+    @include typography.font("Header2", "white");
+
+    text-align: center;
+  }
+}
