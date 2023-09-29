@@ -76,12 +76,14 @@ function IndexPage() {
         <Button onPress={() => navigate(Paths[22].wander)}>to 2022</Button>
       </div>
       <div className={classes.Container23}>
-        <ProgressiveImg
-          placeholderSrc={logo23Min}
-          src={logo23}
-          alt="logo23.png"
-        />
-        <Button onPress={() => navigate(Paths[23].wander)}>to 2023</Button>
+        <div className={classes.Spacer}>
+          <ProgressiveImg
+            placeholderSrc={logo23Min}
+            src={logo23}
+            alt="logo23.png"
+          />
+          <Button onPress={() => navigate(Paths[23].wander)}>to 2023</Button>
+        </div>
       </div>
     </div>
   );

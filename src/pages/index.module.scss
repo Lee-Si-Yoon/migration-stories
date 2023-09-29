@@ -18,9 +18,7 @@
     flex-direction: column;
 
     .Spacer {
-      min-width: 12.5rem;
-      max-width: 25rem;
-      width: 100%;
+      width: 25rem;
       aspect-ratio: 0.8;
       position: relative;
       user-select: none;
@@ -80,13 +78,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+
+    .Spacer {
+      flex-direction: column;
+      width: 35rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     img {
       width: 100%;
-      object-fit: scale-down;
-      min-width: 12.5rem;
-      max-width: 35rem;
     }
 
     button {
