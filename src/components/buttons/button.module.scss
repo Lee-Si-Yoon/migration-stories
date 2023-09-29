@@ -19,6 +19,10 @@
     transition: all 0.5s ease-out;
   }
 
+  &:active {
+    transform: scale(0.975);
+  }
+
   @media screen and (width <= 35.9988rem) {
     font-size: 1.2rem;
   }

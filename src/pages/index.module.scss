@@ -1,99 +1,104 @@
 .Layout {
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-  padding: 0 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  @media screen and (width <= 36rem) {
-    flex-direction: column;
-    padding: 0;
-  }
+  .Grid {
+    width: 80rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(40rem, 100%), 1fr));
 
-  .Container22 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    .Spacer {
-      width: 25rem;
-      aspect-ratio: 0.8;
-      position: relative;
-      user-select: none;
-    }
-
-    .GridImgs {
-      position: absolute;
-      object-fit: scale-down;
-    }
-
-    .Nepal {
-      width: 60%;
-      top: 75%;
-      left: 0;
-    }
-
-    .Myanmar {
-      width: 50%;
-      top: 42%;
-      left: 30%;
-    }
-
-    .Vietnam {
-      width: 87.5%;
-      top: 85%;
-      left: 0;
-    }
-
-    .SriLanka {
-      width: 57.5%;
-      top: 32%;
-      left: 0;
-    }
-
-    .English {
-      width: 42.5%;
-      left: 50%;
-      top: 0;
-    }
-
-    .Cambodia {
-      width: 9.25%;
-      top: 25%;
-      left: 90%;
-    }
-
-    .Korea {
-      width: 31.25%;
-      top: 0;
-      left: 0;
-    }
-  }
-
-  .Container23 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .Spacer {
+    @media screen and (width <= 36rem) {
       flex-direction: column;
-      width: 35rem;
+    }
+
+    .Container22 {
+      width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+
+      .Spacer {
+        width: 25rem;
+        aspect-ratio: 0.8;
+        position: relative;
+        user-select: none;
+      }
+
+      .GridImgs {
+        position: absolute;
+        object-fit: scale-down;
+      }
+
+      .Nepal {
+        width: 60%;
+        top: 75%;
+        left: 0;
+      }
+
+      .Myanmar {
+        width: 50%;
+        top: 42%;
+        left: 30%;
+      }
+
+      .Vietnam {
+        width: 87.5%;
+        top: 85%;
+        left: 0;
+      }
+
+      .SriLanka {
+        width: 57.5%;
+        top: 32%;
+        left: 0;
+      }
+
+      .English {
+        width: 42.5%;
+        left: 50%;
+        top: 0;
+      }
+
+      .Cambodia {
+        width: 9.25%;
+        top: 25%;
+        left: 90%;
+      }
+
+      .Korea {
+        width: 31.25%;
+        top: 0;
+        left: 0;
+      }
     }
 
-    img {
+    .Container23 {
       width: 100%;
-    }
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    button {
-      margin-top: -2rem;
-      z-index: 1;
+      .Spacer {
+        flex-direction: column;
+        width: 35rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      button {
+        margin-top: -2rem;
+        z-index: 1;
+      }
     }
   }
 }

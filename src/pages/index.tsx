@@ -27,65 +27,67 @@ function IndexPage() {
   const navigate = useNavigate();
 
   return (
-    <div className={classes.Layout}>
-      <div className={classes.Container22}>
-        <div className={classes.Spacer}>
-          <ProgressiveImg
-            className={[classes.Nepal, classes.GridImgs].join(" ")}
-            placeholderSrc={nepalMin}
-            src={nepal}
-            alt="1.png"
-          />
-          <ProgressiveImg
-            className={[classes.Myanmar, classes.GridImgs].join(" ")}
-            placeholderSrc={myanmarMin}
-            src={myanmar}
-            alt="2.png"
-          />
-          <ProgressiveImg
-            className={[classes.Vietnam, classes.GridImgs].join(" ")}
-            placeholderSrc={vietnamMin}
-            src={vietnam}
-            alt="3.png"
-          />
-          <ProgressiveImg
-            className={[classes.SriLanka, classes.GridImgs].join(" ")}
-            placeholderSrc={sriLankaMin}
-            src={sriLanka}
-            alt="4.png"
-          />
-          <ProgressiveImg
-            className={[classes.English, classes.GridImgs].join(" ")}
-            placeholderSrc={englishMin}
-            src={english}
-            alt="5.png"
-          />
-          <ProgressiveImg
-            className={[classes.Cambodia, classes.GridImgs].join(" ")}
-            placeholderSrc={cambodiaMin}
-            src={cambodia}
-            alt="6.png"
-          />
-          <ProgressiveImg
-            className={[classes.Korea, classes.GridImgs].join(" ")}
-            placeholderSrc={koreaMin}
-            src={korea}
-            alt="7.png"
-          />
+    <main className={classes.Layout}>
+      <div className={classes.Grid}>
+        <div className={classes.Container22}>
+          <div className={classes.Spacer}>
+            <ProgressiveImg
+              className={[classes.Nepal, classes.GridImgs].join(" ")}
+              placeholderSrc={nepalMin}
+              src={nepal}
+              alt="1.png"
+            />
+            <ProgressiveImg
+              className={[classes.Myanmar, classes.GridImgs].join(" ")}
+              placeholderSrc={myanmarMin}
+              src={myanmar}
+              alt="2.png"
+            />
+            <ProgressiveImg
+              className={[classes.Vietnam, classes.GridImgs].join(" ")}
+              placeholderSrc={vietnamMin}
+              src={vietnam}
+              alt="3.png"
+            />
+            <ProgressiveImg
+              className={[classes.SriLanka, classes.GridImgs].join(" ")}
+              placeholderSrc={sriLankaMin}
+              src={sriLanka}
+              alt="4.png"
+            />
+            <ProgressiveImg
+              className={[classes.English, classes.GridImgs].join(" ")}
+              placeholderSrc={englishMin}
+              src={english}
+              alt="5.png"
+            />
+            <ProgressiveImg
+              className={[classes.Cambodia, classes.GridImgs].join(" ")}
+              placeholderSrc={cambodiaMin}
+              src={cambodia}
+              alt="6.png"
+            />
+            <ProgressiveImg
+              className={[classes.Korea, classes.GridImgs].join(" ")}
+              placeholderSrc={koreaMin}
+              src={korea}
+              alt="7.png"
+            />
+          </div>
+          <Button onPress={() => navigate(Paths[22].wander)}>to 2022</Button>
         </div>
-        <Button onPress={() => navigate(Paths[22].wander)}>to 2022</Button>
-      </div>
-      <div className={classes.Container23}>
-        <div className={classes.Spacer}>
-          <ProgressiveImg
-            placeholderSrc={logo23Min}
-            src={logo23}
-            alt="logo23.png"
-          />
-          <Button onPress={() => navigate(Paths[23].wander)}>to 2023</Button>
+        <div className={classes.Container23}>
+          <div className={classes.Spacer}>
+            <ProgressiveImg
+              placeholderSrc={logo23Min}
+              src={logo23}
+              alt="logo23.png"
+            />
+            <Button onPress={() => navigate(Paths[23].wander)}>to 2023</Button>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
