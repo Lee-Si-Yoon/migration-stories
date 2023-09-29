@@ -1,0 +1,46 @@
+@use "../../variables.scss";
+@use "../../typography.scss";
+
+.MovingObject {
+  position: absolute;
+  cursor: pointer;
+
+  img {
+    width: 37.5rem;
+
+    @media screen and (width <= 48rem) {
+      width: 23.75rem;
+    }
+  }
+}
+
+.Clicked {
+  transform: scale(1.1);
+  z-index: 101;
+  filter: brightness(1.5);
+}
+
+.Modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+  width: 37.5rem;
+
+  @media screen and (width <= 48rem) {
+    width: 23.75rem;
+  }
+
+  .ModalText {
+    @include typography.font("Header1", "white");
+
+    margin: 0;
+  }
+
+  .ModalTranslation {
+    @include typography.font("Header2", "gray");
+
+    font-weight: 500;
+    margin: 0;
+  }
+}

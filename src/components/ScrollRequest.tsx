@@ -1,7 +1,6 @@
-import React from "react";
-// STYLING
-import styled from "styled-components";
 import { motion } from "framer-motion";
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled(motion.div)`
   width: 10rem;

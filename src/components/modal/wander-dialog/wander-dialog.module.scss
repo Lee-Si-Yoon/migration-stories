@@ -1,0 +1,37 @@
+@use "../../../variables.scss";
+@use "../../../typography.scss";
+
+.Dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ButtonWrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.5rem;
+
+    .ConfirmButton {
+      @include typography.font("Header2", "black");
+
+      background-color: variables.$text-gray;
+      border: 0;
+      border-radius: 0.5rem;
+      padding: 1rem 2rem;
+    }
+
+    .CloseButton {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+}
