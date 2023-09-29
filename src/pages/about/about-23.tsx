@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
 import classes from "./about-22.module.scss";
-import { fadeInUp } from "./animation";
 import contentRaw from "./content-23.json";
 import languagesRaw from "./languages-23.json";
 import type { Content, Languages } from "./model";
