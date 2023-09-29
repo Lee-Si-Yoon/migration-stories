@@ -3,7 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import classes from "./header.module.scss";
-import logo from "../../imgs/logo.webp";
+import logo22 from "../../imgs/logo/logo22.webp";
+import logo23 from "../../imgs/logo/logo23-min.webp";
 import Paths from "../../routes/paths";
 
 function AboutLink({ year }: { year: 22 | 23 }) {
@@ -26,10 +27,18 @@ function CreditLink({ year }: { year: 22 | 23 }) {
   );
 }
 
-function Logo() {
+function Logo22() {
   return (
     <Link to={Paths.default} key={`logo`}>
-      <img src={logo} alt="logo" draggable={false} width={50} />
+      <img src={logo22} alt="logo" draggable={false} width={50} />
+    </Link>
+  );
+}
+
+function Logo23() {
+  return (
+    <Link to={Paths.default} key={`logo`}>
+      <img src={logo23} alt="logo" draggable={false} width={60} />
     </Link>
   );
 }
@@ -42,4 +51,4 @@ function ProgramLink() {
   );
 }
 
-export { AboutLink, CreditLink, Logo, ProgramLink };
+export { AboutLink, CreditLink, Logo22, Logo23, ProgramLink };

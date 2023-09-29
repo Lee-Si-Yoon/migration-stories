@@ -1,22 +1,23 @@
 .Logos {
-  display: flex;
-  width: 37.5rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
   gap: 2rem;
-  padding-top: 2rem;
+  margin-top: 2rem;
 
   @media screen and (width <= 48rem) {
-    width: 100%;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 0;
   }
 
-  img {
-    width: 30%;
-    object-fit: contain;
+  .LogoWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    @media screen and (width <= 48rem) {
-      width: 50%;
+    img {
+      width: 100%;
+      object-fit: scale-down;
     }
   }
 }

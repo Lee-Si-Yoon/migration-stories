@@ -16,35 +16,42 @@ function About23Page() {
   );
 
   return (
-    <div className={classes.Layout}>
+    <main className={classes.Layout}>
       <div className={classes.PosterContainer}>
-        {/* TODO add poster */}
         <img alt="poster" draggable={false} loading="lazy" />
       </div>
-      <div className={classes.AboutContainer}>
+      <div className={classes.ButtonsContainer}>
         <LanguageButtons
           data={languages}
           currentLanguage={language}
           setLanguage={setLanguage}
         />
+      </div>
+      <div className={classes.AboutContainer}>
         <AnimatePresence>
           <motion.h2
-            key={`${language}-title`}
+            key={`title-${texts[language].title}`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.25 }}
             className={classes.Title}
-            {...fadeInUp}
           >
             {texts[language].title}
           </motion.h2>
+        </AnimatePresence>
+        <AnimatePresence>
           <motion.div
-            key={`${language}-text`}
+            key={`title-${texts[language].text}`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.25 }}
             className={classes.TextContainer}
-            {...fadeInUp}
           >
             <p>{texts[language].text}</p>
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
+    </main>
   );
 }
 

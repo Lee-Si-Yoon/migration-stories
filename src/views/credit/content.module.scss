@@ -2,17 +2,15 @@
 @use "../../typography.scss";
 
 .Texts {
-  width: 37.5rem;
-
-  @media screen and (width <= 48rem) {
-    width: 100%;
-  }
+  width: 100%;
 
   p {
     @include typography.font("Body1", "white");
 
     margin: 0;
-    line-height: 160%;
+    line-height: 180%;
+    word-break: keep-all;
+    word-wrap: break-word;
 
     @media screen and (width <= 48rem) {
       line-height: 200%;
