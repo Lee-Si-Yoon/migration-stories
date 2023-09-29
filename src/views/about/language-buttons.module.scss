@@ -1,13 +1,11 @@
 .ButtonContainer {
-  width: 37.5rem;
-  padding: 2rem 0;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 
   @media screen and (width <= 48rem) {
     grid-template-columns: repeat(3, 1fr);
-    width: calc(100% - 1.5rem);
   }
 
   div {

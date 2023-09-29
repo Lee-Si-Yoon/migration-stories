@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
 import classes from "./about-22.module.scss";
-import { fadeInUp } from "./animation";
 import contentRaw from "./content-22.json";
 import languagesRaw from "./languages-22.json";
 import type { Content, Languages } from "./model";
@@ -17,34 +16,42 @@ function About22Page() {
   );
 
   return (
-    <div className={classes.Layout}>
+    <main className={classes.Layout}>
       <div className={classes.PosterContainer}>
         <img alt="poster" src={poster} draggable={false} loading="lazy" />
       </div>
-      <div className={classes.AboutContainer}>
+      <div className={classes.ButtonsContainer}>
         <LanguageButtons
           data={languages}
           currentLanguage={language}
           setLanguage={setLanguage}
         />
+      </div>
+      <div className={classes.AboutContainer}>
         <AnimatePresence>
           <motion.h2
-            key={`${language}-title`}
+            key={`title-${texts[language].title}`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.25 }}
             className={classes.Title}
-            {...fadeInUp}
           >
             {texts[language].title}
           </motion.h2>
+        </AnimatePresence>
+        <AnimatePresence>
           <motion.div
-            key={`${language}-text`}
+            key={`title-${texts[language].text}`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.25 }}
             className={classes.TextContainer}
-            {...fadeInUp}
           >
             <p>{texts[language].text}</p>
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
+    </main>
   );
 }
 

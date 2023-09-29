@@ -4,8 +4,14 @@
   margin-top: 8rem;
 
   @media screen and (width <= 48rem) {
-    width: calc(100% - 1rem);
+    width: 100%;
     margin-top: 2rem;
+  }
+
+  .TitlesContainer {
+    @media screen and (width <= 48rem) {
+      width: calc(100% - 1rem);
+    }
   }
 
   .ContentContainer {
