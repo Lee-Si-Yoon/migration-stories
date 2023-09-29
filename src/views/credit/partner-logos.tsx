@@ -2,17 +2,24 @@ import React from "react";
 
 import classes from "./partner-logo.module.scss";
 
-function PartnerLogos({ data }: { data: string[] }) {
+function PartnerLogos({
+  data,
+}: {
+  data: Array<{ src: string; height?: number }>;
+}) {
   return (
     <div className={classes.Logos}>
-      {data.map((logo, index) => (
-        <img
-          loading="lazy"
-          key={`partner-${index}`}
-          alt={`partner-${index}`}
-          src={logo}
-          draggable="false"
-        />
+      {data.map((datum, index) => (
+        <div key={`partner-${index}`} className={classes.LogoWrapper}>
+          <img
+            loading="lazy"
+            alt={`partner-${index}`}
+            src={datum.src}
+            height={datum.height ?? 30}
+            width={"auto"}
+            draggable="false"
+          />
+        </div>
       ))}
     </div>
   );

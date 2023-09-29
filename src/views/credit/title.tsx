@@ -6,7 +6,7 @@ import classes from "./title.module.scss";
 const container = {
   show: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.25,
     },
   },
 };

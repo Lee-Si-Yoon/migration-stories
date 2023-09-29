@@ -22,11 +22,16 @@ const { titles } = JSON.parse(JSON.stringify(titlesJSON)) as Titles;
 const { info, participants, creators, partners } = JSON.parse(
   JSON.stringify(contentJSON)
 ) as ContentProps;
-const partnerLogos = [partner1, partner2, partner3, partner4];
+const partnerLogos = [
+  { src: partner1, height: 40 },
+  { src: partner2, height: 70 },
+  { src: partner3, height: 70 },
+  { src: partner4, height: 50 },
+];
 
 function Credit23Page() {
   return (
-    <div className={classes.Container}>
+    <main className={classes.CreditPage}>
       <div className={classes.TitlesContainer}>
         <Title data={titles} />
       </div>
@@ -37,10 +42,11 @@ function Credit23Page() {
           creators={creators}
           partners={partners}
         />
-        {/* TODO: 2023 partners logos */}
+      </div>
+      <div className={classes.PartnerContainer}>
         <PartnerLogos data={partnerLogos} />
       </div>
-    </div>
+    </main>
   );
 }
 

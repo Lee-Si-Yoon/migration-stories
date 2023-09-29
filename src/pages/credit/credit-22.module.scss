@@ -1,59 +1,34 @@
-.Container {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
+.CreditPage {
+  width: 80rem;
+  margin: 0 auto;
+  margin-top: 8rem;
 
   @media screen and (width <= 48rem) {
-    width: 100%;
-    height: 50%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .TitlesContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
-    padding: 0 2rem;
-
-    @media screen and (width <= 48rem) {
-      width: calc(100% - 1.5rem);
-    }
+    width: calc(100% - 1rem);
+    margin-top: 2rem;
   }
 
   .ContentContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
+    margin: 0 auto;
+    margin-top: 4rem;
+    width: 56.25rem;
 
     @media screen and (width <= 48rem) {
-      width: calc(100% - 1.5rem);
-      padding-top: 2rem;
+      width: calc(100% - 1rem);
+      margin-top: 4rem;
     }
+  }
 
-    .Logos {
-      display: flex;
-      width: 37.5rem;
-      gap: 2rem;
-      padding-top: 2rem;
+  .PartnerContainer {
+    margin: 0 auto;
+    margin-top: 4rem;
+    width: 56.25rem;
+    padding-bottom: 4rem;
 
-      @media screen and (width <= 48rem) {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
-      }
-
-      img {
-        width: 30%;
-        object-fit: contain;
-
-        @media screen and (width <= 48rem) {
-          width: 50%;
-        }
-      }
+    @media screen and (width <= 48rem) {
+      width: 100%;
+      margin-top: 2rem;
+      padding-bottom: 2rem;
     }
   }
 }
