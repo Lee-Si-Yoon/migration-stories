@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://migrationstoriesproject.net/">
+  <a href="https://www.migrationstoriesproject.net/">
     <img src="https://user-images.githubusercontent.com/76679207/208481156-17593cfd-0b19-4641-868c-c99eab65a3e4.jpg" width="600" alt="logo">
   </a>
   </br>
