@@ -38,6 +38,7 @@ jobs:
         run: npm run build
         env:
           CI: false
+          REACT_APP_GOOGLE_ANALYTICS: ${{ secrets.REACT_APP_GOOGLE_ANALYTICS }}
 
       - name: Copy files to the production website with the AWS CLI
         run: |
