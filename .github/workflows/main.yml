@@ -1,34 +1,50 @@
-name: Upload Website
+name: Build and Deploy to CloudFront
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  deploy:
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
+    env:
+      BUCKET: www.migrationstoriesproject.net
+      DIST: dist
+      REGION: ap-northeast-2
+      DIST_ID: E1QUXMBKM9XZRC
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "yarn"
-      - name: Install dependencies
-        run: yarn
-      - name: Build
-        run: npm run build
-        env:
-          CI: false
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
+          aws-region: ${{ env.REGION }}
 
-      - name: Deploy static site to S3 bucket
-        run: aws s3 sync ./dist/ s3://migrationstoriesproject.net --delete
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: npm run build
+        env:
+          CI: false
+
+      - name: Copy files to the production website with the AWS CLI
+        run: |
+          aws s3 sync --delete ${{ env.DIST }} s3://${{ env.BUCKET }}
+
+      - name: Copy files to the production website with the AWS CLI
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.DIST_ID }} \
+            --paths "/*"
