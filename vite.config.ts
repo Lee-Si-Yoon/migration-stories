@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import viteTsconfigPaths from "vite-tsconfig-paths";
@@ -10,6 +11,19 @@ export default defineConfig({
     viteTsconfigPaths(),
     svgrPlugin(),
     splitVendorChunkPlugin(),
+    sentryVitePlugin({
+      org: "siyoon",
+      project: "javascript-react",
+    }),
   ],
+
+  define: {
+    "process.env": process.env,
+  },
+
   assetsInclude: ["**/*.gltf", "**/*.png"],
+
+  build: {
+    sourcemap: true,
+  },
 });

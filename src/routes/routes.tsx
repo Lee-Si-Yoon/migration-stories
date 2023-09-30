@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import React from "react";
 import type { RouteObject } from "react-router-dom";
 import { Navigate } from "react-router-dom";
@@ -93,7 +94,9 @@ const routes: RouteObject[] = [
   {
     path: "",
     errorElement: <ErrorPage />,
-    Component: LazyWrapper,
+    Component: Sentry.withErrorBoundary(LazyWrapper, {
+      fallback: <p>an error has occurred</p>,
+    }),
     children: [
       {
         index: true,
