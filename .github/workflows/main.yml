@@ -39,6 +39,7 @@ jobs:
         env:
           CI: false
           REACT_APP_GOOGLE_ANALYTICS: ${{ secrets.REACT_APP_GOOGLE_ANALYTICS }}
+          SENTRY_DSN_URL: ${{ secrets.SENTRY_DSN_URL }}
 
       - name: Copy files to the production website with the AWS CLI
         run: |

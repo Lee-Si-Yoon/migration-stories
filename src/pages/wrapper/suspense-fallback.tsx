@@ -10,6 +10,7 @@ function Loader() {
 
 function LazyWrapper() {
   RouteChangeTracker();
+
   return (
     <React.Suspense fallback={<Circle />}>
       <Outlet />
