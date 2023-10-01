@@ -35,11 +35,11 @@ function WanderOBJ({
   const [durationState, setDuration] = React.useState(0);
   const [centered, setCentered] = React.useState<boolean>(false);
   // INTERACTIONS
-  const [isPaused, setIsPaused] = React.useState(true);
   const [isClicked, setIsClicked] = React.useState(false);
 
   React.useEffect(() => {
-    if (!isPaused) return;
+    if (isClicked) return;
+
     let timerId: number;
     let direction = Math.random() * Math.PI * 2;
     let velocity = 0.5 + Math.random() * 1;
@@ -73,7 +73,7 @@ function WanderOBJ({
     timerId = requestAnimationFrame(f);
 
     return () => cancelAnimationFrame(timerId);
-  }, [isPaused, centered]);
+  }, [isClicked, centered]);
 
   // center when clicked
   React.useEffect(() => {
@@ -99,12 +99,13 @@ function WanderOBJ({
 
   return (
     <>
-      <Modal state={state} variant="wander">
+      <Modal state={state} variant="wander" isKeyboardDismissDisabled>
         <WanderDialog
           onClose={() => {
-            state.close();
-            setIsPaused((prev) => !prev);
-            setIsClicked((prev) => !prev);
+            setTimeout(() => {
+              state.close();
+              setIsClicked(false);
+            }, 100);
           }}
           onSubmit={() => navigate(`${Paths[22].story}/${name}`)}
         >
@@ -120,8 +121,7 @@ function WanderOBJ({
         onClick={() => {
           if (!isClicked) {
             state.open();
-            setIsPaused((prev) => !prev);
-            setIsClicked((prev) => !prev);
+            setIsClicked(true);
           }
         }}
         className={[
