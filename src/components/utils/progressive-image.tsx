@@ -29,6 +29,8 @@ export default function ProgressiveImg({
       className={className}
       loading="lazy"
       draggable="false"
+      width={"100%"}
+      height={"auto"}
       style={{
         filter:
           placeholderSrc && imgSrc === placeholderSrc

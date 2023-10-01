@@ -32,14 +32,15 @@ function Modal({ state, children, variant = "primary", ...props }: ModalProps) {
   const getVariantStyle = (variant: ModalVariant): React.CSSProperties => {
     if (variant === "wander")
       return {
+        width: "100%",
         position: "absolute",
         top: "50%",
         left: `calc(50% - ${size ? size.width / 2 : 0}px)`,
-        width: size?.width,
         opacity: size ? 1 : 0,
       };
     else
       return {
+        width: "100%",
         position: "absolute",
         top: "50%",
         left: "50%",

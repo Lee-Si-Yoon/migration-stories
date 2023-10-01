@@ -28,13 +28,19 @@
   width: 37.5rem;
 
   @media screen and (width <= 48rem) {
-    width: 23.75rem;
+    width: calc(100% - 1rem);
   }
 
   .ModalText {
     @include typography.font("Header1", "white");
 
     margin: 0;
+
+    @media screen and (width <= 48rem) {
+      @include typography.font("Body1", "white");
+
+      font-weight: 700;
+    }
   }
 
   .ModalTranslation {
@@ -42,5 +48,9 @@
 
     font-weight: 500;
     margin: 0;
+
+    @media screen and (width <= 48rem) {
+      @include typography.font("Body2", "gray");
+    }
   }
 }

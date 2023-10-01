@@ -47,7 +47,6 @@ function VideoPage() {
             left: 0,
             bottom: 0,
             right: 0,
-            zIndex: -1,
           }}
         />
       )}

@@ -15,16 +15,18 @@ function Wander22Page() {
         alt="background"
         className={classes.BackgroundImage}
       />
-      {stories.map((story) => (
-        <WanderOBJ
-          key={story.name}
-          imgsrc={story.src}
-          placeholderSrc={story.placeholderSrc}
-          translation={story.translation}
-          text={story.text}
-          name={story.name}
-        />
-      ))}
+      <div className={classes.Story}>
+        {stories.map((story) => (
+          <WanderOBJ
+            key={story.name}
+            imgsrc={story.src}
+            placeholderSrc={story.placeholderSrc}
+            translation={story.translation}
+            text={story.text}
+            name={story.name}
+          />
+        ))}
+      </div>
     </div>
   );
 }

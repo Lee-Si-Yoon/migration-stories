@@ -1,7 +1,7 @@
 {
   "name": "migration-stories",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://migrationstoriesproject.net",
   "scripts": {
     "build": "vite build",
@@ -47,7 +47,6 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "framer-motion": "^10.16.4",
-    "gh-pages": "^6.0.0",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-aria": "^3.28.0",
@@ -55,11 +54,9 @@
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
     "react-player": "^2.11.0",
-    "react-responsive": "^9.0.2",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "react-stately": "^3.26.0",
-    "styled-components": "^6.0.7",
     "three": "^0.155.0",
     "typescript": "^5.1.6",
     "web-vitals": "^2.1.4"
@@ -69,7 +66,6 @@
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "cross-env": "^7.0.3",
     "eslint": "^8.47.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.28.1",

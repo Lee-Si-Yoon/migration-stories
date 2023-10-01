@@ -1,0 +1,7 @@
+.Link {
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-0.125rem);
+  }
+}
