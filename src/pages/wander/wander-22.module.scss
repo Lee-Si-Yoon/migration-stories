@@ -19,4 +19,16 @@
       transparent 100%
     );
   }
+
+  .Story {
+    height: calc(100vh - 6rem);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: clip;
+  }
 }

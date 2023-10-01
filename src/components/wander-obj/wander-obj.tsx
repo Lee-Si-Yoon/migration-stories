@@ -75,7 +75,7 @@ function WanderOBJ({
     return () => cancelAnimationFrame(timerId);
   }, [isPaused, centered]);
 
-  // 클릭시 중앙으로
+  // center when clicked
   React.useEffect(() => {
     if (!isClicked || !imgRef.current) return;
     const { height } = imgRef.current.getBoundingClientRect();
@@ -83,7 +83,8 @@ function WanderOBJ({
     let timerId: number;
     let targetPosition = {
       x: 0,
-      y: 0 - height * 0.5,
+      // 0 is center of screen, 48 is header's height
+      y: 0 - height * 0.5 - 48,
     };
     const f = () => {
       setPosition((pos) => ({
