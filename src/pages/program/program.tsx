@@ -15,13 +15,13 @@ const { programs } = JSON.parse(
 
 function ProgramPage() {
   return (
-    <div className={classes.Container}>
+    <main className={classes.Container}>
       {programs.map((p) => (
         <div key={p.id}>
           <Link to={`${Paths[23].program}/${p.id}`}>{p.name}</Link>
         </div>
       ))}
-    </div>
+    </main>
   );
 }
 

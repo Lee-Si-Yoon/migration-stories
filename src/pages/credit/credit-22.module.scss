@@ -1,16 +1,16 @@
 .CreditPage {
   width: 80rem;
   margin: 0 auto;
-  margin-top: 8rem;
 
   @media screen and (width <= 48rem) {
     width: 100%;
-    margin-top: 2rem;
   }
 
   .TitlesContainer {
+    margin-top: 8rem;
+
     @media screen and (width <= 48rem) {
-      width: calc(100% - 1rem);
+      margin-top: 6rem;
     }
   }
 
@@ -21,7 +21,7 @@
 
     @media screen and (width <= 48rem) {
       width: calc(100% - 1rem);
-      margin-top: 4rem;
+      margin-top: 2rem;
     }
   }
 

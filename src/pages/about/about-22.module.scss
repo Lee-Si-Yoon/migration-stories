@@ -4,16 +4,19 @@
 .Layout {
   width: 80rem;
   margin: 0 auto;
-  margin-top: 8rem;
 
   @media screen and (width <= 48rem) {
     width: 100%;
-    margin-top: 2rem;
   }
 
   .PosterContainer {
     display: flex;
     justify-content: center;
+    margin-top: 8rem;
+
+    @media screen and (width <= 48rem) {
+      margin-top: 6rem;
+    }
 
     img {
       width: 37.5rem;
