@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import classes from "./wander-22.module.scss";
+import stories from "./wander-data-23";
+import WanderOBJ from "../../components/wander-obj/wander-obj";
 import wanderBackground from "../../imgs/wander/2023/wanderBackground.webp";
-import Paths from "../../routes/paths";
 
 function Wander23Page() {
   return (
@@ -15,9 +15,18 @@ function Wander23Page() {
         alt="background"
         className={classes.BackgroundImage_2023}
       />
-      <Link to={`${Paths[22].video}/name`} style={{ zIndex: 1 }}>
-        to video
-      </Link>
+      <div className={classes.Story}>
+        {stories.map((story) => (
+          <WanderOBJ
+            key={story.name}
+            imgsrc={story.src}
+            placeholderSrc={story.placeholderSrc}
+            translation={story.translation}
+            text={story.text}
+            name={story.name}
+          />
+        ))}
+      </div>
     </div>
   );
 }

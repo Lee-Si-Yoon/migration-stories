@@ -6,7 +6,7 @@ const shared = (base: string) => ({
 const paths23 = (base: string) => ({
   ...shared(base),
   wander: `${base}/wander`,
-  video: `${base}/video/:name`,
+  video: `${base}/video`,
   program: `${base}/program`,
 });
 
