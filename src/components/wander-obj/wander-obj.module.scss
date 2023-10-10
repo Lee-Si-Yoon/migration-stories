@@ -4,14 +4,6 @@
 .MovingObject {
   position: absolute;
   cursor: pointer;
-
-  img {
-    width: 37.5rem;
-
-    @media screen and (width <= 48rem) {
-      width: 23.75rem;
-    }
-  }
 }
 
 .Clicked {
