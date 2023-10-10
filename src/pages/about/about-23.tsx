@@ -5,6 +5,7 @@ import classes from "./about-22.module.scss";
 import contentRaw from "./content-23.json";
 import languagesRaw from "./languages-23.json";
 import type { Content, Languages } from "./model";
+import poster from "../../imgs/poster/poster-23.webp";
 import LanguageButtons from "../../views/about/language-buttons";
 
 const texts = JSON.parse(JSON.stringify(contentRaw)) as Content;
@@ -17,7 +18,7 @@ function About23Page() {
   return (
     <main className={classes.Layout}>
       <div className={classes.PosterContainer}>
-        <img alt="poster" draggable={false} loading="lazy" />
+        <img alt="poster" src={poster} draggable={false} loading="lazy" />
       </div>
       <div className={classes.ButtonsContainer}>
         <LanguageButtons
