@@ -1,31 +1,19 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useOverlayTriggerState } from "react-stately";
 
 import classes from "./wander-obj.module.scss";
-import Paths from "../../routes/paths";
 import { lerp } from "../../utils/math";
 import Modal from "../modal/modal";
 import WanderDialog from "../modal/wander-dialog/wander-dialog";
-import ProgressiveImg from "../utils/progressive-image";
 
-interface WanderOBJProps {
-  imgsrc: string;
-  placeholderSrc: string;
-  name: string;
+interface WanderOBJProps extends React.PropsWithChildren {
   text: string;
   translation: string;
+  onSubmit: VoidFunction;
 }
 
-function WanderOBJ({
-  imgsrc,
-  placeholderSrc,
-  name,
-  text,
-  translation,
-}: WanderOBJProps) {
-  const navigate = useNavigate();
+function WanderOBJ({ text, translation, children, onSubmit }: WanderOBJProps) {
   const state = useOverlayTriggerState({});
   const imgRef = React.useRef<HTMLDivElement>(null);
   // ANIMATE
@@ -33,7 +21,7 @@ function WanderOBJ({
   // STYLING
   const [opacity, setOpacity] = React.useState(1);
   const [durationState, setDuration] = React.useState(0);
-  const [centered, setCentered] = React.useState<boolean>(false);
+  const [centered, setCentered] = React.useState(false);
   // INTERACTIONS
   const [isClicked, setIsClicked] = React.useState(false);
 
@@ -107,7 +95,7 @@ function WanderOBJ({
               setIsClicked(false);
             }, 100);
           }}
-          onSubmit={() => navigate(`${Paths[22].story}/${name}`)}
+          onSubmit={onSubmit}
         >
           <div className={classes.Modal}>
             <p className={classes.ModalText}>{text}</p>
@@ -135,11 +123,7 @@ function WanderOBJ({
           opacity: opacity,
         }}
       >
-        <ProgressiveImg
-          src={imgsrc}
-          alt={name}
-          placeholderSrc={placeholderSrc}
-        />
+        {children}
       </motion.div>
     </>
   );
