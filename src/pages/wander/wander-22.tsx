@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./wander-22.module.scss";
 import stories from "./wander-data-22";
 import WanderOBJ from "../../components/wander-obj/wander-obj";
-import wanderBackground from "../../imgs/wander/wanderBackground.png";
+import wanderBackground from "../../imgs/wander/2022/wanderBackground.png";
 
 function Wander22Page() {
   return (

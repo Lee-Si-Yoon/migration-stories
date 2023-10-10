@@ -1,17 +1,17 @@
-import akanain from "../../imgs/wander/akanain.png";
-import chamikara from "../../imgs/wander/chamikara.png";
-import dipak from "../../imgs/wander/dpiak.png";
-import kemra from "../../imgs/wander/kemra.png";
-import sajana from "../../imgs/wander/sajana.png";
-import sunyena from "../../imgs/wander/sunyena.png";
-import ting from "../../imgs/wander/ting.png";
-import akanainMin from "../../imgs/wander-min/akanain-min.png";
-import chamikaraMin from "../../imgs/wander-min/chamikara-min.png";
-import dipakMin from "../../imgs/wander-min/dipak-min.png";
-import kemraMin from "../../imgs/wander-min/kemra-min.png";
-import sajanaMin from "../../imgs/wander-min/sajana-min.png";
-import sunyenaMin from "../../imgs/wander-min/sunyena-min.png";
-import tingMin from "../../imgs/wander-min/ting-min.png";
+import akanain from "../../imgs/wander/2022/akanain.png";
+import chamikara from "../../imgs/wander/2022/chamikara.png";
+import dipak from "../../imgs/wander/2022/dpiak.png";
+import kemra from "../../imgs/wander/2022/kemra.png";
+import sajana from "../../imgs/wander/2022/sajana.png";
+import sunyena from "../../imgs/wander/2022/sunyena.png";
+import ting from "../../imgs/wander/2022/ting.png";
+import akanainMin from "../../imgs/wander-min/2022/akanain-min.png";
+import chamikaraMin from "../../imgs/wander-min/2022/chamikara-min.png";
+import dipakMin from "../../imgs/wander-min/2022/dipak-min.png";
+import kemraMin from "../../imgs/wander-min/2022/kemra-min.png";
+import sajanaMin from "../../imgs/wander-min/2022/sajana-min.png";
+import sunyenaMin from "../../imgs/wander-min/2022/sunyena-min.png";
+import tingMin from "../../imgs/wander-min/2022/ting-min.png";
 
 interface StoriesProp {
   name: string;
