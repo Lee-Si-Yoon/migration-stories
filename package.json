@@ -9,7 +9,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "eject": "react-scripts eject",
-    "fix": "yarn lint && yarn stylelint",
+    "fix": "yarn lint && yarn stylelint && npx prettier . --write",
     "postinstall": "husky install",
     "lint": "eslint src --ext ts,tsx . --fix",
     "lint-staged": "sort-package-json",

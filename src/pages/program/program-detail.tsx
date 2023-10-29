@@ -6,7 +6,7 @@ import ProgramsJSON from "./programs-23.json";
 import classes from "./programs-detail.module.scss";
 
 const { programs } = JSON.parse(
-  JSON.stringify(ProgramsJSON)
+  JSON.stringify(ProgramsJSON),
 ) as ProgramsJSONProps;
 
 function ProgramDetailPage() {
