@@ -102,7 +102,7 @@ function StoryPage() {
                   fallback={
                     <Html>
                       <div className={classes.Fallback}>{`${+progress.toFixed(
-                        1
+                        1,
                       )}%`}</div>
                     </Html>
                   }

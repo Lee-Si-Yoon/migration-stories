@@ -18,7 +18,7 @@ function WanderDialog({ children, onClose, onSubmit, ...props }: DialogProps) {
       ...props,
       role: "alertdialog",
     },
-    ref
+    ref,
   );
 
   return (
