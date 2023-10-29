@@ -12,7 +12,7 @@ const texts = JSON.parse(JSON.stringify(contentRaw)) as Content2023;
 const languages = JSON.parse(JSON.stringify(languagesRaw)) as Languages;
 function About23Page() {
   const [language, setLanguage] = React.useState<string>(
-    languages.languages[0]
+    languages.languages[0],
   );
 
   return (

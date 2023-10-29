@@ -15,7 +15,7 @@ function HeadphoneRequestDialog({ onSubmit, ...props }: DialogProps) {
       ...props,
       role: "alertdialog",
     },
-    ref
+    ref,
   );
 
   return (

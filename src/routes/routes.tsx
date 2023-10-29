@@ -15,7 +15,7 @@ const Credit22Page = React.lazy(() => import("../pages/credit/credit-22"));
 const Credit23Page = React.lazy(() => import("../pages/credit/credit-23"));
 const ProgramPage = React.lazy(() => import("../pages/program/program"));
 const ProgramDetailPage = React.lazy(
-  () => import("../pages/program/program-detail")
+  () => import("../pages/program/program-detail"),
 );
 import { Header22, Header23 } from "../pages/wrapper/header";
 import { LazyWrapper } from "../pages/wrapper/suspense-fallback";

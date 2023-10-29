@@ -20,7 +20,7 @@ interface Titles {
 
 const { titles } = JSON.parse(JSON.stringify(titlesJSON)) as Titles;
 const { info, participants, creators, partners } = JSON.parse(
-  JSON.stringify(contentJSON)
+  JSON.stringify(contentJSON),
 ) as ContentProps;
 const partnerLogos = [
   { src: partner1, height: 40 },

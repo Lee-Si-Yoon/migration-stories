@@ -10,7 +10,7 @@ export interface ProgramsJSONProps {
 }
 
 const { programs } = JSON.parse(
-  JSON.stringify(ProgramsJSON)
+  JSON.stringify(ProgramsJSON),
 ) as ProgramsJSONProps;
 
 function ProgramPage() {
