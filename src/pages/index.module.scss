@@ -43,6 +43,11 @@
       );
       height: 40rem;
       width: auto;
+
+      @media screen and (width <= 48rem) {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 
@@ -62,8 +67,12 @@
     }
 
     img {
-      height: 40rem;
-      width: auto;
+      width: 40rem;
+      height: auto;
+
+      @media screen and (width <= 48rem) {
+        width: 100%;
+      }
     }
   }
 }
