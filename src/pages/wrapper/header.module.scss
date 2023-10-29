@@ -4,16 +4,10 @@
   justify-content: space-between;
   align-items: center;
   height: 8rem;
-  position: fixed !important;
-  background-color: black;
+  position: fixed;
+  background-color: transparent;
   top: 0;
   z-index: 999;
-  -webkit-mask-box-image: linear-gradient(
-    to bottom,
-    white 5%,
-    white 80%,
-    transparent 100%
-  );
 
   @media screen and (width <= 48rem) {
     height: 6rem;
