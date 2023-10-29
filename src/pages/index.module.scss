@@ -25,6 +25,7 @@
 
   .Container22 {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
 
@@ -40,11 +41,14 @@
         white 5%,
         white 100%
       );
+      height: 40rem;
+      width: auto;
     }
   }
 
   .Container23 {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
 
@@ -55,6 +59,11 @@
     button {
       margin-top: -2rem;
       z-index: 1;
+    }
+
+    img {
+      height: 40rem;
+      width: auto;
     }
   }
 }
