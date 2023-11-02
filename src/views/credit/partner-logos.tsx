@@ -10,7 +10,10 @@ function PartnerLogos({
   return (
     <div className={classes.Logos}>
       {data.map((datum, index) => (
-        <div key={`partner-${index}`} className={classes.LogoWrapper}>
+        <div
+          key={`partner-${index}`}
+          className={index > 1 ? classes.CenterRow : classes.LogoWrapper}
+        >
           <img
             loading="lazy"
             alt={`partner-${index}`}

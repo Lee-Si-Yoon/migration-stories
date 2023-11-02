@@ -4,29 +4,19 @@ import contentJSON from "./content-23.json";
 import classes from "./credit-22.module.scss";
 import type { Content as ContentProps } from "./model";
 import titlesJSON from "./title-23.json";
-import {
-  partner1,
-  partner2,
-  partner3,
-  partner4,
-} from "../../imgs/partners/2023";
+import { partner1, partner3, partner4 } from "../../imgs/partners/2023";
 import Content from "../../views/credit/content";
 import PartnerLogos from "../../views/credit/partner-logos";
 import Title from "../../views/credit/title";
 
-interface Titles {
-  titles: string[];
-}
-
-const { titles } = JSON.parse(JSON.stringify(titlesJSON)) as Titles;
+const { titles } = JSON.parse(JSON.stringify(titlesJSON));
 const { info, participants, creators, partners } = JSON.parse(
   JSON.stringify(contentJSON),
 ) as ContentProps;
 const partnerLogos = [
   { src: partner1, height: 40 },
-  { src: partner2, height: 70 },
-  { src: partner3, height: 70 },
-  { src: partner4, height: 50 },
+  { src: partner4, height: 55 },
+  { src: partner3, height: 80 },
 ];
 
 function Credit23Page() {

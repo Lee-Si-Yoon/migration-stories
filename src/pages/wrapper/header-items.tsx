@@ -8,7 +8,6 @@ import Paths from "../../routes/paths";
 
 const activeStyle = ({ isActive }: { isActive: boolean }) => ({
   fontWeight: isActive ? 600 : 400,
-  textShadow: isActive ? "0 0 0.25rem white" : "initial",
 });
 
 function AboutLink({ year }: { year: 22 | 23 }) {
