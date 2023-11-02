@@ -18,9 +18,9 @@ const { info, participants, creators, partners } = JSON.parse(
   JSON.stringify(contentJSON),
 ) as ContentProps;
 const partnerLogos = [
-  { src: partner1, height: 30 },
-  { src: partner2, height: 25 },
-  { src: partner3, height: 50 },
+  { src: partner1, height: 35 },
+  { src: partner2, height: 30 },
+  { src: partner3, height: 60 },
 ];
 
 function Credit22Page() {

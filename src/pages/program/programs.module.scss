@@ -1,3 +1,5 @@
+@use "../../typography.scss";
+
 .Container {
   width: 100vw;
   height: 100vh;
@@ -5,5 +7,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+
+  .Link {
+    @include typography.font("Body1", "white");
+
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
 }
