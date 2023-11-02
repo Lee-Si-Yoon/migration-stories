@@ -13,6 +13,7 @@
     "lint": "eslint src --ext ts,tsx . --fix",
     "lint-staged": "npx sort-package-json",
     "prepare": "husky install",
+    "pretty": "npx prettier . --write",
     "preview": "vite preview",
     "start": "vite",
     "stylelint": "stylelint **/*.scss --fix",
