@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
   margin-top: 2rem;
 
   @media screen and (width <= 48rem) {
@@ -11,13 +11,13 @@
   }
 
   .LogoWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
+  }
 
-    img {
-      width: 100%;
-      object-fit: scale-down;
-    }
+  .CenterRow {
+    display: grid;
+    place-items: center;
+    grid-column: 1/ -1;
   }
 }
