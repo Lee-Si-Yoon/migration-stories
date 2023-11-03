@@ -26,6 +26,7 @@ function Wander23Page() {
             key={story.name}
             translation={story.translation}
             text={story.text}
+            submitText={`смотреть на историю`}
             onSubmit={() => navigate(`${Paths[23].video}/${story.name}`)}
           >
             <ProgressiveImg

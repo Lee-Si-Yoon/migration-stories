@@ -5798,9 +5798,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.575"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.575.tgz#7c0b87eb2c6214a993699792abd704de41255c39"
-  integrity sha512-kY2BGyvgAHiX899oF6xLXSIf99bAvvdPhDoJwG77nxCSyWYuRH6e9a9a3gpXBvCs6lj4dQZJkfnW2hdKWHEISg==
+  version "1.4.574"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.574.tgz#6de04d7c6e244e5ffcae76d2e2a33b02cab66781"
+  integrity sha512-bg1m8L0n02xRzx4LsTTMbBPiUd9yIR+74iPtS/Ao65CuXvhVZHP0ym1kSdDG3yHFDXqHQQBKujlN1AQ8qZnyFg==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -11371,9 +11371,9 @@ three-mesh-bvh@^0.6.7:
   integrity sha512-EGebF9DZx1S8+7OZYNNTT80GXJZVf+UYXD/HyTg/e2kR/ApofIFfUS4ZzIHNnUVIadpnLSzM4n96wX+l7GMbnQ==
 
 three-stdlib@^2.28.0:
-  version "2.28.5"
-  resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.28.5.tgz#8184f5bacc90c2eec6ed36a861224e18799226fd"
-  integrity sha512-JdLMhkpT+1ZWeQPyKQNW1zqUwISI2hsUljS6u3vB9lp5EvwsayaAzGnbVeR35895udOF+zxcTiQY3psk+qqlxg==
+  version "2.28.3"
+  resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.28.3.tgz#9c825aec0addf4d1f09c7a8751306ed13413dbcb"
+  integrity sha512-mbKEJqDPosHZzSKdM8VurnuX1sRWFzNu6I3/v5DWNEJUA0S+03Cq5KaEwZng7ErjFp0rwwb39JdwAk8gNUbnuA==
   dependencies:
     "@types/draco3d" "^1.4.0"
     "@types/offscreencanvas" "^2019.6.4"
@@ -12372,9 +12372,9 @@ yaml@^1.10.0, yaml@^1.10.2, yaml@^1.7.2:
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
 
 yaml@^2.1.1:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.4.tgz#53fc1d514be80aabf386dc6001eb29bf3b7523b2"
-  integrity sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.3.tgz#01f6d18ef036446340007db8e016810e5d64aad9"
+  integrity sha512-zw0VAJxgeZ6+++/su5AFoqBbZbrEakwu+X0M5HmcwUiBL7AzcuPKjj5we4xfQLp78LkEMpD0cOnUhmgOVy3KdQ==
 
 yargs-parser@^20.2.2, yargs-parser@^20.2.9:
   version "20.2.9"

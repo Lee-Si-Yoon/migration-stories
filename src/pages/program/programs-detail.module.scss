@@ -1,3 +1,5 @@
+@use "../../typography.scss";
+
 .Container {
   width: 100vw;
   height: 100vh;
@@ -5,10 +7,63 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  text-align: center;
 
-  p {
-    margin: 0;
+  .ProgramContent {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media screen and (width <= 48rem) {
+      margin-top: 6rem;
+    }
+
+    button {
+      width: fit-content;
+      margin-bottom: 2rem;
+
+      @media screen and (width <= 48rem) {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .ProgramText {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.75rem;
+      width: 42.5rem;
+      text-align: center;
+
+      @media screen and (width <= 48rem) {
+        width: calc(100% - 1rem);
+      }
+
+      span {
+        @include typography.font("Body1", "white");
+
+        font-size: 1.125rem;
+
+        @media screen and (width <= 48rem) {
+          @include typography.font("Body1", "white");
+        }
+      }
+    }
+  }
+
+  .ProgramImageContainer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 33.75rem;
+
+      @media screen and (width <= 48rem) {
+        width: calc(100% - 1rem);
+        padding: 0.5rem 0;
+      }
+    }
   }
 }

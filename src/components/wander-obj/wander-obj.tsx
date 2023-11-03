@@ -4,16 +4,25 @@ import { useOverlayTriggerState } from "react-stately";
 
 import classes from "./wander-obj.module.scss";
 import { lerp } from "../../utils/math";
+import Button from "../buttons/button";
 import Modal from "../modal/modal";
-import WanderDialog from "../modal/wander-dialog/wander-dialog";
+import WanderDialog22 from "../modal/wander-dialog/wander-dialog";
+import { ReactComponent as XCancelIcon } from "../svg/x-cancel.svg";
 
 interface WanderOBJProps extends React.PropsWithChildren {
   text: string;
   translation: string;
+  submitText?: string;
   onSubmit: VoidFunction;
 }
 
-function WanderOBJ({ text, translation, children, onSubmit }: WanderOBJProps) {
+function WanderOBJ({
+  text,
+  submitText,
+  translation,
+  children,
+  onSubmit,
+}: WanderOBJProps) {
   const state = useOverlayTriggerState({});
   const imgRef = React.useRef<HTMLDivElement>(null);
   // ANIMATE
@@ -88,20 +97,34 @@ function WanderOBJ({ text, translation, children, onSubmit }: WanderOBJProps) {
   return (
     <>
       <Modal state={state} variant="wander" isKeyboardDismissDisabled>
-        <WanderDialog
-          onClose={() => {
-            setTimeout(() => {
-              state.close();
-              setIsClicked(false);
-            }, 100);
-          }}
-          onSubmit={onSubmit}
-        >
+        <WanderDialog22>
           <div className={classes.Modal}>
-            <p className={classes.ModalText}>{text}</p>
-            <p className={classes.ModalTranslation}>{translation}</p>
+            <span className={classes.ModalText}>{text}</span>
+            <span className={classes.ModalTranslation}>{translation}</span>
+            <div className={classes.ButtonWrapper}>
+              <Button
+                onPress={() => onSubmit()}
+                className={classes.ConfirmButton}
+              >
+                <pre>
+                  {`스토리 보기\n`}
+                  <span>{submitText}</span>
+                </pre>
+              </Button>
+              <Button
+                onPress={() => {
+                  setTimeout(() => {
+                    state.close();
+                    setIsClicked(false);
+                  }, 100);
+                }}
+                className={classes.CloseButton}
+              >
+                <XCancelIcon height={24} width={24} />
+              </Button>
+            </div>
           </div>
-        </WanderDialog>
+        </WanderDialog22>
       </Modal>
       <motion.div
         ref={imgRef}
