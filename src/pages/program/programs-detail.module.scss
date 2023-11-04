@@ -1,54 +1,51 @@
 @use "../../typography.scss";
 
-.Container {
-  width: 80rem;
+.Layout {
   min-height: 100vh;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  @media screen and (width <= 48rem) {
-    width: 100vw;
-    flex-direction: column;
-  }
-
-  .ProgramContent {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
+  .BackButton {
+    margin-bottom: 2.5rem;
 
     @media screen and (width <= 48rem) {
       margin-top: 6rem;
     }
+  }
 
-    button {
-      width: fit-content;
-      margin-bottom: 2rem;
+  .GroupContainer {
+    width: 80rem;
+    display: flex;
 
-      @media screen and (width <= 48rem) {
-        margin-bottom: 1.5rem;
-      }
+    @media screen and (width <= 48rem) {
+      flex-direction: column;
+      width: 100vw;
     }
 
-    .ProgramText {
+    .ProgramContentContainer {
       display: flex;
-      flex-direction: column;
-      row-gap: 0.5rem;
-      width: 35rem;
+      flex: 1;
 
-      @media screen and (width <= 48rem) {
-        width: calc(100% - 1rem);
-        row-gap: initial;
-      }
-
-      span {
-        @include typography.font("Body1", "white");
+      .ProgramText {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5rem;
+        width: 35rem;
 
         @media screen and (width <= 48rem) {
+          width: calc(100% - 1rem);
+          row-gap: initial;
+        }
+
+        span {
           @include typography.font("Body1", "white");
-          line-height: 200%;
+
+          @media screen and (width <= 48rem) {
+            line-height: 200%;
+          }
         }
       }
     }
