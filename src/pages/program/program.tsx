@@ -6,31 +6,18 @@ import ProgramsJSON from "./programs-23.json";
 import classes from "./programs.module.scss";
 import Paths from "../../routes/paths";
 
+export type ProgramJSON = {
+  [key: string]: string | number;
+  id: number;
+};
+
 export interface ProgramsJSONProps {
-  programs: { [key: string]: string | number; id: number }[];
+  programs: ProgramJSON[];
 }
 
 const { programs } = JSON.parse(
-  JSON.stringify(ProgramsJSON),
+  JSON.stringify(ProgramsJSON)
 ) as ProgramsJSONProps;
-
-const container = {
-  show: {
-    transition: {
-      staggerChildren: 0.25,
-    },
-  },
-};
-
-const leftToRight = {
-  hidden: { opacity: 0, x: -60 },
-  show: { opacity: 1, x: 0 },
-};
-
-const rightToLeft = {
-  hidden: { opacity: 0, x: 60 },
-  show: { opacity: 1, x: 0 },
-};
 
 function ProgramPage() {
   return (
@@ -53,6 +40,24 @@ function ProgramPage() {
     </motion.main>
   );
 }
+
+const container = {
+  show: {
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const leftToRight = {
+  hidden: { opacity: 0, x: -60 },
+  show: { opacity: 1, x: 0 },
+};
+
+const rightToLeft = {
+  hidden: { opacity: 0, x: 60 },
+  show: { opacity: 1, x: 0 },
+};
 
 ProgramPage.displayName = "ProgramPage";
 
