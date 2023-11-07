@@ -11,12 +11,6 @@
     object-fit: cover;
     bottom: 0;
     mask-border-mode: alpha;
-    -webkit-mask-box-image: linear-gradient(
-      to top,
-      white 15%,
-      transparent 70%,
-      transparent 100%
-    );
   }
 
   .Story {
