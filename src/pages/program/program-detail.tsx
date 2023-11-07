@@ -10,7 +10,7 @@ import { ReactComponent as XCancelIcon } from "../../components/svg/x-cancel.svg
 import balahnMarket from "../../imgs/programs/balahn-market.webp";
 
 const { programs } = JSON.parse(
-  JSON.stringify(ProgramsJSON)
+  JSON.stringify(ProgramsJSON),
 ) as ProgramsJSONProps;
 
 function ProgramDetailPage() {
