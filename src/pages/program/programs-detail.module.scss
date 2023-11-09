@@ -28,6 +28,7 @@
     .ProgramContentContainer {
       display: flex;
       flex: 1;
+      justify-content: center;
 
       .ProgramText {
         display: flex;
@@ -58,7 +59,7 @@
     justify-content: center;
 
     img {
-      width: 35rem;
+      width: 40rem;
 
       @media screen and (width <= 48rem) {
         width: calc(100% - 1rem);
