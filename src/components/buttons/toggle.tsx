@@ -35,8 +35,8 @@ function Toggle(props: ToggleProps): React.JSX.Element {
             ? "white"
             : "gray"
           : state.isSelected
-          ? "white"
-          : "black",
+            ? "white"
+            : "black",
         color: state.isSelected ? "black" : "white",
       }}
       {...mergedProps}
