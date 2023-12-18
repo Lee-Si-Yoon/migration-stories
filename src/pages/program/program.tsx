@@ -2,22 +2,9 @@ import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ProgramsJSON from "./programs-23.json";
+import { programs } from "./programs-23";
 import classes from "./programs.module.scss";
 import Paths from "../../routes/paths";
-
-export type ProgramJSON = {
-  [key: string]: string | number;
-  id: number;
-};
-
-export interface ProgramsJSONProps {
-  programs: ProgramJSON[];
-}
-
-const { programs } = JSON.parse(
-  JSON.stringify(ProgramsJSON),
-) as ProgramsJSONProps;
 
 function ProgramPage() {
   return (
