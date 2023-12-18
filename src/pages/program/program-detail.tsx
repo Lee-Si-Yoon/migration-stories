@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { isMobile } from "react-device-detect";
+import VimeoPlayer from "react-player/vimeo";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 import { programs, type ProgramJSON } from "./programs-23";
@@ -18,25 +20,29 @@ function ProgramDetailPage() {
   if (currentProgram === undefined) return <Navigate to=".." />;
 
   return (
-    <div className={classes.Layout}>
-      <Button
-        onPress={() => {
-          navigate("..");
-        }}
-        className={classes.BackButton}
-      >
-        <XCancelIcon width={24} height={24} />
-      </Button>
-      <div className={classes.GroupContainer}>
-        <motion.div
-          initial={{ x: -150 }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.5, ease: "linear" }}
-          className={classes.ProgramContentContainer}
+    <>
+      <div className={classes.Layout}>
+        <Button
+          onPress={() => {
+            navigate("..");
+          }}
+          className={classes.BackButton}
         >
-          {parsedProgramDetailTexts(currentProgram)}
-        </motion.div>
+          <XCancelIcon width={24} height={24} />
+        </Button>
         <div className={classes.ProgramImageContainer}>
+          {currentProgram.videoSrc !== "" && (
+            <VimeoPlayer
+              volume={1}
+              playing
+              width="100%"
+              height="17.5rem"
+              url={currentProgram.videoSrc}
+              title={currentProgram.id}
+              controls={isMobile}
+              stopOnUnmount={true}
+            />
+          )}
           <motion.img
             initial={{ x: 150 }}
             animate={{ x: 0 }}
@@ -45,13 +51,20 @@ function ProgramDetailPage() {
             src={currentProgram.imgSrc}
           />
         </div>
+        <motion.div
+          initial={{ x: -150 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5, ease: "linear" }}
+        >
+          {parsedProgramDetailTexts(currentProgram)}
+        </motion.div>
       </div>
-    </div>
+    </>
   );
 }
 
 const parsedProgramDetailTexts = (data: ProgramJSON) => {
-  const { id, imgSrc, ...rest } = data;
+  const { id, imgSrc, videoSrc, ...rest } = data;
 
   return (
     <div className={classes.ProgramText}>
