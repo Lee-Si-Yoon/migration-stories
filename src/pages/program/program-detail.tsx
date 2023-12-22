@@ -31,18 +31,6 @@ function ProgramDetailPage() {
           <XCancelIcon width={24} height={24} />
         </Button>
         <div className={classes.ProgramImageContainer}>
-          {currentProgram.videoSrc !== "" && (
-            <VimeoPlayer
-              volume={1}
-              playing
-              width="100%"
-              height="17.5rem"
-              url={currentProgram.videoSrc}
-              title={currentProgram.id}
-              controls={isMobile}
-              stopOnUnmount={true}
-            />
-          )}
           <motion.img
             initial={{ x: 150 }}
             animate={{ x: 0 }}
@@ -58,6 +46,18 @@ function ProgramDetailPage() {
         >
           {parsedProgramDetailTexts(currentProgram)}
         </motion.div>
+        {currentProgram.videoSrc !== "" && (
+          <VimeoPlayer
+            volume={1}
+            playing
+            width="100%"
+            height="36rem"
+            url={currentProgram.videoSrc}
+            title={currentProgram.id}
+            controls={isMobile}
+            stopOnUnmount={true}
+          />
+        )}
       </div>
     </>
   );

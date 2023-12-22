@@ -1,14 +1,14 @@
 @use "../../typography.scss";
 
 .Layout {
-  width: 42.5rem;
+  width: 64rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 1.5rem;
-  padding-bottom: 2rem;
+  row-gap: 2.5rem;
+  padding-bottom: 2.5rem;
 
   @media screen and (width <= 48rem) {
     width: 100%;
@@ -29,8 +29,8 @@
     row-gap: 1rem;
 
     img {
-      height: 17.5rem;
-      width: auto;
+      height: 36rem;
+      width: 100%;
       object-fit: cover;
 
       @media screen and (width <= 48rem) {
