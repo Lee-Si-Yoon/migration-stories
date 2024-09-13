@@ -7,7 +7,6 @@ const ErrorPage = React.lazy(() => import("../error-page"));
 const IndexPage = React.lazy(() => import("../pages/index"));
 const Wander22 = React.lazy(() => import("../pages/wander/wander-22"));
 const Wander23 = React.lazy(() => import("../pages/wander/wander-23"));
-const StoryPage = React.lazy(() => import("../pages/story/story"));
 const VideoPage = React.lazy(() => import("../pages/video/video"));
 const About22Page = React.lazy(() => import("../pages/about/about-22"));
 const About23Page = React.lazy(() => import("../pages/about/about-23"));
@@ -15,7 +14,7 @@ const Credit22Page = React.lazy(() => import("../pages/credit/credit-22"));
 const Credit23Page = React.lazy(() => import("../pages/credit/credit-23"));
 const ProgramPage = React.lazy(() => import("../pages/program/program"));
 const ProgramDetailPage = React.lazy(
-  () => import("../pages/program/program-detail"),
+  () => import("../pages/program/program-detail")
 );
 import { Header22, Header23 } from "../pages/wrapper/header";
 import { LazyWrapper } from "../pages/wrapper/suspense-fallback";
@@ -35,10 +34,6 @@ const routes22: RouteObject[] = [
   {
     path: "wander",
     Component: Wander22,
-  },
-  {
-    path: "story/:name",
-    Component: StoryPage,
   },
   {
     path: "video/:name",
