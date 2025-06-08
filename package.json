@@ -4,27 +4,12 @@
   "private": false,
   "homepage": "https://migrationstoriesproject.net",
   "scripts": {
-    "build": "vite build",
-    "predeploy": "pnpm run build",
-    "fix": "pnpm run lint && pnpm run stylelint && pnpm run pretty",
-    "lint": "eslint src --ext ts,tsx . --fix",
-    "prepare": "husky install",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "pretty": "prettier . --write",
-    "preview": "vite preview",
-    "start": "vite",
     "stylelint": "stylelint **/*.scss --fix"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "dependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -32,6 +17,7 @@
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
     "framer-motion": "^12.16.0",
+    "next": "15.3.3",
     "react": "^19.1.0",
     "react-aria": "^3.41.0",
     "react-device-detect": "^2.2.3",
@@ -44,17 +30,14 @@
     "web-vitals": "^5.0.2"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@eslint/compat": "^1.2.9",
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.28.0",
-    "@typescript-eslint/eslint-plugin": "^8.33.1",
-    "@typescript-eslint/parser": "^8.33.1",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@vitejs/plugin-react-swc": "^3.10.1",
-    "eslint": "^9.28.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^16.2.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.3",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "sass": "^1.89.1",
@@ -62,6 +45,8 @@
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-recommended": "^16.0.0",
     "stylelint-config-standard-scss": "^15.0.1",
+    "tailwindcss": "^4",
+    "typescript": "^5",
     "vite": "^6.3.5",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4"
