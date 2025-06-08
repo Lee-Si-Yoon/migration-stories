@@ -3,7 +3,7 @@ import {
   useAnimate,
   type ElementOrSelector,
   type DOMKeyframesDefinition,
-  type DynamicAnimationOptions,
+  type AnimationOptions,
 } from "framer-motion";
 import React from "react";
 
@@ -14,7 +14,7 @@ function useStaggerInitialAnimation({
 }: {
   targetChild: ElementOrSelector;
   keyFrames?: DOMKeyframesDefinition;
-  options?: DynamicAnimationOptions;
+  options?: AnimationOptions;
 }) {
   const [scope, animate] = useAnimate();
 

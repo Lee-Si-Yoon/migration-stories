@@ -1,7 +1,7 @@
 import React from "react";
 
 import classes from "./language-buttons.module.scss";
-import Toggle from "../../components/buttons/toggle";
+import Toggle from "../../../src/widgets/buttons/toggle";
 import { useStaggerInitialAnimation } from "../../utils/animation/use-stagger-initial-animation";
 
 interface LanguageButtonsProps {

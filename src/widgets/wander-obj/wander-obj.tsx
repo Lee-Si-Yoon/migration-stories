@@ -3,7 +3,7 @@ import React from "react";
 import { useOverlayTriggerState } from "react-stately";
 
 import classes from "./wander-obj.module.scss";
-import { lerp } from "../../utils/math";
+import { lerp } from "../../../legacy/utils/math";
 import Button from "../buttons/button";
 import Modal from "../modal/modal";
 import WanderDialog22 from "../modal/wander-dialog/wander-dialog";

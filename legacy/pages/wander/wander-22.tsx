@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import classes from "./wander-22.module.scss";
 import stories from "./wander-data-22";
-import ProgressiveImg from "../../components/utils/progressive-image";
-import WanderOBJ from "../../components/wander-obj/wander-obj";
+import ProgressiveImg from "../../../src/widgets/utils/progressive-image";
+import WanderOBJ from "../../../src/widgets/wander-obj/wander-obj";
 import wanderBackground from "../../imgs/wander/2022/wanderBackground.webp";
 import Paths from "../../routes/paths";
 

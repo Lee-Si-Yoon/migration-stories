@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import classes from "./index.module.scss";
-import Button from "../components/buttons/button";
-import ProgressiveImg from "../components/utils/progressive-image";
+import Button from "../../src/widgets/buttons/button";
+import ProgressiveImg from "../../src/widgets/utils/progressive-image";
 import logo22Min from "../imgs/logo/logo22-min.webp";
 import logo22 from "../imgs/logo/logo22.webp";
 import logo23Min from "../imgs/logo/logo23-min.webp";

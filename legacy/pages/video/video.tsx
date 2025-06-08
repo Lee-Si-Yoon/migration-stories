@@ -8,8 +8,8 @@ import { useOverlayTriggerState } from "react-stately";
 import video22 from "./video-22.json";
 import video23 from "./video-23.json";
 import classes from "./video.module.scss";
-import Button from "../../components/buttons/button";
-import Modal from "../../components/modal/modal";
+import Button from "../../../src/widgets/buttons/button";
+import Modal from "../../../src/widgets/modal/modal";
 import Paths from "../../routes/paths";
 
 const { data: data22 } = video22;
@@ -32,7 +32,7 @@ function VideoPage(props: AriaDialogProps) {
       ...props,
       role: "alertdialog",
     },
-    ref,
+    ref
   );
 
   React.useEffect(() => {
