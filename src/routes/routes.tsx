@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/react";
 import React from "react";
 import type { RouteObject } from "react-router-dom";
 import { Navigate } from "react-router-dom";
@@ -14,7 +13,7 @@ const Credit22Page = React.lazy(() => import("../pages/credit/credit-22"));
 const Credit23Page = React.lazy(() => import("../pages/credit/credit-23"));
 const ProgramPage = React.lazy(() => import("../pages/program/program"));
 const ProgramDetailPage = React.lazy(
-  () => import("../pages/program/program-detail")
+  () => import("../pages/program/program-detail"),
 );
 import { Header22, Header23 } from "../pages/wrapper/header";
 import { LazyWrapper } from "../pages/wrapper/suspense-fallback";
@@ -89,9 +88,7 @@ const routes: RouteObject[] = [
   {
     path: "",
     errorElement: <ErrorPage />,
-    Component: Sentry.withErrorBoundary(LazyWrapper, {
-      fallback: <p>an error has occurred</p>,
-    }),
+    Component: LazyWrapper,
     children: [
       {
         index: true,
