@@ -7,7 +7,7 @@ import { lerp } from "../../utils/math";
 import Button from "../buttons/button";
 import Modal from "../modal/modal";
 import WanderDialog22 from "../modal/wander-dialog/wander-dialog";
-import { ReactComponent as XCancelIcon } from "../svg/x-cancel.svg";
+import XCancelIcon from "../svg/x-cancel.svg?react";
 
 interface WanderOBJProps extends React.PropsWithChildren {
   text: string;

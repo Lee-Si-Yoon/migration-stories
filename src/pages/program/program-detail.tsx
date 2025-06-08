@@ -7,7 +7,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { programs, type ProgramJSON } from "./programs-23";
 import classes from "./programs-detail.module.scss";
 import Button from "../../components/buttons/button";
-import { ReactComponent as XCancelIcon } from "../../components/svg/x-cancel.svg";
+import XCancelIcon from "../../components/svg/x-cancel.svg?react";
 
 function ProgramDetailPage() {
   const navigate = useNavigate();
