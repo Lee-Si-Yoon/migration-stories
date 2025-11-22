@@ -2,55 +2,56 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { cn } from '@/shared/cn';
-import ProgressiveImg from '@/widgets/utils/progressive-image';
 import { Paths } from '@/features/routes';
 import { buttonVariants } from '@/widgets/buttons';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Migration Stories',
   description: 'migration stories',
 };
 
-const imageClasses = cn('h-auto select-none', 'min-[1280px]:h-[40rem] min-[1280px]:w-auto');
-const articleClasses = cn('flex flex-1 flex-col items-center', 'min-[1280px]:pt-0');
+const blurImages = [
+  {
+    src: '/imgs/logo/logo22.webp',
+    placeholderSrc: '/imgs/logo/logo22-min.webp',
+    alt: 'logo22.png',
+    href: Paths[22].wander,
+    text: 'to 2022',
+  },
+  {
+    src: '/imgs/logo/logo23.webp',
+    placeholderSrc: '/imgs/logo/logo23-min.webp',
+    alt: 'logo23.png',
+    href: Paths[23].wander,
+    text: 'to 2023',
+  },
+];
 
 export default function Page() {
   return (
-    <main className="absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
-      <nav
-        className={cn(
-          'flex flex-col',
-          'min-[1280px]:mx-auto min-[1280px]:w-[80rem] min-[1280px]:flex-row min-[1280px]:items-center'
-        )}
-      >
-        <article className={articleClasses}>
-          <ProgressiveImg
-            placeholderSrc={'/imgs/logo/logo22-min.webp'}
-            src={'/imgs/logo/logo22.webp'}
-            alt="logo22.png"
-            className={imageClasses}
-          />
-          <Link
-            href={Paths[22].wander}
-            className={cn(buttonVariants({ variant: 'default' }), 'mt-1')}
-          >
-            to 2022
-          </Link>
-        </article>
-        <article className={articleClasses}>
-          <ProgressiveImg
-            placeholderSrc={'/imgs/logo/logo23-min.webp'}
-            src={'/imgs/logo/logo23.webp'}
-            alt="logo22.png"
-            className={imageClasses}
-          />
-          <Link
-            href={Paths[23].wander}
-            className={cn(buttonVariants({ variant: 'default' }), 'mt-1')}
-          >
-            to 2023
-          </Link>
-        </article>
+    <main className="flex h-screen flex-col items-center justify-center p-4">
+      <nav className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {blurImages.map(({ src, placeholderSrc, alt, href, text }) => (
+          <article className="flex flex-col items-center justify-center" key={href}>
+            <div className="relative w-screen md:h-[680px] md:w-[640px]">
+              <Image
+                fill
+                className="object-contain"
+                src={src}
+                alt={alt}
+                placeholder="blur"
+                draggable={false}
+                // preload image
+                blurDataURL={placeholderSrc} // make it better
+                // sizes="(min-width: 768px) 50vw, 100vw"
+              />
+            </div>
+            <Link href={href} className={cn(buttonVariants({ variant: 'default' }))}>
+              {text}
+            </Link>
+          </article>
+        ))}
       </nav>
     </main>
   );
