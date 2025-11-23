@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDialog, type AriaDialogProps } from 'react-aria';
 
-import classes from './wander-dialog.module.scss';
+import { cn } from '@/shared/cn';
 
 interface DialogProps extends AriaDialogProps {
   children: React.ReactNode;
@@ -19,8 +19,11 @@ function WanderDialog22({ children, ...props }: DialogProps) {
   );
 
   return (
-    <div {...dialogProps} ref={ref} className={classes.Dialog}>
-      <div className={[props.className, classes.Content].join(' ')} {...titleProps}>
+    <div {...dialogProps} ref={ref} className="flex flex-col items-center">
+      <div
+        className={cn('flex flex-col items-center text-center', props.className)}
+        {...titleProps}
+      >
         {children}
       </div>
     </div>

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Migration Stories Project (이주 이야기 프로젝트) - An interactive web-based art exhibition presenting stories of migrants living in Korea through animated 2D objects, video narratives, and exhibition information.
 
-**Built with Next.js App Router** - A modern React application using Next.js 16 with Tailwind CSS v4 and SCSS modules.
+**Built with Next.js App Router** - A modern React application using Next.js 16 with Tailwind CSS v4.
 
 ## Development Commands
 
@@ -21,7 +21,6 @@ pnpm start
 # Code quality
 pnpm lint              # ESLint
 pnpm pretty            # Prettier formatting
-pnpm stylelint         # SCSS linting
 pnpm knip              # Find unused exports
 pnpm depcheck          # Dependency analysis
 ```
@@ -129,9 +128,11 @@ type VideoData = typeof videoData;
 
 ## Styling Architecture
 
-**Hybrid: Tailwind v4 + SCSS Modules**
+**Tailwind CSS v4 Only**
 
-**Tailwind for utilities:**
+All styling is done using Tailwind utility classes. No SCSS or CSS modules are used in this project.
+
+**Basic Tailwind usage:**
 
 ```tsx
 <div className="flex items-center justify-center p-4">
@@ -154,28 +155,16 @@ import { cn } from '@/shared/cn';
 <div className={`base-class ${isActive ? 'active-class' : ''} ${className}`}>
 ```
 
-**SCSS modules for complex styling:**
+**Design Tokens:**
 
-```scss
-// component.module.scss
-@use '../../variables.scss';
-@use '../../typography.scss';
-
-.Component {
-  @include typography.font('Header1', 'white');
-}
-```
-
-**SCSS design system:**
-
-- `variables.scss`: Color tokens (`$white`, `$black`, `$text-gray: #999`)
-- `typography.scss`: Font scale (Display1, Header1/2, Body1/2)
-- Mobile breakpoint: `@media screen and (width <= 48rem)`
+- Colors: `text-white`, `text-black`, `bg-black/50` (black with 50% opacity)
+- Mobile breakpoint: `md:` prefix (768px) for responsive design
+- Mobile-first approach: Base styles apply to mobile, use `md:` for desktop
 
 **Utility helpers:**
 
 ```tsx
-import { cn } from '@/shared/cn'; // Merge classes
+import { cn } from '@/shared/cn'; // Merge classes (tailwind-merge + clsx)
 import { buttonVariants } from '@/widgets/buttons'; // CVA variants
 ```
 
@@ -228,10 +217,11 @@ state.close(); // Close modal
 ### Adding a New Widget
 
 1. Create directory: `/src/widgets/[widget-name]/`
-2. Files: `widget-name.tsx`, `widget-name.module.scss`
+2. Files: `widget-name.tsx`
 3. Export from `index.tsx` barrel file
-4. Use React Aria for interactive elements
-5. Define proper TypeScript interfaces (no `any` types)
+4. Use Tailwind classes for styling
+5. Use React Aria for interactive elements
+6. Define proper TypeScript interfaces (no `any` types)
 
 ### Year-Specific Features
 
@@ -306,7 +296,7 @@ webpack: {
 - **Framework:** Next.js 16.0.3 (App Router)
 - **React:** 19.1.0
 - **TypeScript:** 5.8.3 (strict mode)
-- **Styling:** Tailwind v4 + SASS modules
+- **Styling:** Tailwind CSS v4
 - **Animation:** Framer Motion 12.16.0
 - **Accessibility:** React Aria 3.41.0
 - **Video:** react-player 2.16.0 (Vimeo)

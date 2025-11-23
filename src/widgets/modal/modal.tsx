@@ -2,8 +2,6 @@ import React from 'react';
 import { Overlay, useModalOverlay, type AriaModalOverlayProps } from 'react-aria';
 import { type OverlayTriggerState } from 'react-stately';
 
-import classes from './modal.module.scss';
-
 type ModalVariant = 'wander' | 'primary';
 
 interface ModalProps extends AriaModalOverlayProps {
@@ -46,8 +44,13 @@ function Modal({ state, children, variant = 'primary', ...props }: ModalProps) {
 
   return (
     <Overlay>
-      <div className={classes.OverlayBackground} {...underlayProps}>
-        <div {...modalProps} ref={ref} className={classes.Modal} style={getVariantStyle(variant)}>
+      <div className="fixed inset-0 z-[100] bg-black/50" {...underlayProps}>
+        <div
+          {...modalProps}
+          ref={ref}
+          className="focus:border-0 focus:outline-none"
+          style={getVariantStyle(variant)}
+        >
           {children}
         </div>
       </div>

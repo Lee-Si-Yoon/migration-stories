@@ -9,7 +9,6 @@
     "start": "next start",
     "lint": "next lint",
     "pretty": "prettier . --write",
-    "stylelint": "stylelint **/*.scss --fix",
     "knip": "knip",
     "depcheck": "knip --dependencies"
   },
@@ -40,11 +39,6 @@
     "knip": "^5.70.1",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.12",
-    "sass": "^1.89.1",
-    "stylelint": "^16.20.0",
-    "stylelint-config-prettier-scss": "^1.0.0",
-    "stylelint-config-recommended": "^16.0.0",
-    "stylelint-config-standard-scss": "^15.0.1",
     "tailwindcss": "^4",
     "typescript": "^5.8.3"
   },
