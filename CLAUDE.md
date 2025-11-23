@@ -170,7 +170,44 @@ import { buttonVariants } from '@/widgets/buttons'; // CVA variants
 
 ## Key Technical Implementations
 
-### Animation System (Wander Objects)
+### Animation System
+
+**Framer Motion with SSR Optimization:**
+
+This project uses Framer Motion with Next.js SSR best practices for optimized bundle size and performance.
+
+**LazyMotion Setup:**
+
+- Root layout wraps app with `<MotionProvider>` from `@/shared/animation/motion-provider`
+- Uses `domAnimation` feature set (all animations except 3D transforms)
+- Loads animation features on-demand for reduced initial bundle size
+
+**Usage Pattern:**
+
+```tsx
+'use client';
+
+import { m } from 'framer-motion'; // Use 'm' instead of 'motion' for smaller bundle
+
+// Basic animation
+<m.div animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+  {children}
+</m.div>;
+
+// With variants
+const variants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0 },
+};
+
+<m.div variants={variants} initial="hidden" animate="show">
+  {children}
+</m.div>;
+```
+
+**IMPORTANT:** Always use `m.*` instead of `motion.*` when LazyMotion is enabled. This ensures animations use the optimized feature set.
+
+**Wander Objects Animation:**
 
 Floating objects with physics-based movement using `requestAnimationFrame`:
 
@@ -180,7 +217,7 @@ function lerp(start: number, end: number, factor: number): number;
 
 // Objects move randomly, bounce at viewport edges
 // Click interaction: scale 1.1x, center, increase brightness
-// Uses Framer Motion for declarative animations
+// Combines RAF for physics with Framer Motion for declarative animations
 ```
 
 ### Video Playback Flow
@@ -297,7 +334,7 @@ webpack: {
 - **React:** 19.1.0
 - **TypeScript:** 5.8.3 (strict mode)
 - **Styling:** Tailwind CSS v4
-- **Animation:** Framer Motion 12.16.0
+- **Animation:** Framer Motion 12.23.24 (with LazyMotion + SSR optimization)
 - **Accessibility:** React Aria 3.41.0
 - **Video:** react-player 2.16.0 (Vimeo)
 - **Package Manager:** pnpm 10.11.1

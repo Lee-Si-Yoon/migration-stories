@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import type { ReactNode } from 'react';
 
 interface AnimatedImageProps {
@@ -9,14 +9,14 @@ interface AnimatedImageProps {
 
 export function AnimatedImage({ children }: AnimatedImageProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ x: 150 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.5, ease: 'linear' }}
       className="flex flex-col gap-4"
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -26,13 +26,13 @@ interface AnimatedTextProps {
 
 export function AnimatedText({ children }: AnimatedTextProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ x: -150 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.5, ease: 'linear' }}
       className="w-full px-2 md:w-auto md:px-0"
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

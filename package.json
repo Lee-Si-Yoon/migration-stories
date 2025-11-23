@@ -17,7 +17,7 @@
     "@types/react-dom": "^19.1.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.16.0",
+    "framer-motion": "^12.23.24",
     "next": "16.0.3",
     "react": "^19.1.0",
     "react-aria": "^3.41.0",

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 import { useOverlayTriggerState } from 'react-stately';
@@ -123,7 +123,7 @@ function WanderOBJ({ text, submitText, translation, children, onSubmit }: Wander
           </div>
         </WanderDialog22>
       </Modal>
-      <motion.div
+      <m.div
         ref={imgRef}
         role="presentation"
         onClick={() => {
@@ -141,7 +141,7 @@ function WanderOBJ({ text, submitText, translation, children, onSubmit }: Wander
         }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </>
   );
 }
