@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { cn } from '@/shared/cn';
 import { Paths } from '@/features/routes';
 import { Button } from '@/components/ui/button';
+import { ProgressiveImage } from '@/widgets/image/progressive-image';
 
 export const metadata: Metadata = {
   title: 'Migration Stories',
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 const blurImages = [
   {
+    id: 22,
     src: '/imgs/logo/logo22.webp',
     placeholderSrc: '/imgs/logo/logo22-min.webp',
     alt: 'logo22.png',
@@ -20,6 +21,7 @@ const blurImages = [
     text: 'to 2022',
   },
   {
+    id: 23,
     src: '/imgs/logo/logo23.webp',
     placeholderSrc: '/imgs/logo/logo23-min.webp',
     alt: 'logo23.png',
@@ -35,15 +37,13 @@ export default function Page() {
         {blurImages.map(({ src, placeholderSrc, alt, href, text }) => (
           <article className="flex flex-col items-center justify-center" key={href}>
             <div className="relative h-[480px] w-full md:h-[680px]">
-              <Image
+              <ProgressiveImage
                 fill
-                className="object-contain"
                 src={src}
+                placeholdersrc={placeholderSrc}
+                className="object-contain"
                 alt={alt}
-                placeholder="blur"
                 draggable={false}
-                priority
-                blurDataURL={placeholderSrc}
               />
             </div>
             <Button
