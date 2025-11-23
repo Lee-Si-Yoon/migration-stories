@@ -1,15 +1,25 @@
 'use client';
 
 import { m } from 'framer-motion';
-import Image from 'next/image';
+
 import React from 'react';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
 
 import { lerp } from '@/shared/utils/math';
 import { useModalState } from '@/shared/hooks/use-modal-state';
-import Button from '@/widgets/buttons/button';
-import Modal from '@/widgets/modal/modal';
-
-import WanderDialog22 from './wander-dialog';
+import {
+  Dialog,
+  DialogClose,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { XIcon } from 'lucide-react';
+import { cn } from '@/shared/cn';
 
 interface WanderOBJProps extends React.PropsWithChildren {
   text: string;
@@ -86,63 +96,78 @@ function WanderOBJ({ text, submitText, translation, children, onSubmit }: Wander
   }, [isClicked]);
 
   return (
-    <>
-      <Modal state={state} variant="wander" isKeyboardDismissDisabled title="Story Preview">
-        <WanderDialog22>
-          <div className="flex w-[37.5rem] flex-col items-center gap-4 max-md:w-[calc(100%-1rem)]">
-            <span className="m-0 text-2xl leading-[150%] font-bold text-white max-md:text-base max-md:font-bold">
-              {text}
-            </span>
-            <span className="m-0 text-xl leading-[150%] font-medium text-[#999] max-md:text-sm">
-              {translation}
-            </span>
-            <div className="mt-6 flex flex-col items-center gap-6">
+    <Dialog open={state.isOpen} onOpenChange={(open) => (!open ? state.close() : undefined)}>
+      <DialogTrigger asChild>
+        <m.div
+          ref={imgRef}
+          role="presentation"
+          onClick={() => {
+            if (!isClicked) {
+              state.open();
+              setIsClicked(true);
+            }
+          }}
+          className={`absolute cursor-pointer ${isClicked ? 'z-[101] scale-110 brightness-150' : ''}`}
+          transition={{ duration: durationState }}
+          animate={{
+            x: position.x,
+            y: position.y,
+            opacity: opacity,
+          }}
+        >
+          {children}
+        </m.div>
+      </DialogTrigger>
+
+      <DialogPortal data-slot="dialog-portal">
+        {/* <DialogPrimitive.Overlay
+          className={cn(
+            'fixed top-0 right-0 bottom-0 left-0 z-50',
+            'bg-black/50',
+            'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0'
+          )}
+        /> */}
+        <DialogPrimitive.Content
+          data-slot="dialog-content"
+          className={cn(
+            'z-50',
+            'fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]',
+            'flex flex-col gap-4',
+            // 'shadow-lg',
+            'duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95'
+          )}
+        >
+          <DialogHeader>
+            <DialogTitle className="text-center">{text}</DialogTitle>
+            <DialogDescription className="text-center">{translation}</DialogDescription>
+          </DialogHeader>
+
+          <Button onClick={() => onSubmit()}>
+            <pre>
+              {`스토리 보기\n`}
+              {submitText}
+            </pre>
+          </Button>
+          <DialogFooter className="justify-center sm:justify-center">
+            <DialogClose asChild>
               <Button
-                onPress={() => onSubmit()}
-                className="rounded-lg border-0 bg-[#999] px-8 py-4 max-md:px-5 max-md:py-3"
-              >
-                <pre className="m-0 text-xl leading-[initial] font-semibold text-black max-md:text-base">
-                  {`스토리 보기\n`}
-                  <span className="text-base leading-[140%] font-normal text-black max-md:text-sm">
-                    {submitText}
-                  </span>
-                </pre>
-              </Button>
-              <Button
-                onPress={() => {
+                onClick={() => {
                   setTimeout(() => {
                     state.close();
                     setIsClicked(false);
                   }, 100);
                 }}
-                className="h-7 w-7"
+                size="icon"
+                variant="outline"
+                className="rounded-full bg-transparent text-white hover:bg-white hover:text-black"
               >
-                <Image src="/svgs/x-cancel.svg" alt="Close" width={24} height={24} />
+                <XIcon className="size-4" />
               </Button>
-            </div>
-          </div>
-        </WanderDialog22>
-      </Modal>
-      <m.div
-        ref={imgRef}
-        role="presentation"
-        onClick={() => {
-          if (!isClicked) {
-            state.open();
-            setIsClicked(true);
-          }
-        }}
-        className={`absolute cursor-pointer ${isClicked ? 'z-[101] scale-110 brightness-150' : ''}`}
-        transition={{ duration: durationState }}
-        animate={{
-          x: position.x,
-          y: position.y,
-          opacity: opacity,
-        }}
-      >
-        {children}
-      </m.div>
-    </>
+            </DialogClose>
+          </DialogFooter>
+        </DialogPrimitive.Content>
+      </DialogPortal>
+    </Dialog>
   );
 }
 
