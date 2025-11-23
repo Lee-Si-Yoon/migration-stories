@@ -1,3 +1,5 @@
-export default function Page() {
-  return <div>page</div>;
+import { redirect } from 'next/navigation';
+
+export default function Video22IndexPage() {
+  redirect('/22/wander');
 }

@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { isMobile } from 'react-device-detect';
 
-const VimeoPlayer = dynamic(() => import('react-player/vimeo'), { ssr: false });
+const VimeoPlayer = dynamic(() => import('react-player'), { ssr: false });
 
 interface ProgramVideoPlayerProps {
   videoSrc: string;
@@ -20,10 +20,8 @@ export function ProgramVideoPlayer({ videoSrc, programId }: ProgramVideoPlayerPr
         playing
         width="100%"
         height="100%"
-        url={videoSrc}
-        title={String(programId)}
+        src={videoSrc}
         controls={isMobile}
-        stopOnUnmount={true}
       />
     </div>
   );
