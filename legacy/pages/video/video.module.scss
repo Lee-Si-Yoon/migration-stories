@@ -1,4 +1,4 @@
-@use "../../typography.scss";
+@use '../../typography.scss';
 
 .Dialog {
   display: flex;
@@ -12,20 +12,20 @@
     text-align: center;
 
     h1 {
-      @include typography.font("Header1", "white");
+      @include typography.font('Header1', 'white');
 
       margin: 0;
     }
 
     h4 {
-      @include typography.font("Body1", "white");
+      @include typography.font('Body1', 'white');
 
       margin: 0;
       margin-top: 0.5rem;
     }
 
     span {
-      @include typography.font("Body1", "gray");
+      @include typography.font('Body1', 'gray');
     }
   }
 
@@ -36,14 +36,14 @@
       padding: 0.5rem 1.25rem;
 
       pre {
-        @include typography.font("Body1", "white");
+        @include typography.font('Body1', 'white');
 
         margin: 0;
         text-align: center;
         line-height: initial;
 
         span {
-          @include typography.font("Body2", "gray");
+          @include typography.font('Body2', 'gray');
         }
       }
     }

@@ -1,12 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import classes from "./wander-23.module.scss";
-import stories from "./wander-data-23";
-import ProgressiveImg from "../../../src/widgets/utils/progressive-image";
-import WanderOBJ from "../../../src/widgets/wander-obj/wander-obj";
-import wanderBackground from "../../imgs/wander/2023/wanderBackground.webp";
-import Paths from "../../routes/paths";
+import classes from './wander-23.module.scss';
+import stories from './wander-data-23';
+import ProgressiveImg from '../../../src/widgets/utils/progressive-image';
+import WanderOBJ from '../../../src/widgets/wander-obj/wander-obj';
+import wanderBackground from '../../imgs/wander/2023/wanderBackground.webp';
+import Paths from '../../routes/paths';
 
 function Wander23Page() {
   const navigate = useNavigate();
@@ -41,6 +41,6 @@ function Wander23Page() {
   );
 }
 
-Wander23Page.displayName = "Wander23Page";
+Wander23Page.displayName = 'Wander23Page';
 
 export default Wander23Page;

@@ -1,12 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import classes from "./partner-logo.module.scss";
+import classes from './partner-logo.module.scss';
 
-function PartnerLogos({
-  data,
-}: {
-  data: Array<{ src: string; height?: number }>;
-}) {
+function PartnerLogos({ data }: { data: Array<{ src: string; height?: number }> }) {
   return (
     <div className={classes.Logos}>
       {data.map((datum, index) => (
@@ -19,7 +15,7 @@ function PartnerLogos({
             alt={`partner-${index}`}
             src={datum.src}
             height={datum.height ?? 30}
-            width={"auto"}
+            width={'auto'}
             draggable="false"
           />
         </div>
@@ -28,6 +24,6 @@ function PartnerLogos({
   );
 }
 
-PartnerLogos.displayName = "PartnerLogos";
+PartnerLogos.displayName = 'PartnerLogos';
 
 export default PartnerLogos;

@@ -1,22 +1,20 @@
-import React from "react";
-import type { RouteObject } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import React from 'react';
+import type { RouteObject } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const ErrorPage = React.lazy(() => import("../error-page"));
-const IndexPage = React.lazy(() => import("../pages/index"));
-const Wander22 = React.lazy(() => import("../pages/wander/wander-22"));
-const Wander23 = React.lazy(() => import("../pages/wander/wander-23"));
-const VideoPage = React.lazy(() => import("../pages/video/video"));
-const About22Page = React.lazy(() => import("../pages/about/about-22"));
-const About23Page = React.lazy(() => import("../pages/about/about-23"));
-const Credit22Page = React.lazy(() => import("../pages/credit/credit-22"));
-const Credit23Page = React.lazy(() => import("../pages/credit/credit-23"));
-const ProgramPage = React.lazy(() => import("../pages/program/program"));
-const ProgramDetailPage = React.lazy(
-  () => import("../pages/program/program-detail"),
-);
-import { Header22, Header23 } from "../pages/wrapper/header";
-import { LazyWrapper } from "../pages/wrapper/suspense-fallback";
+const ErrorPage = React.lazy(() => import('../error-page'));
+const IndexPage = React.lazy(() => import('../pages/index'));
+const Wander22 = React.lazy(() => import('../pages/wander/wander-22'));
+const Wander23 = React.lazy(() => import('../pages/wander/wander-23'));
+const VideoPage = React.lazy(() => import('../pages/video/video'));
+const About22Page = React.lazy(() => import('../pages/about/about-22'));
+const About23Page = React.lazy(() => import('../pages/about/about-23'));
+const Credit22Page = React.lazy(() => import('../pages/credit/credit-22'));
+const Credit23Page = React.lazy(() => import('../pages/credit/credit-23'));
+const ProgramPage = React.lazy(() => import('../pages/program/program'));
+const ProgramDetailPage = React.lazy(() => import('../pages/program/program-detail'));
+import { Header22, Header23 } from '../pages/wrapper/header';
+import { LazyWrapper } from '../pages/wrapper/suspense-fallback';
 
 const sharedRoutes: RouteObject[] = [
   {
@@ -24,69 +22,69 @@ const sharedRoutes: RouteObject[] = [
     Component: () => <Navigate to="/" />,
   },
   {
-    path: "*",
+    path: '*',
     Component: () => <Navigate to="/" />,
   },
 ];
 
 const routes22: RouteObject[] = [
   {
-    path: "wander",
+    path: 'wander',
     Component: Wander22,
   },
   {
-    path: "video/:name",
+    path: 'video/:name',
     Component: VideoPage,
   },
   {
-    path: "credit",
+    path: 'credit',
     Component: Credit22Page,
   },
   {
-    path: "about",
+    path: 'about',
     Component: About22Page,
   },
 ];
 
 const routes23: RouteObject[] = [
   {
-    path: "wander",
+    path: 'wander',
     Component: Wander23,
   },
   {
-    path: "video/:name",
+    path: 'video/:name',
     Component: VideoPage,
   },
   {
-    path: "program",
+    path: 'program',
     children: [
       {
         index: true,
         Component: ProgramPage,
       },
       {
-        path: ":programName",
+        path: ':programName',
         Component: ProgramDetailPage,
       },
       {
-        path: "*",
+        path: '*',
         Component: () => <Navigate to="program" />,
       },
     ],
   },
   {
-    path: "credit",
+    path: 'credit',
     Component: Credit23Page,
   },
   {
-    path: "about",
+    path: 'about',
     Component: About23Page,
   },
 ];
 
 const routes: RouteObject[] = [
   {
-    path: "",
+    path: '',
     errorElement: <ErrorPage />,
     Component: LazyWrapper,
     children: [
@@ -95,17 +93,17 @@ const routes: RouteObject[] = [
         Component: IndexPage,
       },
       {
-        path: "22",
+        path: '22',
         Component: Header22,
         children: [...sharedRoutes, ...routes22],
       },
       {
-        path: "23",
+        path: '23',
         Component: Header23,
         children: [...sharedRoutes, ...routes23],
       },
       {
-        path: "*",
+        path: '*',
         Component: () => <Navigate to="/" />,
       },
     ],

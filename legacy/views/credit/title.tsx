@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import React from "react";
+import { motion } from 'framer-motion';
+import React from 'react';
 
-import classes from "./title.module.scss";
+import classes from './title.module.scss';
 
 const container = {
   show: {
@@ -33,6 +33,6 @@ function Title({ data }: { data: string[] }) {
   );
 }
 
-Title.displayName = "Title";
+Title.displayName = 'Title';
 
 export default Title;

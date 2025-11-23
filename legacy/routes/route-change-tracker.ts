@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import ReactGA from "react-ga4";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga4';
+import { useLocation } from 'react-router-dom';
 
 /**
  * uri 변경 추적 컴포넌트
@@ -22,7 +22,7 @@ const RouteChangeTracker = () => {
   useEffect(() => {
     if (initialized) {
       ReactGA.set({ page: location.pathname });
-      ReactGA.send("pageview");
+      ReactGA.send('pageview');
     }
   }, [initialized, location]);
 };

@@ -1,31 +1,31 @@
-@use "sass:map";
-@use "./variables";
+@use 'sass:map';
+@use './variables';
 
 $color-map: (
-  "white": variables.$white,
-  "black": variables.$black,
-  "gray": variables.$text-gray,
+  'white': variables.$white,
+  'black': variables.$black,
+  'gray': variables.$text-gray,
 );
 $font-size-map: (
-  "Display1": 2.5rem,
-  "Header1": 1.5rem,
-  "Header2": 1.25rem,
-  "Body1": 1rem,
-  "Body2": 0.875rem,
+  'Display1': 2.5rem,
+  'Header1': 1.5rem,
+  'Header2': 1.25rem,
+  'Body1': 1rem,
+  'Body2': 0.875rem,
 );
 $font-weight-map: (
-  "Display1": 700,
-  "Header1": 700,
-  "Header2": 600,
-  "Body1": 400,
-  "Body2": 400,
+  'Display1': 700,
+  'Header1': 700,
+  'Header2': 600,
+  'Body1': 400,
+  'Body2': 400,
 );
 $line-height-map: (
-  "Display1": 120%,
-  "Header1": 150%,
-  "Header2": 150%,
-  "Body1": 140%,
-  "Body2": 140%,
+  'Display1': 120%,
+  'Header1': 150%,
+  'Header2': 150%,
+  'Body1': 140%,
+  'Body2': 140%,
 );
 
 /*

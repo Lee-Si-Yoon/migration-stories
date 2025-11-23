@@ -1,17 +1,17 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { isMobile } from "react-device-detect";
-import VimeoPlayer from "react-player/vimeo";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { motion } from 'framer-motion';
+import React from 'react';
+import { isMobile } from 'react-device-detect';
+import VimeoPlayer from 'react-player/vimeo';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
-import { programs, type ProgramJSON } from "./programs-23";
-import classes from "./programs-detail.module.scss";
-import Button from "../../../src/widgets/buttons/button";
-import XCancelIcon from "../../components/svg/x-cancel.svg?react";
+import { programs, type ProgramJSON } from './programs-23';
+import classes from './programs-detail.module.scss';
+import Button from '../../../src/widgets/buttons/button';
+import XCancelIcon from '../../components/svg/x-cancel.svg?react';
 
 function ProgramDetailPage() {
   const navigate = useNavigate();
-  const { programName = "" } = useParams();
+  const { programName = '' } = useParams();
 
   const currentProgram = programs.find((p) => String(p.id) === programName) as
     | ProgramJSON
@@ -24,7 +24,7 @@ function ProgramDetailPage() {
       <div className={classes.Layout}>
         <Button
           onPress={() => {
-            navigate("..");
+            navigate('..');
           }}
           className={classes.BackButton}
         >
@@ -34,7 +34,7 @@ function ProgramDetailPage() {
           <motion.img
             initial={{ x: 150 }}
             animate={{ x: 0 }}
-            transition={{ duration: 0.5, ease: "linear" }}
+            transition={{ duration: 0.5, ease: 'linear' }}
             alt={currentProgram.imgSrc}
             src={currentProgram.imgSrc}
           />
@@ -42,11 +42,11 @@ function ProgramDetailPage() {
         <motion.div
           initial={{ x: -150 }}
           animate={{ x: 0 }}
-          transition={{ duration: 0.5, ease: "linear" }}
+          transition={{ duration: 0.5, ease: 'linear' }}
         >
           {parsedProgramDetailTexts(currentProgram)}
         </motion.div>
-        {currentProgram.videoSrc !== "" && (
+        {currentProgram.videoSrc !== '' && (
           <VimeoPlayer
             volume={1}
             playing
@@ -69,14 +69,14 @@ const parsedProgramDetailTexts = (data: ProgramJSON) => {
   return (
     <div className={classes.ProgramText}>
       {Object.entries(rest).map(([key, value]) => {
-        if (key.includes("name")) return <span key={`${key}`}>{value}</span>;
+        if (key.includes('name')) return <span key={`${key}`}>{value}</span>;
 
-        return <span key={`${key}`}>{`${key + " :"} ${value}`}</span>;
+        return <span key={`${key}`}>{`${key + ' :'} ${value}`}</span>;
       })}
     </div>
   );
 };
 
-ProgramDetailPage.displayName = "ProgramDetailPage";
+ProgramDetailPage.displayName = 'ProgramDetailPage';
 
 export default ProgramDetailPage;

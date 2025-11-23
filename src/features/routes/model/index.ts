@@ -17,9 +17,9 @@ const paths22 = (base: string) => ({
 });
 
 const Paths = {
-  default: "/",
-  "22": { ...paths22("/22") },
-  "23": { ...paths23("/23") },
+  default: '/',
+  '22': { ...paths22('/22') },
+  '23': { ...paths23('/23') },
 };
 
 export default Paths;

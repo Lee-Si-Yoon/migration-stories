@@ -6,12 +6,7 @@
     "*.css": "tailwindcss",
     "*.mdx": "markdown"
   },
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    ".*(S|s)tyle.*",
-    ".*(C|c)lasses.*"
-  ],
+  "tailwindCSS.classAttributes": ["class", "className", ".*(S|s)tyle.*", ".*(C|c)lasses.*"],
   "tailwindCSS.classFunctions": ["cva", "clsx"],
   "search.exclude": {
     "**/*/.next": true

@@ -4,8 +4,8 @@ import {
   type ElementOrSelector,
   type DOMKeyframesDefinition,
   type AnimationOptions,
-} from "framer-motion";
-import React from "react";
+} from 'framer-motion';
+import React from 'react';
 
 function useStaggerInitialAnimation({
   targetChild,

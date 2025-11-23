@@ -1,10 +1,10 @@
 // @ts-nocheck
 
-"use client";
+'use client';
 
-import Script from "next/script";
+import Script from 'next/script';
 
-const GTAG_ID = "G-499FR3EXB6";
+const GTAG_ID = 'G-499FR3EXB6';
 
 export default function GtagScript() {
   return (
@@ -16,8 +16,8 @@ export default function GtagScript() {
         function gtag() {
           dataLayer.push(arguments);
         }
-        gtag("js", new Date());
-        gtag("config", "TAG_ID");
+        gtag('js', new Date());
+        gtag('config', 'TAG_ID');
       }}
     />
   );

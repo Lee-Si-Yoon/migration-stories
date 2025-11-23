@@ -156,6 +156,23 @@ type VideoData = typeof videoData;
 <div className="flex items-center justify-center p-4">
 ```
 
+**Merging Tailwind classes with `cn` utility:**
+
+When conditionally applying classes or merging multiple class strings, always use the `cn` utility:
+
+```tsx
+import { cn } from '@/shared/cn';
+
+// ✅ Good - Use cn for conditional classes
+<div className={cn('base-class', isActive && 'active-class', className)}>
+
+// ✅ Good - Merge multiple class strings
+<button className={cn(buttonVariants({ variant }), className)}>
+
+// ❌ Bad - Manual string concatenation
+<div className={`base-class ${isActive ? 'active-class' : ''} ${className}`}>
+```
+
 **SCSS modules for complex styling:**
 
 ```scss

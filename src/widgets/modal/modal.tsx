@@ -1,14 +1,10 @@
-import React from "react";
-import {
-  Overlay,
-  useModalOverlay,
-  type AriaModalOverlayProps,
-} from "react-aria";
-import { type OverlayTriggerState } from "react-stately";
+import React from 'react';
+import { Overlay, useModalOverlay, type AriaModalOverlayProps } from 'react-aria';
+import { type OverlayTriggerState } from 'react-stately';
 
-import classes from "./modal.module.scss";
+import classes from './modal.module.scss';
 
-type ModalVariant = "wander" | "primary";
+type ModalVariant = 'wander' | 'primary';
 
 interface ModalProps extends AriaModalOverlayProps {
   state: OverlayTriggerState;
@@ -16,7 +12,7 @@ interface ModalProps extends AriaModalOverlayProps {
   variant?: ModalVariant;
 }
 
-function Modal({ state, children, variant = "primary", ...props }: ModalProps) {
+function Modal({ state, children, variant = 'primary', ...props }: ModalProps) {
   const ref = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState<{ width: number; height: number }>();
   const { modalProps, underlayProps } = useModalOverlay(props, state, ref);
@@ -30,33 +26,28 @@ function Modal({ state, children, variant = "primary", ...props }: ModalProps) {
   if (!state.isOpen) return null;
 
   const getVariantStyle = (variant: ModalVariant): React.CSSProperties => {
-    if (variant === "wander")
+    if (variant === 'wander')
       return {
-        width: "100%",
-        position: "absolute",
-        top: "50%",
+        width: '100%',
+        position: 'absolute',
+        top: '50%',
         left: `calc(50% - ${size ? size.width / 2 : 0}px)`,
         opacity: size ? 1 : 0,
       };
     else
       return {
-        width: "100%",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%,-50%)",
+        width: '100%',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%,-50%)',
       };
   };
 
   return (
     <Overlay>
       <div className={classes.OverlayBackground} {...underlayProps}>
-        <div
-          {...modalProps}
-          ref={ref}
-          className={classes.Modal}
-          style={getVariantStyle(variant)}
-        >
+        <div {...modalProps} ref={ref} className={classes.Modal} style={getVariantStyle(variant)}>
           {children}
         </div>
       </div>
@@ -64,6 +55,6 @@ function Modal({ state, children, variant = "primary", ...props }: ModalProps) {
   );
 }
 
-Modal.displayName = "Modal";
+Modal.displayName = 'Modal';
 
 export default Modal;

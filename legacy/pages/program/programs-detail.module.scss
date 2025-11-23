@@ -1,4 +1,4 @@
-@use "../../typography.scss";
+@use '../../typography.scss';
 
 .Layout {
   width: 64rem;
@@ -51,7 +51,7 @@
     }
 
     span {
-      @include typography.font("Body1", "white");
+      @include typography.font('Body1', 'white');
 
       @media screen and (width <= 48rem) {
         line-height: 150%;

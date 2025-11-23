@@ -1,1 +1,1 @@
-export { default as Paths } from "./model";
+export { default as Paths } from './model';

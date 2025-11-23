@@ -1,19 +1,14 @@
-import React from "react";
-import {
-  useButton,
-  type AriaButtonProps,
-  useFocusRing,
-  mergeProps,
-} from "react-aria";
+import React from 'react';
+import { useButton, type AriaButtonProps, useFocusRing, mergeProps } from 'react-aria';
 
-import classes from "./button.module.scss";
+import classes from './button.module.scss';
 
 interface ButtonProps extends AriaButtonProps {
   className?: string;
 }
 
 function Button(props: ButtonProps) {
-  const { className, children = "-" } = props;
+  const { className, children = '-' } = props;
 
   const ariaRef = React.useRef<HTMLButtonElement>(null);
   let { buttonProps } = useButton(props, ariaRef);
@@ -23,9 +18,9 @@ function Button(props: ButtonProps) {
   return (
     <button
       ref={ariaRef}
-      className={[classes.Button, className].join(" ")}
+      className={[classes.Button, className].join(' ')}
       style={{
-        outline: isFocusVisible ? "2px solid gray" : "none",
+        outline: isFocusVisible ? '2px solid gray' : 'none',
         outlineOffset: 2,
       }}
       {...mergedProps}
@@ -37,6 +32,6 @@ function Button(props: ButtonProps) {
 
 export type ButtonType = typeof Button;
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 export default Button;

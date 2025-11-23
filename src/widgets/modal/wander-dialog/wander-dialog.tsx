@@ -1,7 +1,7 @@
-import React from "react";
-import { useDialog, type AriaDialogProps } from "react-aria";
+import React from 'react';
+import { useDialog, type AriaDialogProps } from 'react-aria';
 
-import classes from "./wander-dialog.module.scss";
+import classes from './wander-dialog.module.scss';
 
 interface DialogProps extends AriaDialogProps {
   children: React.ReactNode;
@@ -13,23 +13,20 @@ function WanderDialog22({ children, ...props }: DialogProps) {
   const { dialogProps, titleProps } = useDialog(
     {
       ...props,
-      role: "alertdialog",
+      role: 'alertdialog',
     },
-    ref,
+    ref
   );
 
   return (
     <div {...dialogProps} ref={ref} className={classes.Dialog}>
-      <div
-        className={[props.className, classes.Content].join(" ")}
-        {...titleProps}
-      >
+      <div className={[props.className, classes.Content].join(' ')} {...titleProps}>
         {children}
       </div>
     </div>
   );
 }
 
-WanderDialog22.displayName = "WanderDialog22";
+WanderDialog22.displayName = 'WanderDialog22';
 
 export default WanderDialog22;

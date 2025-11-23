@@ -1,20 +1,15 @@
-import React from "react";
-import {
-  type AriaToggleButtonProps,
-  useFocusRing,
-  useToggleButton,
-  mergeProps,
-} from "react-aria";
-import { useToggleState } from "react-stately";
+import React from 'react';
+import { type AriaToggleButtonProps, useFocusRing, useToggleButton, mergeProps } from 'react-aria';
+import { useToggleState } from 'react-stately';
 
-import classes from "./button.module.scss";
+import classes from './button.module.scss';
 
 interface ToggleProps extends AriaToggleButtonProps {
   className?: string;
 }
 
 function Toggle(props: ToggleProps): React.JSX.Element {
-  const { className, children = "-" } = props;
+  const { className, children = '-' } = props;
 
   const ariaRef = React.useRef<HTMLButtonElement>(null);
   const state = useToggleState(props);
@@ -26,18 +21,18 @@ function Toggle(props: ToggleProps): React.JSX.Element {
   return (
     <button
       ref={ariaRef}
-      className={[classes.Button, className].join(" ")}
+      className={[classes.Button, className].join(' ')}
       style={{
-        outline: isFocusVisible ? "2px solid gray" : "none",
+        outline: isFocusVisible ? '2px solid gray' : 'none',
         outlineOffset: 2,
         background: isPressed
           ? state.isSelected
-            ? "white"
-            : "gray"
+            ? 'white'
+            : 'gray'
           : state.isSelected
-            ? "white"
-            : "black",
-        color: state.isSelected ? "black" : "white",
+            ? 'white'
+            : 'black',
+        color: state.isSelected ? 'black' : 'white',
       }}
       {...mergedProps}
     >
@@ -48,6 +43,6 @@ function Toggle(props: ToggleProps): React.JSX.Element {
 
 export type ToggleType = typeof Toggle;
 
-Toggle.displayName = "Toggle";
+Toggle.displayName = 'Toggle';
 
 export default Toggle;
