@@ -6,7 +6,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Migration Stories Project (이주 이야기 프로젝트) - An interactive web-based art exhibition presenting stories of migrants living in Korea through animated 2D objects, video narratives, and exhibition information.
 
-Currently migrating from React Router SPA to Next.js App Router. Legacy code preserved in `/legacy` for reference.
+## Migration Status
+
+**⚠️ ACTIVE MIGRATION IN PROGRESS**
+
+This project is currently being migrated from a legacy React Router SPA to a modern Next.js App Router application.
+
+**Current State:**
+
+- **Legacy App:** Original implementation preserved in `/legacy` directory for reference
+- **New App:** Next.js implementation actively being built in `/src` using App Router
+- **Styling Migration:** Transitioning from SCSS modules to Tailwind CSS (currently hybrid approach)
+- **Status:** Partial migration - core features implemented, some pages still reference legacy code
+
+**When working on this codebase:**
+
+- Implement new features in the Next.js app (`/src`) following the patterns in this guide
+- Refer to `/legacy` for original implementation details when migrating pages
+- Follow Migration Patterns section below when converting React Router code
+- **Prefer Tailwind CSS** for styling new components; use SCSS modules only when necessary for complex styling
+- Do not modify legacy code - it serves as reference only
 
 ## Development Commands
 
