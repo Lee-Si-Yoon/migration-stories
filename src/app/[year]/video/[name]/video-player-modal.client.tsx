@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useOverlayTriggerState } from 'react-stately';
 
+import { useModalState } from '@/shared/hooks/use-modal-state';
 import Button from '@/widgets/buttons/button';
 import Modal from '@/widgets/modal/modal';
 import { VimeoPlayer } from '@/widgets/video-player';
@@ -13,7 +13,7 @@ interface VideoPlayerModalProps {
 }
 
 export function VideoPlayerModal({ videoSrc, videoName }: VideoPlayerModalProps) {
-  const state = useOverlayTriggerState({});
+  const state = useModalState();
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function VideoPlayerModal({ videoSrc, videoName }: VideoPlayerModalProps)
     <>
       {showVideo && <VimeoPlayer url={videoSrc} title={videoName} showControls autoPlay />}
 
-      <Modal state={state}>
+      <Modal state={state} title="Video Player Confirmation">
         <div className="flex flex-col items-center">
           <div className="flex flex-col gap-1 text-center">
             <h1 className="m-0 text-2xl leading-[150%] font-bold text-white">

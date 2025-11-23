@@ -68,18 +68,41 @@ Two parallel exhibitions (2022 and 2023) with identical routing patterns:
 
 ### Component Patterns
 
-**1. Interactive Widgets (React Aria):**
+**1. shadcn/ui Components:**
+
+Project uses shadcn/ui (Radix UI primitives + Tailwind CSS) for accessible, composable components:
 
 ```tsx
-function Button(props: AriaButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null);
-  const { buttonProps } = useButton(props, ref);
-  const { focusProps } = useFocusRing();
-  return <button {...mergeProps(buttonProps, focusProps)} />;
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+
+// Use directly with Tailwind classes
+<Button className="rounded-full border border-white">Click me</Button>;
+```
+
+**2. Custom Widget Wrappers:**
+
+Project-specific widgets wrap shadcn components with custom styling:
+
+```tsx
+// src/widgets/buttons/button.tsx
+import { Button as ShadcnButton } from '@/components/ui/button';
+
+function Button({ onPress, onClick, ...props }) {
+  return (
+    <ShadcnButton
+      onClick={(e) => {
+        onClick?.(e);
+        onPress?.(); // Backwards compatibility
+      }}
+      className="rounded-full border border-white hover:bg-white"
+      {...props}
+    />
+  );
 }
 ```
 
-**2. Variant-Based Components (CVA):**
+**3. Variant-Based Components (CVA):**
 
 ```tsx
 const buttonVariants = cva('base', {
@@ -87,7 +110,7 @@ const buttonVariants = cva('base', {
 });
 ```
 
-**3. Client Components:**
+**4. Client Components:**
 
 ```tsx
 'use client'; // Explicit marker for interactivity
@@ -235,12 +258,20 @@ function lerp(start: number, end: number, factor: number): number;
 
 ### Modal/Overlay Pattern
 
-Use React Aria overlay state:
+Use custom modal state hook that provides imperative API:
 
 ```tsx
-const state = useOverlayTriggerState({});
+import { useModalState } from '@/shared/hooks/use-modal-state';
+
+const state = useModalState();
 state.open(); // Open modal
 state.close(); // Close modal
+state.isOpen; // Check open state
+
+// Use with Modal component
+<Modal state={state} variant="wander">
+  {/* Modal content */}
+</Modal>;
 ```
 
 ## Adding New Features
@@ -257,7 +288,7 @@ state.close(); // Close modal
 2. Files: `widget-name.tsx`
 3. Export from `index.tsx` barrel file
 4. Use Tailwind classes for styling
-5. Use React Aria for interactive elements
+5. Use shadcn/ui components as building blocks for interactive elements
 6. Define proper TypeScript interfaces (no `any` types)
 
 ### Year-Specific Features
@@ -286,156 +317,6 @@ export function Header23() {
 }
 ```
 
-## Migration Plan: React Aria → shadcn/ui
-
-### Overview
-
-Planned migration from react-aria/react-stately to shadcn/ui (Radix UI primitives + Tailwind CSS) while maintaining accessibility and functionality.
-
-### Current State
-
-**Components using react-aria:**
-
-- `Button` component (`src/widgets/buttons/button.tsx`) - useButton, useFocusRing, mergeProps
-- `Modal` component (`src/widgets/modal/modal.tsx`) - Overlay, useModalOverlay
-- `WanderDialog` component (`src/app/[year]/wander/wander-dialog.tsx`) - useDialog
-- State management with `OverlayTriggerState` from react-stately
-
-**Usage sites:**
-
-- Button: back-button, header navigation items
-- Modal: wander-obj.tsx, video-player-modal.client.tsx
-- Dialog: wander flow
-
-### Migration Steps
-
-#### 1. Setup & Installation
-
-```bash
-# Initialize shadcn/ui
-npx shadcn@latest init
-
-# Install required components
-npx shadcn@latest add button
-npx shadcn@latest add dialog
-```
-
-Configuration:
-
-- Components path: `src/components/ui`
-- Use `@/` path alias (already configured)
-- Tailwind CSS v4 compatible
-- TypeScript with strict mode
-
-#### 2. Component Migration
-
-**Button Component** (`src/widgets/buttons/button.tsx`):
-
-- Replace react-aria `useButton` + `useFocusRing` with shadcn/ui Button
-- Maintain existing styles: rounded-full, border, hover:bg-white, active:scale-[0.975]
-- Keep focus ring styling (outline on focus-visible)
-- Preserve AriaButtonProps interface compatibility where possible
-
-**Modal Component** (`src/widgets/modal/modal.tsx`):
-
-- Replace react-aria `Overlay` + `useModalOverlay` with shadcn/ui Dialog
-- Migrate `OverlayTriggerState` → controlled Dialog with `open` + `onOpenChange`
-- Preserve custom variants: 'wander' (centered positioning) and 'primary'
-- Maintain backdrop styling: `bg-black/50`
-- Keep positioning logic for wander variant (centering calculation)
-
-**WanderDialog Component** (`src/app/[year]/wander/wander-dialog.tsx`):
-
-- Refactor to use Dialog primitives (DialogContent, DialogDescription)
-- Use role="alertdialog" for proper semantics
-- Maintain existing layout and styling
-
-#### 3. Update Usage Sites
-
-**Button consumers:**
-
-- `src/widgets/buttons/back-button.client.tsx`
-- `src/widgets/layout/header/ui/header-items.client.tsx`
-- Ensure props compatibility or adjust accordingly
-
-**Modal/Dialog consumers:**
-
-- `src/app/[year]/wander/wander-obj.tsx` - Update state management
-- `src/app/[year]/video/[name]/video-player-modal.client.tsx`
-- Replace `state.open()` / `state.close()` with controlled component pattern
-
-API changes:
-
-```tsx
-// Before (react-stately)
-const state = useOverlayTriggerState({});
-state.open();  // Imperative
-state.close();
-
-// After (shadcn/ui)
-const [open, setOpen] = useState(false);
-<Dialog open={open} onOpenChange={setOpen}> // Declarative
-```
-
-#### 4. Cleanup
-
-1. Remove dependencies from `package.json`:
-
-   - `react-aria` (currently 3.41.0)
-   - `react-stately` (currently 3.39.0)
-
-2. Run `pnpm install` to clean up lockfile
-
-3. Update imports across codebase
-
-#### 5. Testing Checklist
-
-- [ ] Button interactions (click, keyboard, focus ring)
-- [ ] Modal open/close behavior
-- [ ] Modal backdrop click-outside to close
-- [ ] Wander dialog flow (object click → modal → video)
-- [ ] Video player modal
-- [ ] Keyboard navigation (Tab, Enter, Escape)
-- [ ] Focus management and trapping in modals
-- [ ] Screen reader compatibility (ARIA attributes)
-- [ ] Mobile touch interactions
-- [ ] Animation compatibility with Framer Motion
-
-### Key Considerations
-
-**Accessibility:**
-
-- shadcn/ui uses Radix UI primitives (same accessibility standards as react-aria)
-- Built-in focus management, keyboard navigation, ARIA attributes
-- No regression in a11y expected
-
-**Styling:**
-
-- Both use Tailwind CSS → seamless transition
-- shadcn/ui components are unstyled by default → full control
-- Existing CVA patterns compatible
-
-**Breaking Changes:**
-
-- State management: imperative → declarative
-- Props API: some differences between react-aria and Radix
-- Import paths change
-
-**Benefits:**
-
-- Smaller bundle size (Radix is lighter than react-aria)
-- Better Next.js integration and community support
-- More frequent updates and active maintenance
-- Consistent with modern React patterns
-
-### Documentation Updates
-
-After migration, update this file:
-
-- Remove React Aria sections (Component Patterns, Modal/Overlay Pattern)
-- Add shadcn/ui component patterns and usage guidelines
-- Update "Tech Stack Summary" to replace React Aria with shadcn/ui
-
 ## Configuration Notes
 
 ### Next.js Config
@@ -463,9 +344,10 @@ webpack: {
 
 **Accessibility First:**
 
-- All interactive widgets use React Aria
-- ARIA props, focus management, keyboard navigation built-in
+- All interactive widgets use shadcn/ui (Radix UI primitives)
+- ARIA attributes, focus management, keyboard navigation built-in
 - Focus ring styling for keyboard users
+- Maintains accessibility standards with smaller bundle size
 
 **Internationalization Pattern:**
 
@@ -485,9 +367,9 @@ webpack: {
 - **TypeScript:** 5.8.3 (strict mode)
 - **Styling:** Tailwind CSS v4
 - **Animation:** Framer Motion 12.23.24 (with LazyMotion + SSR optimization)
-- **Accessibility:** React Aria 3.41.0
+- **UI Components:** shadcn/ui (Radix UI primitives + Tailwind)
 - **Video:** react-player 2.16.0 (Vimeo)
-- **Package Manager:** pnpm 10.11.1
+- **Package Manager:** pnpm 10.23.0
 - Do not use "any" type for safe typechecking
 - Use type assertions when possible for clean codes
 - When dealing with packages, use context7.

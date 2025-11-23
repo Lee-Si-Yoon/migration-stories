@@ -3,9 +3,9 @@
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
-import { useOverlayTriggerState } from 'react-stately';
 
 import { lerp } from '@/shared/utils/math';
+import { useModalState } from '@/shared/hooks/use-modal-state';
 import Button from '@/widgets/buttons/button';
 import Modal from '@/widgets/modal/modal';
 
@@ -19,7 +19,7 @@ interface WanderOBJProps extends React.PropsWithChildren {
 }
 
 function WanderOBJ({ text, submitText, translation, children, onSubmit }: WanderOBJProps) {
-  const state = useOverlayTriggerState({});
+  const state = useModalState();
   const imgRef = React.useRef<HTMLDivElement>(null);
   // ANIMATE
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
@@ -87,7 +87,7 @@ function WanderOBJ({ text, submitText, translation, children, onSubmit }: Wander
 
   return (
     <>
-      <Modal state={state} variant="wander" isKeyboardDismissDisabled>
+      <Modal state={state} variant="wander" isKeyboardDismissDisabled title="Story Preview">
         <WanderDialog22>
           <div className="flex w-[37.5rem] flex-col items-center gap-4 max-md:w-[calc(100%-1rem)]">
             <span className="m-0 text-2xl leading-[150%] font-bold text-white max-md:text-base max-md:font-bold">

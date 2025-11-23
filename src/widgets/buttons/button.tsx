@@ -1,37 +1,32 @@
 import React from 'react';
-import { useButton, type AriaButtonProps, useFocusRing, mergeProps } from 'react-aria';
-
+import { Button as ShadcnButton } from '@/components/ui/button';
 import { cn } from '@/shared/cn';
 
-interface ButtonProps extends AriaButtonProps {
+interface ButtonProps extends React.ComponentProps<'button'> {
+  onPress?: () => void;
   className?: string;
 }
 
-function Button(props: ButtonProps) {
-  const { className, children = '-' } = props;
-
-  const ariaRef = React.useRef<HTMLButtonElement>(null);
-  let { buttonProps } = useButton(props, ariaRef);
-  const { isFocusVisible, focusProps } = useFocusRing();
-  const mergedProps = mergeProps(focusProps, buttonProps);
+function Button({ onPress, onClick, className, children = '-', ...props }: ButtonProps) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
+    onPress?.();
+  };
 
   return (
-    <button
-      ref={ariaRef}
+    <ShadcnButton
+      onClick={handleClick}
       className={cn(
         'flex cursor-pointer items-center justify-center rounded-full border border-white bg-transparent p-2 text-xl leading-[150%] whitespace-nowrap text-white md:text-base',
         'transition-all duration-500 ease-out hover:bg-white hover:text-black',
         'active:scale-[0.975]',
+        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500',
         className
       )}
-      style={{
-        outline: isFocusVisible ? '2px solid gray' : 'none',
-        outlineOffset: 2,
-      }}
-      {...mergedProps}
+      {...props}
     >
       {children}
-    </button>
+    </ShadcnButton>
   );
 }
 
