@@ -1,7 +1,9 @@
-import { CreditContent, CreditTitle, PartnerLogos } from '@/widgets/credit';
-import type { CreditContentType, CreditTitles } from '@/widgets/credit';
 import type { Year } from '@/features/routes';
 
+import { CreditContent } from './content';
+import { CreditTitle } from './title';
+import { PartnerLogos } from './partner-logos';
+import type { CreditContent as CreditContentType, CreditTitles } from './model';
 import content22JSON from './content-22.json';
 import content23JSON from './content-23.json';
 import titles22JSON from './title-22.json';

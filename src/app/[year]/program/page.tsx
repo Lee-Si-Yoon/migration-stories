@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { ProgramList } from '@/widgets/program/program-list.client';
+import { ProgramList } from '@/app/[year]/program/[programId]/program-list.client';
 import Paths from '@/features/routes/model';
 import programsData from './[programId]/programs-23.json';
 

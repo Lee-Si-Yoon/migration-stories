@@ -3,8 +3,11 @@ import type { Metadata } from 'next';
 
 import type { Content, Content2023, Languages } from '@/features/about/model';
 import { getLanguageCode, getLanguageName } from '@/features/about/model';
-import { LanguageButtons, AnimatedAboutContent, AnimatedAboutContent2023 } from '@/widgets/about';
 import type { Year } from '@/features/routes';
+
+import { LanguageButtons } from './language-buttons';
+import { AnimatedAboutContent } from './animated-about-content';
+import { AnimatedAboutContent2023 } from './animated-about-content-2023';
 import content22Raw from './content-22.json';
 import content23Raw from './content-23.json';
 import languages22Raw from './languages-22.json';

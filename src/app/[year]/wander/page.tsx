@@ -1,6 +1,7 @@
 import type { Year } from '@/features/routes';
-import { WanderBackground } from '@/widgets/wander-background';
 import { WanderPageClient } from './wander-page.client';
+
+import { WanderBackground } from './wander-background';
 
 const backgroundMap = {
   '22': '/imgs/wander/2022/wanderBackground.webp',

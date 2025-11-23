@@ -1,16 +1,11 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { BackButton } from '@/widgets/buttons/back-button.client';
-import { AnimatedImage, AnimatedText } from '@/widgets/program/program-content-animated.client';
-import { ProgramVideoPlayer } from '@/widgets/program/vimeo-player.client';
-import programsData from '../programs-23.json';
+import { VimeoPlayer } from '@/widgets/video-player';
 
-interface ProgramJSON {
-  [key: string]: string | number | undefined;
-  id: number;
-  imgSrc: string;
-  videoSrc: string;
-}
+import { AnimatedImage, AnimatedText } from './program-content-animated.client';
+import type { Program as ProgramJSON } from './model';
+import programsData from './programs-23.json';
 
 const programs: ProgramJSON[] = programsData as ProgramJSON[];
 
@@ -61,10 +56,15 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         <ProgramDetailTexts data={currentProgram} />
       </AnimatedText>
 
-      <ProgramVideoPlayer
-        videoSrc={currentProgram.videoSrc as string}
-        programId={currentProgram.id}
-      />
+      {currentProgram.videoSrc && (
+        <VimeoPlayer
+          url={currentProgram.videoSrc as string}
+          variant="inline"
+          controlsOnMobileOnly
+          autoPlay
+          volume={1}
+        />
+      )}
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import Paths from '@/features/routes/model';
 import type { Year } from '@/features/routes';
-import WanderOBJ from '@/widgets/wander-obj/wander-obj';
+import WanderOBJ from '@/app/[year]/wander/wander-obj';
 
 import storiesData22 from './wander-data-22.json';
 import storiesData23 from './wander-data-23.json';

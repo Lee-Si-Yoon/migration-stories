@@ -3,7 +3,7 @@ import type { Year } from '@/features/routes';
 
 import videoData22 from './video-data-22.json';
 import videoData23 from './video-data-23.json';
-import { VideoPlayerModal } from './video-player-modal';
+import { VideoPlayerModal } from './video-player-modal.client';
 
 interface VideoData {
   name: string;
