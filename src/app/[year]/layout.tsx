@@ -1,6 +1,9 @@
 import { notFound } from 'next/navigation';
-import { Header } from '@/widgets/layout/header';
+
 import { VALID_YEARS, isValidYear } from '@/features/routes';
+
+import { HeaderContent } from './header';
+import { AboutLink, CreditLink, ProgramLink } from './header-items.client';
 
 export async function generateStaticParams() {
   return VALID_YEARS.map((year) => ({ year }));
@@ -22,7 +25,11 @@ export default async function YearLayout({
   return (
     <>
       <header>
-        <Header year={year} />
+        <HeaderContent year={year}>
+          {year === '23' && <ProgramLink year={year} />}
+          <AboutLink year={year} />
+          <CreditLink year={year} />
+        </HeaderContent>
       </header>
       <main>{children}</main>
     </>
