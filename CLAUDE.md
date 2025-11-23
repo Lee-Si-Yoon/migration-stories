@@ -286,6 +286,156 @@ export function Header23() {
 }
 ```
 
+## Migration Plan: React Aria → shadcn/ui
+
+### Overview
+
+Planned migration from react-aria/react-stately to shadcn/ui (Radix UI primitives + Tailwind CSS) while maintaining accessibility and functionality.
+
+### Current State
+
+**Components using react-aria:**
+
+- `Button` component (`src/widgets/buttons/button.tsx`) - useButton, useFocusRing, mergeProps
+- `Modal` component (`src/widgets/modal/modal.tsx`) - Overlay, useModalOverlay
+- `WanderDialog` component (`src/app/[year]/wander/wander-dialog.tsx`) - useDialog
+- State management with `OverlayTriggerState` from react-stately
+
+**Usage sites:**
+
+- Button: back-button, header navigation items
+- Modal: wander-obj.tsx, video-player-modal.client.tsx
+- Dialog: wander flow
+
+### Migration Steps
+
+#### 1. Setup & Installation
+
+```bash
+# Initialize shadcn/ui
+npx shadcn@latest init
+
+# Install required components
+npx shadcn@latest add button
+npx shadcn@latest add dialog
+```
+
+Configuration:
+
+- Components path: `src/components/ui`
+- Use `@/` path alias (already configured)
+- Tailwind CSS v4 compatible
+- TypeScript with strict mode
+
+#### 2. Component Migration
+
+**Button Component** (`src/widgets/buttons/button.tsx`):
+
+- Replace react-aria `useButton` + `useFocusRing` with shadcn/ui Button
+- Maintain existing styles: rounded-full, border, hover:bg-white, active:scale-[0.975]
+- Keep focus ring styling (outline on focus-visible)
+- Preserve AriaButtonProps interface compatibility where possible
+
+**Modal Component** (`src/widgets/modal/modal.tsx`):
+
+- Replace react-aria `Overlay` + `useModalOverlay` with shadcn/ui Dialog
+- Migrate `OverlayTriggerState` → controlled Dialog with `open` + `onOpenChange`
+- Preserve custom variants: 'wander' (centered positioning) and 'primary'
+- Maintain backdrop styling: `bg-black/50`
+- Keep positioning logic for wander variant (centering calculation)
+
+**WanderDialog Component** (`src/app/[year]/wander/wander-dialog.tsx`):
+
+- Refactor to use Dialog primitives (DialogContent, DialogDescription)
+- Use role="alertdialog" for proper semantics
+- Maintain existing layout and styling
+
+#### 3. Update Usage Sites
+
+**Button consumers:**
+
+- `src/widgets/buttons/back-button.client.tsx`
+- `src/widgets/layout/header/ui/header-items.client.tsx`
+- Ensure props compatibility or adjust accordingly
+
+**Modal/Dialog consumers:**
+
+- `src/app/[year]/wander/wander-obj.tsx` - Update state management
+- `src/app/[year]/video/[name]/video-player-modal.client.tsx`
+- Replace `state.open()` / `state.close()` with controlled component pattern
+
+API changes:
+
+```tsx
+// Before (react-stately)
+const state = useOverlayTriggerState({});
+state.open();  // Imperative
+state.close();
+
+// After (shadcn/ui)
+const [open, setOpen] = useState(false);
+<Dialog open={open} onOpenChange={setOpen}> // Declarative
+```
+
+#### 4. Cleanup
+
+1. Remove dependencies from `package.json`:
+
+   - `react-aria` (currently 3.41.0)
+   - `react-stately` (currently 3.39.0)
+
+2. Run `pnpm install` to clean up lockfile
+
+3. Update imports across codebase
+
+#### 5. Testing Checklist
+
+- [ ] Button interactions (click, keyboard, focus ring)
+- [ ] Modal open/close behavior
+- [ ] Modal backdrop click-outside to close
+- [ ] Wander dialog flow (object click → modal → video)
+- [ ] Video player modal
+- [ ] Keyboard navigation (Tab, Enter, Escape)
+- [ ] Focus management and trapping in modals
+- [ ] Screen reader compatibility (ARIA attributes)
+- [ ] Mobile touch interactions
+- [ ] Animation compatibility with Framer Motion
+
+### Key Considerations
+
+**Accessibility:**
+
+- shadcn/ui uses Radix UI primitives (same accessibility standards as react-aria)
+- Built-in focus management, keyboard navigation, ARIA attributes
+- No regression in a11y expected
+
+**Styling:**
+
+- Both use Tailwind CSS → seamless transition
+- shadcn/ui components are unstyled by default → full control
+- Existing CVA patterns compatible
+
+**Breaking Changes:**
+
+- State management: imperative → declarative
+- Props API: some differences between react-aria and Radix
+- Import paths change
+
+**Benefits:**
+
+- Smaller bundle size (Radix is lighter than react-aria)
+- Better Next.js integration and community support
+- More frequent updates and active maintenance
+- Consistent with modern React patterns
+
+### Documentation Updates
+
+After migration, update this file:
+
+- Remove React Aria sections (Component Patterns, Modal/Overlay Pattern)
+- Add shadcn/ui component patterns and usage guidelines
+- Update "Tech Stack Summary" to replace React Aria with shadcn/ui
+
 ## Configuration Notes
 
 ### Next.js Config
@@ -340,3 +490,4 @@ webpack: {
 - **Package Manager:** pnpm 10.11.1
 - Do not use "any" type for safe typechecking
 - Use type assertions when possible for clean codes
+- When dealing with packages, use context7.
