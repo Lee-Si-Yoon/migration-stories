@@ -1,12 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 import Paths from '@/features/routes/model';
 import type { Year } from '@/features/routes';
 import WanderOBJ from '@/app/[year]/wander/wander-obj';
+import { ProgressiveImage } from '@/widgets/image/progressive-image';
 
 import storiesData22 from './wander-data-22.json';
 import storiesData23 from './wander-data-23.json';
@@ -19,9 +18,14 @@ interface Story {
   translation: string;
 }
 
-const storiesMap = {
-  '22': storiesData22 as Story[],
-  '23': storiesData23 as Story[],
+const storiesMap: Record<Year, Story[]> = {
+  '22': storiesData22,
+  '23': storiesData23,
+};
+
+const imageSizeMap = {
+  '22': { width: 600, height: 600 },
+  '23': { width: 400, height: 400 },
 };
 
 export function WanderPageClient({ year }: { year: Year }) {
@@ -30,52 +34,20 @@ export function WanderPageClient({ year }: { year: Year }) {
 
   const paths = Paths(year);
 
-  return (
-    <div className="absolute right-0 bottom-0 left-0 flex h-full items-center justify-center overflow-clip [&_img]:w-[37.5rem] [&_img]:max-md:w-[23.75rem]">
-      {stories.map((story) => (
-        <WanderOBJ
-          key={story.name}
-          translation={story.translation}
-          text={story.text}
-          onSubmit={() => router.push(`${paths.video}/${story.name}`)}
-        >
-          <StoryImage src={story.src} placeholderSrc={story.placeholderSrc} alt={story.name} />
-        </WanderOBJ>
-      ))}
-    </div>
-  );
-}
-
-function StoryImage({
-  src,
-  placeholderSrc,
-  alt,
-}: {
-  src: string;
-  placeholderSrc: string;
-  alt: string;
-}) {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  return (
-    <>
-      <Image
-        src={placeholderSrc}
-        alt={alt}
-        width={500}
-        height={500}
-        className={`absolute transition-opacity duration-500 ${isLoaded ? 'opacity-0' : 'opacity-100 blur-[10px]'}`}
-        priority
+  return stories.map((story) => (
+    <WanderOBJ
+      key={story.name}
+      translation={story.translation}
+      text={story.text}
+      onSubmit={() => router.push(`${paths.video}/${story.name}`)}
+    >
+      <ProgressiveImage
+        src={story.src}
+        placeholdersrc={story.placeholderSrc}
+        alt={story.name}
+        width={imageSizeMap[year].width}
+        height={imageSizeMap[year].height}
       />
-      <Image
-        src={src}
-        alt={alt}
-        width={500}
-        height={500}
-        onLoad={() => setIsLoaded(true)}
-        className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-        priority
-      />
-    </>
-  );
+    </WanderOBJ>
+  ));
 }

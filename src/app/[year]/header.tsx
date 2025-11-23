@@ -7,8 +7,8 @@ import { cn } from '@/shared/cn';
 
 function Logo({ year }: { year: Year }) {
   const logoConfig = {
-    '22': { src: '/imgs/logo/logo22.webp', width: 50, height: 62.5, alt: 'logo22.png' },
-    '23': { src: '/imgs/logo/logo23-min.webp', width: 60, height: 60, alt: 'logo23.png' },
+    '22': { src: '/imgs/logo/logo22.webp', width: 60, height: 75, alt: 'logo22.png' },
+    '23': { src: '/imgs/logo/logo23-min.webp', width: 80, height: 80, alt: 'logo23.png' },
   };
 
   const config = logoConfig[year];
