@@ -2,7 +2,13 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import type { ProgramJSON } from '@/features/program/data/programs-23';
+
+interface ProgramJSON {
+  [key: string]: string | number | undefined;
+  id: number;
+  imgSrc: string;
+  videoSrc: string;
+}
 
 interface ProgramListProps {
   programs: ProgramJSON[];

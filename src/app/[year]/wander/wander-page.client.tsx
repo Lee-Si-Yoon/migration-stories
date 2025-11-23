@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Paths from '@/features/routes/model';
-import { WanderBackground } from '@/widgets/wander-background';
+import type { Year } from '@/features/routes';
 import WanderOBJ from '@/widgets/wander-obj/wander-obj';
 
-import storiesData from './wander-data.json';
+import storiesData22 from './wander-data-22.json';
+import storiesData23 from './wander-data-23.json';
 
 interface Story {
   name: string;
@@ -18,26 +19,29 @@ interface Story {
   translation: string;
 }
 
-const stories = storiesData as Story[];
+const storiesMap = {
+  '22': storiesData22 as Story[],
+  '23': storiesData23 as Story[],
+};
 
-export default function Wander23Page() {
+export function WanderPageClient({ year }: { year: Year }) {
   const router = useRouter();
+  const stories = storiesMap[year];
+
+  const paths = Paths(year);
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <WanderBackground src="/imgs/wander/2023/wanderBackground.webp" />
-      <div className="absolute right-0 bottom-0 left-0 flex h-full items-center justify-center overflow-clip [&_img]:w-[37.5rem] [&_img]:max-md:w-[23.75rem]">
-        {stories.map((story) => (
-          <WanderOBJ
-            key={story.name}
-            translation={story.translation}
-            text={story.text}
-            onSubmit={() => router.push(`${Paths['23'].video}/${story.name}`)}
-          >
-            <StoryImage src={story.src} placeholderSrc={story.placeholderSrc} alt={story.name} />
-          </WanderOBJ>
-        ))}
-      </div>
+    <div className="absolute right-0 bottom-0 left-0 flex h-full items-center justify-center overflow-clip [&_img]:w-[37.5rem] [&_img]:max-md:w-[23.75rem]">
+      {stories.map((story) => (
+        <WanderOBJ
+          key={story.name}
+          translation={story.translation}
+          text={story.text}
+          onSubmit={() => router.push(`${paths.video}/${story.name}`)}
+        >
+          <StoryImage src={story.src} placeholderSrc={story.placeholderSrc} alt={story.name} />
+        </WanderOBJ>
+      ))}
     </div>
   );
 }

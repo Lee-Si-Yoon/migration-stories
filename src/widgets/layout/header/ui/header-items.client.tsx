@@ -4,44 +4,48 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Paths } from '@/features/routes';
+import Paths from '@/features/routes/model';
+import type { Year } from '@/features/routes';
 import { cn } from '@/shared/cn';
 
 const linkClassName = 'transition-transform duration-200 ease-in-out hover:-translate-y-0.5';
 
-function AboutLink({ year }: { year: 22 | 23 }) {
+function AboutLink({ year }: { year: Year }) {
   const pathname = usePathname();
+  const paths = Paths(year);
 
   return (
     <li key={`${year}-about`} className={linkClassName}>
-      <Link href={Paths[year].about} className={cn(pathname === Paths[year].about && 'font-bold')}>
+      <Link href={paths.about} className={cn(pathname === paths.about && 'font-bold')}>
         about
       </Link>
     </li>
   );
 }
 
-function CreditLink({ year }: { year: 22 | 23 }) {
+function CreditLink({ year }: { year: Year }) {
   const pathname = usePathname();
+  const paths = Paths(year);
 
   return (
     <li key={`${year}-credit`} className={linkClassName}>
-      <Link
-        href={Paths[year].credit}
-        className={cn(pathname === Paths[year].credit && 'font-bold')}
-      >
+      <Link href={paths.credit} className={cn(pathname === paths.credit && 'font-bold')}>
         credit
       </Link>
     </li>
   );
 }
 
-function ProgramLink() {
+function ProgramLink({ year }: { year: Year }) {
   const pathname = usePathname();
+
+  if (year !== '23') return null;
+
+  const paths = Paths('23'); // Explicitly call with '23' for type safety
 
   return (
     <li key={'program'} className={linkClassName}>
-      <Link href={Paths[23].program} className={cn(pathname === Paths[23].program && 'font-bold')}>
+      <Link href={paths.program} className={cn(pathname === paths.program && 'font-bold')}>
         program
       </Link>
     </li>

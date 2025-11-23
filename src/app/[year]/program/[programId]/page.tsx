@@ -1,22 +1,38 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { programs, type ProgramJSON } from '@/features/program/data/programs-23';
 import { BackButton } from '@/widgets/buttons/back-button.client';
 import { AnimatedImage, AnimatedText } from '@/widgets/program/program-content-animated.client';
 import { ProgramVideoPlayer } from '@/widgets/program/vimeo-player.client';
+import programsData from '../programs-23.json';
+
+interface ProgramJSON {
+  [key: string]: string | number | undefined;
+  id: number;
+  imgSrc: string;
+  videoSrc: string;
+}
+
+const programs: ProgramJSON[] = programsData as ProgramJSON[];
 
 interface PageProps {
-  params: Promise<{ programId: string }>;
+  params: Promise<{ year: string; programId: string }>;
 }
 
 export async function generateStaticParams() {
+  // Only generate params for year 23
   return programs.map((program) => ({
+    year: '23',
     programId: String(program.id),
   }));
 }
 
 export default async function ProgramDetailPage({ params }: PageProps) {
-  const { programId } = await params;
+  const { year, programId } = await params;
+
+  // Program is only available for 2023
+  if (year !== '23') {
+    notFound();
+  }
 
   const currentProgram = programs.find((p) => String(p.id) === programId) as
     | ProgramJSON

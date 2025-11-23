@@ -1,21 +1,22 @@
-import { HeaderContent22, HeaderContent23 } from './ui';
+import { HeaderContent } from './ui';
 import { AboutLink, CreditLink, ProgramLink } from './ui/header-items.client';
+import type { Year } from '@/features/routes';
 
-export function Header22() {
+export function Header({ year }: { year: Year }) {
   return (
-    <HeaderContent22>
-      <AboutLink year={22} />
-      <CreditLink year={22} />
-    </HeaderContent22>
+    <HeaderContent year={year}>
+      {year === '23' && <ProgramLink year={year} />}
+      <AboutLink year={year} />
+      <CreditLink year={year} />
+    </HeaderContent>
   );
 }
 
+// Backward compatibility exports
+export function Header22() {
+  return <Header year="22" />;
+}
+
 export function Header23() {
-  return (
-    <HeaderContent23>
-      <ProgramLink />
-      <AboutLink year={23} />
-      <CreditLink year={23} />
-    </HeaderContent23>
-  );
+  return <Header year="23" />;
 }
