@@ -6,26 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Migration Stories Project (이주 이야기 프로젝트) - An interactive web-based art exhibition presenting stories of migrants living in Korea through animated 2D objects, video narratives, and exhibition information.
 
-## Migration Status
-
-**⚠️ ACTIVE MIGRATION IN PROGRESS**
-
-This project is currently being migrated from a legacy React Router SPA to a modern Next.js App Router application.
-
-**Current State:**
-
-- **Legacy App:** Original implementation preserved in `/legacy` directory for reference
-- **New App:** Next.js implementation actively being built in `/src` using App Router
-- **Styling Migration:** Transitioning from SCSS modules to Tailwind CSS (currently hybrid approach)
-- **Status:** Partial migration - core features implemented, some pages still reference legacy code
-
-**When working on this codebase:**
-
-- Implement new features in the Next.js app (`/src`) following the patterns in this guide
-- Refer to `/legacy` for original implementation details when migrating pages
-- Follow Migration Patterns section below when converting React Router code
-- **Prefer Tailwind CSS** for styling new components; use SCSS modules only when necessary for complex styling
-- Do not modify legacy code - it serves as reference only
+**Built with Next.js App Router** - A modern React application using Next.js 16 with Tailwind CSS v4 and SCSS modules.
 
 ## Development Commands
 
@@ -185,7 +166,7 @@ import { cn } from '@/shared/cn';
 }
 ```
 
-**Legacy design system:**
+**SCSS design system:**
 
 - `variables.scss`: Color tokens (`$white`, `$black`, `$text-gray: #999`)
 - `typography.scss`: Font scale (Display1, Header1/2, Body1/2)
@@ -213,22 +194,6 @@ function lerp(start: number, end: number, factor: number): number;
 // Uses Framer Motion for declarative animations
 ```
 
-### Progressive Image Loading
-
-Custom pattern in `widgets/utils/progressive-image.tsx`:
-
-1. Show blurred placeholder (`blur(10px)`)
-2. Load full image in background
-3. Swap with transition when loaded
-
-**Asset structure:**
-
-```
-/public/imgs/
-├── wander/       # Full resolution images
-└── wander-min/   # Placeholders for blur effect
-```
-
 ### Video Playback Flow
 
 1. User clicks floating object in `/wander`
@@ -252,41 +217,6 @@ state.open(); // Open modal
 state.close(); // Close modal
 ```
 
-## Migration Patterns (React Router → Next.js)
-
-**Navigation:**
-
-```tsx
-// Old: useNavigate()
-const navigate = useNavigate();
-navigate('/path');
-
-// New: useRouter()
-const router = useRouter();
-router.push('/path');
-```
-
-**Route matching:**
-
-```tsx
-// Old: useMatch()
-const match = useMatch('/video/:name');
-
-// New: useParams() / usePathname()
-const params = useParams<{ name: string }>();
-const pathname = usePathname();
-```
-
-**Lazy loading:**
-
-```tsx
-// Old: React.lazy
-const Component = React.lazy(() => import('./Component'));
-
-// New: dynamic imports
-const Component = dynamic(() => import('./Component'));
-```
-
 ## Adding New Features
 
 ### Adding a New Page
@@ -294,7 +224,6 @@ const Component = dynamic(() => import('./Component'));
 1. Create page file: `/src/app/[year]/[page]/page.tsx`
 2. Add route to `/src/features/routes/model/index.ts`
 3. Update header navigation in `/src/widgets/layout/header/`
-4. Reference legacy implementation in `/legacy/pages/[page]/` if exists
 
 ### Adding a New Widget
 
@@ -372,12 +301,6 @@ webpack: {
 - Hidden scrollbars: `scrollbar-width: none`
 - Touch-friendly targets on mobile
 
-## Known Issues
-
-1. **Legacy references:** Many pages still stub implementations - check `/legacy` for original code
-
-2. **3D rendering not migrated:** README mentions three.js/gltf but current implementation uses 2D animated images
-
 ## Tech Stack Summary
 
 - **Framework:** Next.js 16.0.3 (App Router)
@@ -387,7 +310,6 @@ webpack: {
 - **Animation:** Framer Motion 12.16.0
 - **Accessibility:** React Aria 3.41.0
 - **Video:** react-player 2.16.0 (Vimeo)
-- **Analytics:** react-ga4 2.1.0
 - **Package Manager:** pnpm 10.11.1
 - Do not use "any" type for safe typechecking
 - Use type assertions when possible for clean codes
