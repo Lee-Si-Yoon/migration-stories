@@ -310,15 +310,6 @@ webpack: {
 }
 ```
 
-### SVG Handling
-
-Configured via `@svgr/webpack`:
-
-```tsx
-import XCancelIcon from '../svg/x-cancel.svg?react';
-<XCancelIcon width={24} height={24} />;
-```
-
 ### Build Optimizations
 
 - Turbopack enabled for faster dev HMR
@@ -347,24 +338,13 @@ import XCancelIcon from '../svg/x-cancel.svg?react';
 
 ## Known Issues
 
-1. **Build errors temporarily ignored** during migration:
+1. **Legacy references:** Many pages still stub implementations - check `/legacy` for original code
 
-   ```ts
-   eslint: {
-     ignoreDuringBuilds: true;
-   }
-   typescript: {
-     ignoreBuildErrors: true;
-   }
-   ```
-
-2. **Legacy references:** Many pages still stub implementations - check `/legacy` for original code
-
-3. **3D rendering not migrated:** README mentions three.js/gltf but current implementation uses 2D animated images
+2. **3D rendering not migrated:** README mentions three.js/gltf but current implementation uses 2D animated images
 
 ## Tech Stack Summary
 
-- **Framework:** Next.js 15.3.3 (App Router)
+- **Framework:** Next.js 16.0.3 (App Router)
 - **React:** 19.1.0
 - **TypeScript:** 5.8.3 (strict mode)
 - **Styling:** Tailwind v4 + SASS modules
@@ -373,3 +353,5 @@ import XCancelIcon from '../svg/x-cancel.svg?react';
 - **Video:** react-player 2.16.0 (Vimeo)
 - **Analytics:** react-ga4 2.1.0
 - **Package Manager:** pnpm 10.11.1
+- Do not use "any" type for safe typechecking
+- Use type assertions when possible for clean codes
