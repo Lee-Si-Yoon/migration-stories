@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React from 'react';
 import { useOverlayTriggerState } from 'react-stately';
 
-import { lerp } from '../../../legacy/utils/math';
+import { lerp } from '@/shared/utils/math';
 import Button from '../buttons/button';
 import Modal from '../modal/modal';
 import WanderDialog22 from '../modal/wander-dialog/wander-dialog';
