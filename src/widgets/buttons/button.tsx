@@ -20,7 +20,7 @@ function Button({ onPress, onClick, className, children = '-', ...props }: Butto
         'flex cursor-pointer items-center justify-center rounded-full border border-white bg-transparent p-2 text-xl leading-[150%] whitespace-nowrap text-white md:text-base',
         'transition-all duration-500 ease-out hover:bg-white hover:text-black',
         'active:scale-[0.975]',
-        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500',
+        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500',
         className
       )}
       {...props}

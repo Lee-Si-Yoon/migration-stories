@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { BackButton } from '@/widgets/buttons/back-button.client';
+import { BackButton } from '@/widgets/buttons/back-button';
 import { VimeoPlayer } from '@/widgets/video-player';
 
 import { AnimatedImage, AnimatedText } from './program-content-animated.client';

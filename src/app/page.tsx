@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { cn } from '@/shared/cn';
 import { Paths } from '@/features/routes';
-import { buttonVariants } from '@/widgets/buttons';
-import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Migration Stories',
@@ -30,11 +30,11 @@ const blurImages = [
 
 export default function Page() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center p-4">
-      <nav className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <main className={cn('flex justify-center md:items-center', 'min-h-dvh p-4')}>
+      <nav className={cn('grid grid-cols-1 md:grid-cols-2 md:gap-4', 'w-full md:max-w-[1280px]')}>
         {blurImages.map(({ src, placeholderSrc, alt, href, text }) => (
           <article className="flex flex-col items-center justify-center" key={href}>
-            <div className="relative w-screen md:h-[680px] md:w-[640px]">
+            <div className="relative h-[480px] w-full md:h-[680px]">
               <Image
                 fill
                 className="object-contain"
@@ -42,14 +42,22 @@ export default function Page() {
                 alt={alt}
                 placeholder="blur"
                 draggable={false}
-                // preload image
-                blurDataURL={placeholderSrc} // make it better
-                // sizes="(min-width: 768px) 50vw, 100vw"
+                priority
+                blurDataURL={placeholderSrc}
               />
             </div>
-            <Link href={href} className={cn(buttonVariants({ variant: 'default' }))}>
-              {text}
-            </Link>
+            <Button
+              asChild
+              variant="outline"
+              className={cn(
+                'rounded-full bg-transparent px-4',
+                'active:scale-95',
+                'text-lg font-normal'
+              )}
+              size="lg"
+            >
+              <Link href={href}>{text}</Link>
+            </Button>
           </article>
         ))}
       </nav>
