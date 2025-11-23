@@ -1,0 +1,76 @@
+# Dependabot configuration for Migration Stories Project
+# Automatically checks for dependency updates and creates pull requests
+
+version: 2
+updates:
+  # npm dependencies (pnpm compatible)
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Seoul'
+    open-pull-requests-limit: 5
+    # Group updates by type for cleaner PRs
+    groups:
+      # Group Next.js and React ecosystem updates together
+      nextjs:
+        patterns:
+          - 'next'
+          - 'eslint-config-next'
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - '@types/react'
+          - '@types/react-dom'
+      # Group Radix UI (shadcn/ui) components together
+      radix-ui:
+        patterns:
+          - '@radix-ui/*'
+      # Group Tailwind CSS related packages
+      tailwind:
+        patterns:
+          - 'tailwindcss'
+          - '@tailwindcss/*'
+          - 'prettier-plugin-tailwindcss'
+          - 'tailwind-merge'
+          - 'tw-animate-css'
+      # Group dev tools
+      dev-tools:
+        patterns:
+          - 'eslint'
+          - '@eslint/*'
+          - 'prettier'
+          - 'husky'
+          - 'knip'
+          - 'typescript'
+    # Customize commit messages
+    commit-message:
+      prefix: 'deps'
+      prefix-development: 'deps-dev'
+      include: 'scope'
+    # Automatically add labels to PRs
+    labels:
+      - 'dependencies'
+    # Only create PRs for semver-compatible updates
+    versioning-strategy: increase
+    # Ignore specific dependencies if needed (uncomment and modify as needed)
+    # ignore:
+    #   - dependency-name: "package-name"
+    #     versions: ["1.x", "2.x"]
+
+  # GitHub Actions updates (if you add workflows later)
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Seoul'
+    commit-message:
+      prefix: 'ci'
+    labels:
+      - 'github-actions'
+      - 'dependencies'
