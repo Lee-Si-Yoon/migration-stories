@@ -1,13 +1,12 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { useOverlayTriggerState } from "react-stately";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import React from 'react';
+import { useOverlayTriggerState } from 'react-stately';
 
-import classes from "./wander-obj.module.scss";
-import { lerp } from "../../../legacy/utils/math";
-import Button from "../buttons/button";
-import Modal from "../modal/modal";
-import WanderDialog22 from "../modal/wander-dialog/wander-dialog";
-import XCancelIcon from "../svg/x-cancel.svg?react";
+import { lerp } from '../../../legacy/utils/math';
+import Button from '../buttons/button';
+import Modal from '../modal/modal';
+import WanderDialog22 from '../modal/wander-dialog/wander-dialog';
 
 interface WanderOBJProps extends React.PropsWithChildren {
   text: string;
@@ -16,13 +15,7 @@ interface WanderOBJProps extends React.PropsWithChildren {
   onSubmit: VoidFunction;
 }
 
-function WanderOBJ({
-  text,
-  submitText,
-  translation,
-  children,
-  onSubmit,
-}: WanderOBJProps) {
+function WanderOBJ({ text, submitText, translation, children, onSubmit }: WanderOBJProps) {
   const state = useOverlayTriggerState({});
   const imgRef = React.useRef<HTMLDivElement>(null);
   // ANIMATE
@@ -43,12 +36,7 @@ function WanderOBJ({
     const f = () => {
       if (!imgRef.current) return;
       const { x, y, width, height } = imgRef.current.getBoundingClientRect();
-      if (
-        x + width < 0 ||
-        x > window.innerWidth ||
-        y + height < 0 ||
-        y > window.innerHeight
-      ) {
+      if (x + width < 0 || x > window.innerWidth || y + height < 0 || y > window.innerHeight) {
         setOpacity(0);
         setPosition({ x: 0, y: 0 });
         setCentered(true);
@@ -98,17 +86,23 @@ function WanderOBJ({
     <>
       <Modal state={state} variant="wander" isKeyboardDismissDisabled>
         <WanderDialog22>
-          <div className={classes.Modal}>
-            <span className={classes.ModalText}>{text}</span>
-            <span className={classes.ModalTranslation}>{translation}</span>
-            <div className={classes.ButtonWrapper}>
+          <div className="flex w-[37.5rem] flex-col items-center gap-4 max-md:w-[calc(100%-1rem)]">
+            <span className="m-0 text-2xl leading-[150%] font-bold text-white max-md:text-base max-md:font-bold">
+              {text}
+            </span>
+            <span className="m-0 text-xl leading-[150%] font-medium text-[#999] max-md:text-sm">
+              {translation}
+            </span>
+            <div className="mt-6 flex flex-col items-center gap-6">
               <Button
                 onPress={() => onSubmit()}
-                className={classes.ConfirmButton}
+                className="rounded-lg border-0 bg-[#999] px-8 py-4 max-md:px-5 max-md:py-3"
               >
-                <pre>
+                <pre className="m-0 text-xl leading-[initial] font-semibold text-black max-md:text-base">
                   {`스토리 보기\n`}
-                  <span>{submitText}</span>
+                  <span className="text-base leading-[140%] font-normal text-black max-md:text-sm">
+                    {submitText}
+                  </span>
                 </pre>
               </Button>
               <Button
@@ -118,9 +112,9 @@ function WanderOBJ({
                     setIsClicked(false);
                   }, 100);
                 }}
-                className={classes.CloseButton}
+                className="h-7 w-7"
               >
-                <XCancelIcon height={24} width={24} />
+                <Image src="/svgs/x-cancel.svg" alt="Close" width={24} height={24} />
               </Button>
             </div>
           </div>
@@ -135,10 +129,7 @@ function WanderOBJ({
             setIsClicked(true);
           }
         }}
-        className={[
-          isClicked ? classes.Clicked : "",
-          classes.MovingObject,
-        ].join(" ")}
+        className={`absolute cursor-pointer ${isClicked ? 'z-[101] scale-110 brightness-150' : ''}`}
         transition={{ duration: durationState }}
         animate={{
           x: position.x,
@@ -152,6 +143,6 @@ function WanderOBJ({
   );
 }
 
-WanderOBJ.displayName = "WanderOBJ";
+WanderOBJ.displayName = 'WanderOBJ';
 
 export default WanderOBJ;
