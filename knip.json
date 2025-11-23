@@ -4,5 +4,6 @@
     "interface": true,
     "type": true
   },
+  "ignoreDependencies": ["eslint", "eslint-config-next", "husky"],
   "tags": ["-lintignore"]
 }
