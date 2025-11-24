@@ -4,9 +4,9 @@ import { m } from 'framer-motion';
 
 import React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import type { Year } from '@/features/routes';
 
 import { lerp } from '@/shared/utils/math';
-import { useModalState } from '@/shared/hooks/use-modal-state';
 import {
   Dialog,
   DialogClose,
@@ -17,19 +17,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { XIcon } from 'lucide-react';
 import { cn } from '@/shared/cn';
 
 interface WanderOBJProps extends React.PropsWithChildren {
   text: string;
   translation: string;
-  submitText?: string;
+  year: Year;
   onSubmit: VoidFunction;
 }
 
-function WanderOBJ({ text, submitText, translation, children, onSubmit }: WanderOBJProps) {
-  const state = useModalState();
+function WanderOBJ({ text, year, translation, children, onSubmit }: WanderOBJProps) {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const [open, setOpen] = React.useState(false);
   const imgRef = React.useRef<HTMLDivElement>(null);
   // ANIMATE
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
@@ -37,11 +37,9 @@ function WanderOBJ({ text, submitText, translation, children, onSubmit }: Wander
   const [opacity, setOpacity] = React.useState(1);
   const [durationState, setDuration] = React.useState(0);
   const [centered, setCentered] = React.useState(false);
-  // INTERACTIONS
-  const [isClicked, setIsClicked] = React.useState(false);
 
   React.useEffect(() => {
-    if (isClicked) return;
+    if (open) return;
 
     let timerId: number;
     let direction = Math.random() * Math.PI * 2;
@@ -71,11 +69,11 @@ function WanderOBJ({ text, submitText, translation, children, onSubmit }: Wander
     timerId = requestAnimationFrame(f);
 
     return () => cancelAnimationFrame(timerId);
-  }, [isClicked, centered]);
+  }, [open, centered]);
 
   // center when clicked
   React.useEffect(() => {
-    if (!isClicked || !imgRef.current) return;
+    if (!open || !imgRef.current) return;
     const { height } = imgRef.current.getBoundingClientRect();
     setDuration(0);
     let timerId: number;
@@ -93,81 +91,113 @@ function WanderOBJ({ text, submitText, translation, children, onSubmit }: Wander
     };
     timerId = requestAnimationFrame(f);
     return () => cancelAnimationFrame(timerId);
-  }, [isClicked]);
+  }, [open]);
 
   return (
-    <Dialog open={state.isOpen} onOpenChange={(open) => (!open ? state.close() : undefined)}>
-      <DialogTrigger asChild>
-        <m.div
-          ref={imgRef}
-          role="presentation"
-          onClick={() => {
-            if (!isClicked) {
-              state.open();
-              setIsClicked(true);
-            }
-          }}
-          className={`absolute cursor-pointer ${isClicked ? 'z-[101] scale-110 brightness-150' : ''}`}
-          transition={{ duration: durationState }}
-          animate={{
-            x: position.x,
-            y: position.y,
-            opacity: opacity,
-          }}
-        >
-          {children}
-        </m.div>
-      </DialogTrigger>
+    <>
+      <div ref={setContainer} />
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <m.div
+            ref={imgRef}
+            role="presentation"
+            onClick={() => {
+              if (!open) {
+                setOpen(true);
+              } else {
+                setOpen(false);
+              }
+            }}
+            className={cn('fixed', open ? 'z-[101] scale-110 brightness-150' : '')}
+            transition={{ duration: durationState }}
+            animate={{
+              x: position.x,
+              y: position.y,
+              opacity: opacity,
+            }}
+          >
+            {children}
+          </m.div>
+        </DialogTrigger>
 
-      <DialogPortal data-slot="dialog-portal">
-        {/* <DialogPrimitive.Overlay
-          className={cn(
-            'fixed top-0 right-0 bottom-0 left-0 z-50',
-            'bg-black/50',
-            'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0'
-          )}
-        /> */}
-        <DialogPrimitive.Content
-          data-slot="dialog-content"
-          className={cn(
-            'z-50',
-            'fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]',
-            'flex flex-col gap-4',
-            // 'shadow-lg',
-            'duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95'
-          )}
-        >
-          <DialogHeader>
-            <DialogTitle className="text-center">{text}</DialogTitle>
-            <DialogDescription className="text-center">{translation}</DialogDescription>
-          </DialogHeader>
+        <DialogPortal data-slot="dialog-portal" container={container}>
+          <DialogPrimitive.Overlay
+            className={cn(
+              'z-50',
+              'fixed inset-0',
+              'bg-black/50',
+              'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0'
+            )}
+          />
+          <DialogPrimitive.Content
+            data-slot="dialog-content"
+            className={cn(
+              'z-50',
+              'fixed top-[50%] left-[50%] translate-x-[-50%]',
+              'flex flex-col items-center gap-4',
+              'max-w-xl',
+              'duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95'
+            )}
+            onEscapeKeyDown={(e) => {
+              e.preventDefault();
+            }}
+            onPointerDownOutside={(e) => {
+              e.preventDefault();
+            }}
+            onInteractOutside={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <DialogHeader>
+              <DialogTitle className="text-center text-2xl font-bold text-white">
+                {text}
+              </DialogTitle>
+              <DialogDescription className="text-center text-xl font-medium text-gray-400">
+                {translation}
+              </DialogDescription>
+            </DialogHeader>
 
-          <Button onClick={() => onSubmit()}>
-            <pre>
-              {`스토리 보기\n`}
-              {submitText}
-            </pre>
-          </Button>
-          <DialogFooter className="justify-center sm:justify-center">
-            <DialogClose asChild>
-              <Button
-                onClick={() => {
-                  setTimeout(() => {
-                    state.close();
-                    setIsClicked(false);
-                  }, 100);
-                }}
-                size="icon"
-                variant="outline"
-                className="rounded-full bg-transparent text-white hover:bg-white hover:text-black"
+            <DialogFooter className="mt-6 flex !flex-col items-center gap-6">
+              <button
+                onClick={() => onSubmit()}
+                className={cn(
+                  'cursor-pointer',
+                  'w-fit px-8 py-4',
+                  'rounded-xl bg-gray-400',
+                  'text-xl font-semibold text-black',
+                  'active:scale-95'
+                )}
               >
-                <XIcon className="size-4" />
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogPrimitive.Content>
-      </DialogPortal>
-    </Dialog>
+                <pre>{`스토리 보기\n`}</pre>
+                {year === '23' && (
+                  <span className="text-base font-medium">смотреть на историю</span>
+                )}
+              </button>
+
+              <DialogClose asChild>
+                <button
+                  onClick={() => {
+                    setTimeout(() => {
+                      setOpen(false);
+                    }, 100);
+                  }}
+                  className={cn(
+                    'cursor-pointer',
+                    'flex items-center justify-center',
+                    'size-12 rounded-full',
+                    'border-1 border-white bg-transparent',
+                    'text-white hover:bg-white hover:text-black',
+                    'active:scale-95'
+                  )}
+                >
+                  <XIcon className="size-6" />
+                </button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogPrimitive.Content>
+        </DialogPortal>
+      </Dialog>
+    </>
   );
 }
 

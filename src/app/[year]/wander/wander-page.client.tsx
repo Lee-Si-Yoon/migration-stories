@@ -31,7 +31,6 @@ const imageSizeMap = {
 export function WanderPageClient({ year }: { year: Year }) {
   const router = useRouter();
   const stories = storiesMap[year];
-
   const paths = Paths(year);
 
   return stories.map((story) => (
@@ -40,6 +39,7 @@ export function WanderPageClient({ year }: { year: Year }) {
       translation={story.translation}
       text={story.text}
       onSubmit={() => router.push(`${paths.video}/${story.name}`)}
+      year={year}
     >
       <ProgressiveImage
         src={story.src}
@@ -47,6 +47,7 @@ export function WanderPageClient({ year }: { year: Year }) {
         alt={story.name}
         width={imageSizeMap[year].width}
         height={imageSizeMap[year].height}
+        draggable={false}
       />
     </WanderOBJ>
   ));
