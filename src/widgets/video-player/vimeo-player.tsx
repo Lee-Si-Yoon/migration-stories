@@ -9,7 +9,6 @@ const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 
 interface VimeoPlayerProps {
   url: string;
-  title?: string;
   showControls?: boolean;
   controlsOnMobileOnly?: boolean;
   autoPlay?: boolean;
@@ -21,7 +20,6 @@ interface VimeoPlayerProps {
 
 export function VimeoPlayer({
   url,
-  title,
   showControls = true,
   controlsOnMobileOnly = false,
   autoPlay = true,

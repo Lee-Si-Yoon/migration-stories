@@ -43,5 +43,5 @@ export default async function VideoPage({ params }: PageProps) {
     notFound();
   }
 
-  return <VideoPlayerModal videoSrc={video.src} videoName={video.name} />;
+  return <VideoPlayerModal videoSrc={video.src} year={yearKey} />;
 }

@@ -1,54 +1,50 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React from 'react';
 
-import { useModalState } from '@/shared/hooks/use-modal-state';
-import Button from '@/widgets/buttons/button';
-import Modal from '@/widgets/modal/modal';
 import { VimeoPlayer } from '@/widgets/video-player';
+import { cn } from '@/shared/cn';
+import { Button } from '@/components/ui/button';
+import { Year } from '@/features/routes';
 
 interface VideoPlayerModalProps {
   videoSrc: string;
-  videoName: string;
+  year: Year;
 }
 
-export function VideoPlayerModal({ videoSrc, videoName }: VideoPlayerModalProps) {
-  const state = useModalState();
-  const [showVideo, setShowVideo] = useState(false);
-
-  useEffect(() => {
-    state.open();
-  }, []);
-
-  const handleConfirm = () => {
-    state.close();
-    setShowVideo(true);
-  };
+export function VideoPlayerModal({ videoSrc, year }: VideoPlayerModalProps) {
+  const [confirmed, setConfirmed] = React.useState(false);
 
   return (
     <>
-      {showVideo && <VimeoPlayer url={videoSrc} title={videoName} showControls autoPlay />}
+      {confirmed && <VimeoPlayer url={videoSrc} showControls autoPlay />}
 
-      <Modal state={state} title="Video Player Confirmation">
-        <div className="flex flex-col items-center">
-          <div className="flex flex-col gap-1 text-center">
-            <h1 className="m-0 text-2xl leading-[150%] font-bold text-white">
-              이야기를 재생하시겠습니까?
-            </h1>
-            <h4 className="m-0 mt-2 text-base leading-[140%] font-normal text-white">
-              (헤드폰이 있다면 헤드폰을 착용하세요)
-            </h4>
-          </div>
+      <div
+        className={cn(
+          'fixed inset-0',
+          'flex flex-col items-center justify-center gap-y-2',
+          confirmed && 'hidden'
+        )}
+      >
+        <h1 className="text-2xl leading-[150%] font-bold text-white">이야기를 재생하시겠습니까?</h1>
+        {year === '23' && <p className="font-light text-gray-400">Вы хотите посмотреть историю?</p>}
+        <h2 className="text-base leading-[140%] font-normal text-white">
+          (헤드폰이 있다면 헤드폰을 착용하세요)
+        </h2>
+        {year === '23' && (
+          <p className="font-light text-gray-400">Надевайте наушники, если у вас есть</p>
+        )}
 
-          <div className="mt-6">
-            <Button onPress={handleConfirm} className="px-5 py-2">
-              <pre className="m-0 text-center text-base leading-[initial] font-normal text-white">
-                네
-              </pre>
-            </Button>
-          </div>
-        </div>
-      </Modal>
+        <Button
+          onClick={() => setConfirmed(true)}
+          className="mt-4 flex h-fit flex-col gap-0 rounded-full bg-transparent py-2"
+          variant="outline"
+          size="lg"
+        >
+          <p>네</p>
+          {year === '23' && <p className="font-light text-gray-400">Да</p>}
+        </Button>
+      </div>
     </>
   );
 }
