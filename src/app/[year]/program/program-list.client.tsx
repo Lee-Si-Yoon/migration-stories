@@ -3,19 +3,14 @@
 import { m } from 'framer-motion';
 import Link from 'next/link';
 
-interface ProgramJSON {
-  [key: string]: string | number | undefined;
-  id: number;
-  imgSrc: string;
-  videoSrc: string;
-}
+import Paths from '@/features/routes/model';
 
-interface ProgramListProps {
-  programs: ProgramJSON[];
-  basePath: string;
-}
+import { Program } from './[programId]/model';
+import programsData from './[programId]/programs-23.json';
 
-export function ProgramList({ programs, basePath }: ProgramListProps) {
+export function ProgramList() {
+  const programs: Program[] = programsData as Program[];
+
   return (
     <m.main
       variants={container}
@@ -26,7 +21,7 @@ export function ProgramList({ programs, basePath }: ProgramListProps) {
       {programs.map((program, index) => (
         <m.div key={program.id} variants={index % 2 === 0 ? leftToRight : rightToLeft}>
           <Link
-            href={`${basePath}/${program.id}`}
+            href={`${Paths('23').program}/${program.id}`}
             className="text-lg font-normal text-white transition-opacity hover:opacity-70"
           >
             {program.name as string}

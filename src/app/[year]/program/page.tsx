@@ -1,16 +1,6 @@
 import { notFound } from 'next/navigation';
-import { ProgramList } from '@/app/[year]/program/[programId]/program-list.client';
-import Paths from '@/features/routes/model';
-import programsData from './[programId]/programs-23.json';
 
-interface ProgramJSON {
-  [key: string]: string | number | undefined;
-  id: number;
-  imgSrc: string;
-  videoSrc: string;
-}
-
-const programs: ProgramJSON[] = programsData as ProgramJSON[];
+import { ProgramList } from './program-list.client';
 
 export default async function ProgramPage({ params }: { params: Promise<{ year: string }> }) {
   const { year } = await params;
@@ -21,5 +11,5 @@ export default async function ProgramPage({ params }: { params: Promise<{ year: 
     notFound();
   }
 
-  return <ProgramList programs={programs} basePath={Paths(yearKey).program} />;
+  return <ProgramList />;
 }

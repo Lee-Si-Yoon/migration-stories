@@ -40,7 +40,7 @@ export function VimeoPlayer({
 
   if (variant === 'inline') {
     return (
-      <div className={cn('h-[36rem] w-full', className)}>
+      <div className={cn('aspect-video h-fit w-full', className)}>
         <ReactPlayer
           src={url}
           playing={autoPlay}

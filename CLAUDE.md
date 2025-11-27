@@ -42,7 +42,6 @@ src/
 ```tsx
 import { Paths } from '@/features/routes';
 import { cn } from '@/shared/cn';
-import { Button } from '@/widgets/buttons';
 ```
 
 ### Year-Based Exhibition Structure
@@ -188,7 +187,6 @@ import { cn } from '@/shared/cn';
 
 ```tsx
 import { cn } from '@/shared/cn'; // Merge classes (tailwind-merge + clsx)
-import { buttonVariants } from '@/widgets/buttons'; // CVA variants
 ```
 
 ## Key Technical Implementations

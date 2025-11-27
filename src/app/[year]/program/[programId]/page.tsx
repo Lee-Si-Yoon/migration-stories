@@ -1,7 +1,12 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { BackButton } from '@/widgets/buttons/back-button';
+import Link from 'next/link';
+import { X } from 'lucide-react';
+
 import { VimeoPlayer } from '@/widgets/video-player';
+import { Button } from '@/components/ui/button';
+import { Paths } from '@/features/routes';
+import { cn } from '@/shared/cn';
 
 import { AnimatedImage, AnimatedText } from './program-content-animated.client';
 import type { Program as ProgramJSON } from './model';
@@ -38,17 +43,27 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-[64rem] flex-col items-center justify-center gap-10 pb-10 md:w-[64rem]">
-      <BackButton />
+    <div
+      className={cn(
+        'mx-auto flex flex-col items-center justify-center',
+        'mt-36 gap-y-8 p-4 md:p-0 md:pb-4',
+        'max-w-[1024px]'
+      )}
+    >
+      <Button asChild variant="outline" className="size-11 rounded-full bg-transparent">
+        <Link href={Paths('23').program}>
+          <X className="size-6" />
+        </Link>
+      </Button>
 
       <AnimatedImage>
         <Image
-          alt={currentProgram.imgSrc as string}
-          src={currentProgram.imgSrc as string}
           width={1024}
           height={576}
-          className="h-[36rem] w-full object-cover md:px-0 md:py-2"
+          alt={currentProgram.imgSrc as string}
+          src={currentProgram.imgSrc as string}
           priority
+          draggable={false}
         />
       </AnimatedImage>
 
@@ -73,22 +88,15 @@ function ProgramDetailTexts({ data }: { data: ProgramJSON }) {
   const { id, imgSrc, videoSrc, ...rest } = data;
 
   return (
-    <div className="flex flex-col gap-3 md:gap-2">
+    <article className="flex flex-col gap-y-2 text-white">
       {Object.entries(rest).map(([key, value]) => {
+        // name-description-korean, name-description-russian, name-russian, name-korean
         if (key.includes('name')) {
-          return (
-            <span key={key} className="text-base leading-[150%] text-white">
-              {value}
-            </span>
-          );
+          return <p key={key}>{value}</p>;
         }
 
-        return (
-          <span key={key} className="text-base leading-[150%] text-white">
-            {`${key} : ${value}`}
-          </span>
-        );
+        return <p key={key}>{`${key} : ${value}`}</p>;
       })}
-    </div>
+    </article>
   );
 }
