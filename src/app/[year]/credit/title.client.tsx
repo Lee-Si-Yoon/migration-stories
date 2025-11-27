@@ -26,7 +26,7 @@ export function CreditTitle({ data }: TitleProps) {
         <m.p
           variants={item}
           key={`${title}-${index}`}
-          className="m-0 text-center text-[2.5rem] leading-[200%] font-bold text-white md:text-2xl"
+          className="m-0 text-center text-2xl leading-[200%] font-bold text-white md:text-[2.5rem]"
         >
           {title}
         </m.p>

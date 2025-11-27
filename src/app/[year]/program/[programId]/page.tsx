@@ -45,7 +45,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   return (
     <div
       className={cn(
-        'mx-auto flex flex-col items-center justify-center',
+        'mx-auto flex flex-col items-center',
         'mt-36 gap-y-8 p-4 md:p-0 md:pb-4',
         'max-w-[1024px]'
       )}

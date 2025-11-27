@@ -1,13 +1,13 @@
 import type { Year } from '@/features/routes';
+import { cn } from '@/shared/cn';
 
-import { CreditContent } from './content';
-import { CreditTitle } from './title';
-import { PartnerLogos } from './partner-logos';
+import { CreditTitle } from './title.client';
 import type { CreditContent as CreditContentType, CreditTitles } from './model';
 import content22JSON from './content-22.json';
 import content23JSON from './content-23.json';
 import titles22JSON from './title-22.json';
 import titles23JSON from './title-23.json';
+import Image from 'next/image';
 
 const contentMap = {
   '22': content22JSON as CreditContentType,
@@ -21,16 +21,19 @@ const titlesMap = {
 
 const partnerLogosMap = {
   '22': [
-    { src: '/imgs/partners/2022/partner1.png', height: 35 },
-    { src: '/imgs/partners/2022/partner2.png', height: 30 },
-    { src: '/imgs/partners/2022/partner3.png', height: 60 },
+    { src: '/imgs/partners/2022/partner1.png', height: 35, width: 265 },
+    { src: '/imgs/partners/2022/partner2.png', height: 30, width: 275 },
+    { src: '/imgs/partners/2022/partner3.png', height: 60, width: 200 },
   ],
   '23': [
-    { src: '/imgs/partners/2023/cultural-sharing-space.png', height: 40 },
-    { src: '/imgs/partners/2023/lion-sheep-small-library.webp', height: 55 },
-    { src: '/imgs/partners/2023/gyeonggi-cultural-foundation.webp', height: 80 },
+    { src: '/imgs/partners/2023/cultural-sharing-space.png', height: 40, width: 300 },
+    { src: '/imgs/partners/2023/lion-sheep-small-library.webp', height: 55, width: 350 },
+    { src: '/imgs/partners/2023/gyeonggi-cultural-foundation.webp', height: 80, width: 180 },
   ],
 };
+
+const contentMapper = (data: Record<string, string>) =>
+  Object.entries(data).map(([key, value]) => <p key={key}>{`${key}: ${value}`}</p>);
 
 export default async function CreditPage({ params }: { params: Promise<{ year: string }> }) {
   const { year } = await params;
@@ -40,21 +43,42 @@ export default async function CreditPage({ params }: { params: Promise<{ year: s
   const partnerLogos = partnerLogosMap[yearKey];
 
   return (
-    <main className="mx-auto w-[80rem] md:w-full">
-      <div className="mt-32 md:mt-24">
-        <CreditTitle data={titles} />
+    <div
+      className={cn(
+        'mx-auto flex flex-col items-center',
+        'mt-36 gap-y-12 p-4 md:p-0',
+        'max-w-[1024px]'
+      )}
+    >
+      <CreditTitle data={titles} />
+
+      <div className="leading-relaxed text-white">
+        {contentMapper(info)}
+        <br />
+        <p>{`참여자 : ${participants}`}</p>
+        <br />
+        {contentMapper(creators)}
+        <br />
+        {contentMapper(partners)}
       </div>
-      <div className="mx-auto mt-16 w-[56.25rem] md:mt-8 md:w-[calc(100%-1rem)]">
-        <CreditContent
-          info={info}
-          participants={participants}
-          creators={creators}
-          partners={partners}
-        />
+
+      <div className="grid w-full grid-cols-1 gap-8 pb-8 md:grid-cols-2">
+        {partnerLogos.map((datum, index) => (
+          <div
+            key={`partner-${index}`}
+            className={cn('flex justify-center', index === partnerLogos.length - 1 && 'col-[1/-1]')}
+          >
+            <Image
+              height={datum.height}
+              width={datum.width}
+              alt={`partner-${index}`}
+              src={datum.src}
+              priority
+              draggable={false}
+            />
+          </div>
+        ))}
       </div>
-      <div className="mx-auto mt-16 w-[56.25rem] pb-16 md:mt-8 md:w-full md:pb-8">
-        <PartnerLogos data={partnerLogos} />
-      </div>
-    </main>
+    </div>
   );
 }
