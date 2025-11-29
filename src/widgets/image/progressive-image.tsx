@@ -5,8 +5,10 @@ import { useState } from 'react';
 
 import { cn } from '@/shared/cn';
 
-interface ProgressiveImageProps
-  extends Omit<React.ComponentProps<typeof Image>, 'src' | 'priority'> {
+interface ProgressiveImageProps extends Omit<
+  React.ComponentProps<typeof Image>,
+  'src' | 'priority'
+> {
   placeholdersrc: string;
   src: string;
 }

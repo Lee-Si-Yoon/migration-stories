@@ -46,7 +46,9 @@ export function PDFViewer({ fileUrl, className }: PDFViewerProps) {
   }
 
   return (
-    <div className={cn('flex w-full flex-col items-center gap-4 px-4 py-4 md:px-8 md:py-6', className)}>
+    <div
+      className={cn('flex w-full flex-col items-center gap-4 px-4 py-4 md:px-8 md:py-6', className)}
+    >
       <Document
         file={fileUrl}
         onLoadSuccess={onDocumentLoadSuccess}

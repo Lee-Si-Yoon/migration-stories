@@ -30,6 +30,7 @@ src/
 ```
 
 **Always use `@/` imports:**
+
 ```tsx
 import { Paths } from '@/features/routes';
 import { cn } from '@/shared/cn';
@@ -50,6 +51,7 @@ Year-based exhibitions (2022 & 2023) with identical structure:
 ```
 
 **Route management:**
+
 - Centralized in `src/features/routes/model/index.ts`
 - Type-safe year handling: `Paths('22')` vs `Paths('23')`
 - Program route validates year, returns `notFound()` for 2022
@@ -57,15 +59,18 @@ Year-based exhibitions (2022 & 2023) with identical structure:
 ### Components
 
 **Naming convention:**
+
 - `*.tsx` - Server components (default)
 - `*.client.tsx` - Client components with interactivity
 
 **UI foundation:**
+
 - shadcn/ui components (Radix UI + Tailwind)
 - Button, Dialog from `@/components/ui/*`
 - Custom widgets in `src/widgets/`
 
 **Client widgets:**
+
 ```tsx
 'use client';
 // wander-page.client.tsx, language-redirect.client.tsx, etc.
@@ -85,6 +90,7 @@ const element = document.querySelector('.item') as HTMLDivElement;
 ```
 
 **Type JSON imports:**
+
 ```tsx
 import videoData from './video-22.json';
 type VideoData = typeof videoData;
@@ -104,6 +110,7 @@ import { cn } from '@/shared/cn';
 ```
 
 **Design tokens:**
+
 - Colors: `text-white`, `text-black`, `bg-black/50`
 - Breakpoint: `md:` for desktop (768px+)
 - Mobile-first approach
@@ -111,6 +118,7 @@ import { cn } from '@/shared/cn';
 ## Animation
 
 **Framer Motion with LazyMotion:**
+
 - Root wrapped with `<MotionProvider>` (domAnimation features)
 - Always use `m.*` instead of `motion.*` for bundle optimization
 
@@ -131,6 +139,7 @@ const variants = {
 ```
 
 **Wander objects:**
+
 - Physics-based movement with `requestAnimationFrame`
 - Uses `lerp()` from `@/shared/utils/math` for smooth transitions
 - Click interaction: scale, center, brightness animations
@@ -138,6 +147,7 @@ const variants = {
 ## Key Features
 
 ### Video Playback
+
 1. Click floating object → Modal with story text
 2. Confirm → Navigate to `/video/:name`
 3. Vimeo player via `react-player/vimeo`
@@ -146,36 +156,39 @@ const variants = {
 **Data files:** `video-22.json`, `video-23.json`, `wander-data-22.json`, `wander-data-23.json`
 
 ### Multilingual About
+
 - 8 languages: Korean, English, Nepali, Khmer, Vietnamese, Sinhala, Burmese, Russian
 - Language detection: `src/features/about/model/detect-language.ts`
 - ISO 639-1 codes in `language-codes.ts`
 - Content files: `content-22.json`, `content-23.json`
 
 ### Dialog Pattern
+
 ```tsx
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 <Dialog open={isOpen} onOpenChange={setIsOpen}>
-  <DialogContent>
-    {/* Modal content */}
-  </DialogContent>
-</Dialog>
+  <DialogContent>{/* Modal content */}</DialogContent>
+</Dialog>;
 ```
 
 ## Adding Features
 
 ### New Page
+
 1. Create in `src/app/[year]/[page]/page.tsx`
 2. Add route to `src/features/routes/model/index.ts`
 3. Update `src/app/[year]/header-items.client.tsx`
 
 ### New Widget
+
 1. Create in `src/widgets/[name]/[name].tsx`
 2. Use Tailwind for styling
 3. Build with shadcn/ui components
 4. Define TypeScript interfaces (no `any`)
 
 ### Year-Specific Features
+
 ```tsx
 // Conditional rendering example
 export function HeaderItems({ year }: { year: Year }) {
@@ -193,10 +206,12 @@ export function HeaderItems({ year }: { year: Year }) {
 ## Configuration
 
 **Next.js** (`next.config.ts`):
+
 - React Compiler enabled
 - Image qualities: [75, 90]
 
 **Build optimizations:**
+
 - Turbopack for dev HMR
 - Strict TypeScript mode
 - Husky pre-commit: Prettier on staged files
