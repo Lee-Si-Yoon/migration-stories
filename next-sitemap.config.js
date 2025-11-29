@@ -13,6 +13,7 @@ module.exports = {
     '/23/about',
     '/22/program', // Exclude base program page (only include specific programs)
     '/23/program',
+    '/pdf',
   ],
   robotsTxtOptions: {
     policies: [
@@ -58,6 +59,11 @@ module.exports = {
     }
     // Program pages (2023 only)
     else if (path.includes('/program/')) {
+      priority = 0.7;
+      changefreq = 'monthly';
+    }
+    // PDF pages
+    else if (path.includes('/pdf/')) {
       priority = 0.7;
       changefreq = 'monthly';
     }
