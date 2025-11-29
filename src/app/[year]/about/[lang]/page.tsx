@@ -5,13 +5,15 @@ import type { Content, Content2023, Languages } from '@/features/about/model';
 import { getLanguageCode, getLanguageName } from '@/features/about/model';
 import type { Year } from '@/features/routes';
 
-import { LanguageButtons } from './language-buttons';
 import { AnimatedAboutContent } from './animated-about-content';
-import { AnimatedAboutContent2023 } from './animated-about-content-2023';
 import content22Raw from './content-22.json';
 import content23Raw from './content-23.json';
 import languages22Raw from './languages-22.json';
 import languages23Raw from './languages-23.json';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { cn } from '@/shared/cn';
+import { AnimatedAboutContent2023 } from './animated-about-content-2023';
 
 const contentMap = {
   '22': content22Raw as Content,
@@ -29,17 +31,12 @@ const posterMap = {
 };
 
 export async function generateStaticParams() {
-  const params22 = languagesMap['22'].languages.map((langName) => ({
-    year: '22',
-    lang: getLanguageCode(langName),
-  }));
-
-  const params23 = languagesMap['23'].languages.map((langName) => ({
-    year: '23',
-    lang: getLanguageCode(langName),
-  }));
-
-  return [...params22, ...params23];
+  return Object.entries(languagesMap).flatMap(([year, { languages }]) =>
+    languages.map((langName) => ({
+      year,
+      lang: getLanguageCode(langName),
+    }))
+  );
 }
 
 export async function generateMetadata({
@@ -49,12 +46,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { year, lang } = await params;
   const yearKey = year as Year;
-  const texts = contentMap[yearKey];
   const langName = getLanguageName(lang);
-  const title = texts[langName]?.title || texts['한국어'].title;
+  const texts = contentMap[yearKey];
+  const language = texts[langName] ? langName : '한국어';
 
   return {
-    title: `${title} - Migration Stories 20${year}`,
+    title: `${texts[language].title} - Migration Stories 20${year}`,
   };
 }
 
@@ -66,35 +63,41 @@ export default async function AboutLangPage({
   const { year, lang } = await params;
   const yearKey = year as Year;
   const texts = contentMap[yearKey];
-  const languages = languagesMap[yearKey];
-  const posterSrc = posterMap[yearKey];
   const langName = getLanguageName(lang);
   const language = texts[langName] ? langName : '한국어';
 
   return (
-    <main className="mx-auto w-full max-w-[80rem]">
-      {/* Poster Container */}
-      <div className="mt-32 flex justify-center md:mt-24">
-        <div className="w-full max-w-[37.5rem] md:w-full">
-          <Image
-            alt="poster"
-            src={posterSrc}
-            width={600}
-            height={800}
-            className="h-auto w-full object-scale-down"
-            draggable={false}
-            loading="lazy"
-            priority={false}
-          />
-        </div>
+    <>
+      <Image
+        alt="poster"
+        src={posterMap[yearKey]}
+        width={600}
+        height={800}
+        draggable={false}
+        className="object-contain"
+      />
+      <div className="grid w-full grid-cols-4 gap-4 md:grid-cols-3">
+        {languagesMap[yearKey].languages.map((langName: string) => {
+          const langCode = getLanguageCode(langName);
+
+          return (
+            <Button
+              key={langName}
+              variant="outline"
+              className={cn(
+                'rounded-full bg-transparent',
+                langName === language && 'bg-white text-black',
+                'active:scale-95'
+              )}
+              size="lg"
+              asChild
+            >
+              <Link href={`/${year}/about/${langCode}`}>{langName}</Link>
+            </Button>
+          );
+        })}
       </div>
 
-      {/* Language Buttons Container */}
-      <div className="mx-auto mt-16 w-full max-w-[56.25rem] px-4 md:mt-8 md:px-4">
-        <LanguageButtons data={languages} currentLanguage={language} baseUrl={`/${year}/about`} />
-      </div>
-
-      {/* About Content Container - Client Component with Animations */}
       {yearKey === '22' ? (
         <AnimatedAboutContent
           title={(texts as Content)[language].title}
@@ -109,6 +112,6 @@ export default async function AboutLangPage({
           text2={(texts as Content2023)[language].text2}
         />
       )}
-    </main>
+    </>
   );
 }

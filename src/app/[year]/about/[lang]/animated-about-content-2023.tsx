@@ -18,7 +18,7 @@ export function AnimatedAboutContent2023({
   text2,
 }: AnimatedAboutContent2023Props) {
   return (
-    <div className="mx-auto mt-8 w-full max-w-[56.25rem] pb-8 md:w-[calc(100%-1rem)]">
+    <div className="text-white">
       {/* Title */}
       <AnimatePresence mode="wait">
         <m.h2
@@ -26,7 +26,7 @@ export function AnimatedAboutContent2023({
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.25 }}
-          className="w-full text-center text-2xl leading-[150%] font-bold text-white"
+          className="text-center text-2xl font-bold"
         >
           {title}
         </m.h2>
@@ -39,7 +39,7 @@ export function AnimatedAboutContent2023({
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.25 }}
-          className="w-full text-center text-xl leading-[150%] font-semibold text-white"
+          className="text-center text-xl font-semibold"
         >
           {subtitle1}
         </m.h3>
@@ -47,17 +47,14 @@ export function AnimatedAboutContent2023({
 
       {/* Text 1 */}
       <AnimatePresence mode="wait">
-        <m.div
+        <m.p
           key={`text1-${text1.slice(0, 5)}`}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.25 }}
-          className="mx-auto mt-2 w-full"
         >
-          <p className="text-base leading-[180%] font-normal break-words whitespace-pre-line text-white">
-            {text1}
-          </p>
-        </m.div>
+          {text1}
+        </m.p>
       </AnimatePresence>
 
       {/* Divider and Subtitle 2 */}
@@ -67,14 +64,14 @@ export function AnimatedAboutContent2023({
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.25 }}
-          className="my-10 h-px border-0 bg-white"
+          className="bg-white"
         />
         <m.h3
           key={`subtitle2-${subtitle2.slice(0, 5)}`}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.25 }}
-          className="w-full text-center text-xl leading-[150%] font-semibold text-white"
+          className="text-center text-xl font-semibold"
         >
           {subtitle2}
         </m.h3>
@@ -82,17 +79,14 @@ export function AnimatedAboutContent2023({
 
       {/* Text 2 */}
       <AnimatePresence mode="wait">
-        <m.div
+        <m.p
           key={`text2-${text2.slice(0, 5)}`}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.25 }}
-          className="mx-auto mt-2 w-full"
         >
-          <p className="text-base leading-[180%] font-normal break-words whitespace-pre-line text-white">
-            {text2}
-          </p>
-        </m.div>
+          {text2}
+        </m.p>
       </AnimatePresence>
     </div>
   );

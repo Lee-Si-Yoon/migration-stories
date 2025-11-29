@@ -370,4 +370,5 @@ webpack: {
 - **Package Manager:** pnpm 10.23.0
 - Do not use "any" type for safe typechecking
 - Use type assertions when possible for clean codes
-- When dealing with packages, use context7.
+
+Automatically use context7 for code generation and library documentation.
