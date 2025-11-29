@@ -31,7 +31,7 @@ export function ModeSelector() {
       <Button
         onClick={() => setViewMode('book')}
         variant="outline-transparent"
-        className={cn(viewMode === 'book' && selectedButtonClass)}
+        className={cn(viewMode === 'book' && selectedButtonClass, 'hidden md:block')}
       >
         <BookOpen className="size-4" />
       </Button>

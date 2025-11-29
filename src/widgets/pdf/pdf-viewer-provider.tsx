@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState, createContext } from 'react';
+import { useContext, useState, createContext, useEffect } from 'react';
 import { ViewMode } from './model';
 
 const PDFViewerContext = createContext<{

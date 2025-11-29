@@ -50,7 +50,7 @@ export function VideoCarousel({ idsArray }: { idsArray: string[] }) {
                     variant="inline"
                     autoPlay={false}
                   />
-                  <div className="flex flex-col gap-y-2">
+                  <div className="flex flex-col gap-y-2 px-4 xl:px-0">
                     <h2 className="text-2xl font-semibold">{videoData.title}</h2>
                     <p className="text-lg text-gray-400">{videoData.caption}</p>
                   </div>

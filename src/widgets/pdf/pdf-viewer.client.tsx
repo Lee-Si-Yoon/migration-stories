@@ -11,6 +11,7 @@ import { BookModeViewer } from './book-mode-viewer.client';
 import { ScrollModeViewer } from './scroll-mode-viewer.client';
 import { ClickModeViewer } from './click-mode-viewer.client';
 import { usePDFViewer } from './pdf-viewer-provider';
+import { usePageWidth } from './use-page-width';
 
 // Configure PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -24,13 +25,14 @@ export function PDFViewer({ fileUrl, className }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const { viewMode, scale } = usePDFViewer();
+  const { isMobile } = usePageWidth();
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
 
   function goToPrevPage(): void {
-    if (viewMode === 'book') {
+    if (viewMode === 'book' && !isMobile) {
       setPageNumber((prev) => Math.max(prev - 2, 1));
     } else {
       setPageNumber((prev) => Math.max(prev - 1, 1));
@@ -38,7 +40,7 @@ export function PDFViewer({ fileUrl, className }: PDFViewerProps) {
   }
 
   function goToNextPage(): void {
-    if (viewMode === 'book') {
+    if (viewMode === 'book' && !isMobile) {
       setPageNumber((prev) => Math.min(prev + 2, numPages));
     } else {
       setPageNumber((prev) => Math.min(prev + 1, numPages));
