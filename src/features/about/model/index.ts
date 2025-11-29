@@ -6,5 +6,4 @@ export {
   getLanguageName,
 } from './language-codes';
 export type { LanguageCode, LanguageName } from './language-codes';
-// Note: detectPreferredLanguage is not exported here because it uses server-only APIs (headers())
-// Import it directly from './detect-language' in server components only
+export { detectPreferredLanguageClient } from './detect-language';
