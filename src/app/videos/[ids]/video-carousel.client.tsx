@@ -5,10 +5,10 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import { VimeoPlayer } from '@/widgets/video-player';
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel';
-
-import data from './data.json';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/shared/cn';
+
+import data from './data.json';
 
 type VideoData = typeof data;
 
@@ -48,7 +48,7 @@ export function VideoCarousel({ idsArray }: { idsArray: string[] }) {
                   <VimeoPlayer
                     url={`https://player.vimeo.com/video/${id}`}
                     variant="inline"
-                    autoPlay={index === 0}
+                    autoPlay={false}
                   />
                   <div className="flex flex-col gap-y-2">
                     <h2 className="text-2xl font-semibold">{videoData.title}</h2>
