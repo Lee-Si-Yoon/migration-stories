@@ -40,17 +40,17 @@ const blurImages = [
     id: 3233,
     src: 'https://placehold.co/500x680',
     placeholderSrc: 'https://placehold.co/250x340',
-    alt: 'one video',
-    href: '/',
-    text: 'one video',
+    alt: 'Seed Workshop',
+    href: '/video/1089614890',
+    text: 'Seed Workshop',
   },
   {
-    id: 3234,
+    id: 3236,
     src: 'https://placehold.co/500x680',
     placeholderSrc: 'https://placehold.co/250x340',
-    alt: 'one video with credits',
-    href: '/',
-    text: 'one video with credits',
+    alt: 'to 2025',
+    href: '/video/1136731489',
+    text: 'to 2025',
   },
   {
     id: 3235,
@@ -59,6 +59,14 @@ const blurImages = [
     alt: 'two videos',
     href: '/',
     text: 'two videos',
+  },
+  {
+    id: 3234,
+    src: 'https://placehold.co/500x680',
+    placeholderSrc: 'https://placehold.co/250x340',
+    alt: 'one video with credits',
+    href: '/',
+    text: 'one video with credits',
   },
 ];
 
@@ -78,9 +86,10 @@ export default function Page() {
                 draggable={false}
                 unoptimized={
                   text === 'pdf' ||
-                  text === 'one video' ||
                   text === 'one video with credits' ||
-                  text === 'two videos'
+                  text === 'two videos' ||
+                  text === 'to 2025' ||
+                  text === 'Seed Workshop'
                 }
               />
             </div>
