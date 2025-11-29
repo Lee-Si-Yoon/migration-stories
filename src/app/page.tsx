@@ -60,14 +60,6 @@ const blurImages = [
     href: '/videos/1089577016,1089591185',
     text: 'Balan',
   },
-  {
-    id: 3234,
-    src: 'https://placehold.co/500x680',
-    placeholderSrc: 'https://placehold.co/250x340',
-    alt: 'one video with credits',
-    href: '/',
-    text: 'one video with credits',
-  },
 ];
 
 export default function Page() {
@@ -86,7 +78,6 @@ export default function Page() {
                 draggable={false}
                 unoptimized={
                   text === 'pdf' ||
-                  text === 'one video with credits' ||
                   text === 'Balan' ||
                   text === 'to 2025' ||
                   text === 'Seed Workshop'

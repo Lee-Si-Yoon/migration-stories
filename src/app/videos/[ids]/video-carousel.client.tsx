@@ -36,10 +36,10 @@ export function VideoCarousel({ idsArray }: { idsArray: string[] }) {
   }, [api]);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-y-8 p-4">
+    <div className="flex w-full flex-col justify-center gap-y-8">
       <Carousel setApi={setApi} className="w-full max-w-7xl">
         <CarouselContent>
-          {idsArray.map((id, index) => {
+          {idsArray.map((id) => {
             const videoData = data[id as keyof VideoData];
 
             return (

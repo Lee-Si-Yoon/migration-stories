@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { VideoCarousel } from './video-carousel.client';
+import { Metadata } from 'next';
 
 const videosIds = ['1089577016,1089591185'];
 
@@ -7,6 +8,15 @@ export async function generateStaticParams() {
   return videosIds.map((id) => ({ ids: id }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ ids: string }>;
+}): Promise<Metadata> {
+  return {
+    title: `Migration Stories`,
+  };
+}
 export default async function VideosPage({ params }: { params: Promise<{ ids: string }> }) {
   const { ids } = await params;
   const decodedIds = decodeURIComponent(ids);
@@ -17,9 +27,5 @@ export default async function VideosPage({ params }: { params: Promise<{ ids: st
 
   const idsArray = decodedIds.split(',');
 
-  return (
-    <div className="flex justify-center p-4">
-      <VideoCarousel idsArray={idsArray} />
-    </div>
-  );
+  return <VideoCarousel idsArray={idsArray} />;
 }
