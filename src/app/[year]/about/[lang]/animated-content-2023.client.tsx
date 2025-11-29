@@ -2,6 +2,8 @@
 
 import { AnimatePresence, m } from 'framer-motion';
 
+import { cn } from '@/shared/cn';
+
 interface AnimatedAboutContent2023Props {
   title: string;
   subtitle1: string;
@@ -10,7 +12,10 @@ interface AnimatedAboutContent2023Props {
   text2: string;
 }
 
-export function AnimatedAboutContent2023({
+const initial = { opacity: 0, y: 40 };
+const animate = { opacity: 1, y: 0 };
+
+export function AnimatedContent2023({
   title,
   subtitle1,
   text1,
@@ -18,13 +23,19 @@ export function AnimatedAboutContent2023({
   text2,
 }: AnimatedAboutContent2023Props) {
   return (
-    <div className="text-white">
+    <div
+      className={cn(
+        'flex flex-col items-center gap-y-6',
+        'leading-relaxed whitespace-pre-line text-white',
+        'pb-4'
+      )}
+    >
       {/* Title */}
       <AnimatePresence mode="wait">
         <m.h2
           key={`title-${title}`}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={initial}
+          animate={animate}
           transition={{ delay: 0.25, duration: 0.25 }}
           className="text-center text-2xl font-bold"
         >
@@ -36,8 +47,8 @@ export function AnimatedAboutContent2023({
       <AnimatePresence mode="wait">
         <m.h3
           key={`subtitle1-${subtitle1.slice(0, 5)}`}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={initial}
+          animate={animate}
           transition={{ delay: 0.25, duration: 0.25 }}
           className="text-center text-xl font-semibold"
         >
@@ -49,8 +60,8 @@ export function AnimatedAboutContent2023({
       <AnimatePresence mode="wait">
         <m.p
           key={`text1-${text1.slice(0, 5)}`}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={initial}
+          animate={animate}
           transition={{ delay: 0.5, duration: 0.25 }}
         >
           {text1}
@@ -61,15 +72,15 @@ export function AnimatedAboutContent2023({
       <AnimatePresence mode="wait">
         <m.hr
           key={`divider-${subtitle2.slice(0, 5)}`}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={initial}
+          animate={animate}
           transition={{ delay: 0.25, duration: 0.25 }}
-          className="bg-white"
+          className="my-4 w-full bg-white"
         />
         <m.h3
           key={`subtitle2-${subtitle2.slice(0, 5)}`}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={initial}
+          animate={animate}
           transition={{ delay: 0.25, duration: 0.25 }}
           className="text-center text-xl font-semibold"
         >
@@ -81,8 +92,8 @@ export function AnimatedAboutContent2023({
       <AnimatePresence mode="wait">
         <m.p
           key={`text2-${text2.slice(0, 5)}`}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={initial}
+          animate={animate}
           transition={{ delay: 0.5, duration: 0.25 }}
         >
           {text2}
@@ -92,4 +103,4 @@ export function AnimatedAboutContent2023({
   );
 }
 
-AnimatedAboutContent2023.displayName = 'AnimatedAboutContent2023';
+AnimatedContent2023.displayName = 'AnimatedContent2023';

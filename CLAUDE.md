@@ -79,37 +79,18 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 <Button className="rounded-full border border-white">Click me</Button>;
 ```
 
-**2. Custom Widget Wrappers:**
+**2. Custom Widgets:**
 
-Project-specific widgets wrap shadcn components with custom styling:
+Project-specific widgets built with shadcn/ui components:
 
-```tsx
-// src/widgets/buttons/button.tsx
-import { Button as ShadcnButton } from '@/components/ui/button';
+- `Modal` - Dialog wrapper with variants (wander, primary)
+- `ProgressiveImage` - Image component with blur-up loading
+- `VideoPlayer` - Vimeo player integration
+- `ErrorBoundary` - Error handling UI
 
-function Button({ onPress, onClick, ...props }) {
-  return (
-    <ShadcnButton
-      onClick={(e) => {
-        onClick?.(e);
-        onPress?.(); // Backwards compatibility
-      }}
-      className="rounded-full border border-white hover:bg-white"
-      {...props}
-    />
-  );
-}
-```
+All widgets use shadcn/ui components as building blocks.
 
-**3. Variant-Based Components (CVA):**
-
-```tsx
-const buttonVariants = cva('base', {
-  variants: { variant: { default: 'classes' } },
-});
-```
-
-**4. Client Components:**
+**3. Client Components:**
 
 ```tsx
 'use client'; // Explicit marker for interactivity
@@ -252,24 +233,48 @@ function lerp(start: number, end: number, factor: number): number;
 **Data files:**
 
 - `video-22.json`, `video-23.json` - Video metadata
-- `wander-data-22.ts`, `wander-data-23.ts` - Story content with types
+- `wander-data-22.json`, `wander-data-23.json` - Story content with types
 
 ### Modal/Overlay Pattern
 
-Use custom modal state hook that provides imperative API:
+Modals use a state object with open/close methods:
 
 ```tsx
-import { useModalState } from '@/shared/hooks/use-modal-state';
+import Modal from '@/widgets/modal/modal';
+import { useState } from 'react';
 
-const state = useModalState();
-state.open(); // Open modal
-state.close(); // Close modal
-state.isOpen; // Check open state
+const [isOpen, setIsOpen] = useState(false);
+const state = {
+  isOpen,
+  open: () => setIsOpen(true),
+  close: () => setIsOpen(false),
+};
 
-// Use with Modal component
 <Modal state={state} variant="wander">
   {/* Modal content */}
 </Modal>;
+```
+
+### Scroll Restoration
+
+Use the scroll restoration hook for preserving scroll position:
+
+```tsx
+import { useScrollRestoration } from '@/shared/hooks';
+
+// In component that needs scroll restoration (e.g., language switching)
+const saveScrollTarget = useScrollRestoration(currentLanguage);
+
+// Save element ID before navigation
+<button
+  id="lang-button-ko"
+  onClick={() => {
+    saveScrollTarget('lang-button-ko');
+    // Navigate to new page
+  }}
+>
+  한국어
+</button>
 ```
 
 ## Adding New Features
@@ -278,39 +283,35 @@ state.isOpen; // Check open state
 
 1. Create page file: `/src/app/[year]/[page]/page.tsx`
 2. Add route to `/src/features/routes/model/index.ts`
-3. Update header navigation in `/src/widgets/layout/header/`
+3. Update header navigation in `/src/app/[year]/header-items.client.tsx`
 
 ### Adding a New Widget
 
-1. Create directory: `/src/widgets/[widget-name]/`
-2. Files: `widget-name.tsx`
-3. Export from `index.tsx` barrel file
-4. Use Tailwind classes for styling
-5. Use shadcn/ui components as building blocks for interactive elements
-6. Define proper TypeScript interfaces (no `any` types)
+1. Create file: `/src/widgets/[widget-name]/[widget-name].tsx`
+2. Use Tailwind classes for styling
+3. Use shadcn/ui components as building blocks for interactive elements
+4. Define proper TypeScript interfaces (no `any` types)
+5. Export directly (no barrel files needed)
 
 ### Year-Specific Features
 
 Pattern for features only in certain years:
 
 ```tsx
-// Header composition
-export function Header22() {
-  return (
-    <HeaderContent22>
-      <AboutLink year={22} />
-      <CreditLink year={22} />
-    </HeaderContent22>
-  );
-}
+// Header navigation - see src/app/[year]/header-items.client.tsx
+export function HeaderItems({ year }: { year: Year }) {
+  const paths = Paths(year);
+  const pathname = usePathname();
 
-export function Header23() {
+  // Conditional rendering for year-specific features
+  const showProgram = year === '23'; // Program only in 2023
+
   return (
-    <HeaderContent23>
-      <ProgramLink /> {/* 2023 only */}
-      <AboutLink year={23} />
-      <CreditLink year={23} />
-    </HeaderContent23>
+    <>
+      {showProgram && <Link href={paths.program}>program</Link>}
+      <Link href={paths.about}>about</Link>
+      <Link href={paths.credit}>credit</Link>
+    </>
   );
 }
 ```

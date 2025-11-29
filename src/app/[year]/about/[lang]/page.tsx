@@ -1,19 +1,19 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import type { Content, Content2023, Languages } from '@/features/about/model';
 import { getLanguageCode, getLanguageName } from '@/features/about/model';
 import type { Year } from '@/features/routes';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/shared/cn';
 
-import { AnimatedAboutContent } from './animated-about-content';
+import { AnimatedContent2022 } from './animated-content-2022.client';
+import { AnimatedContent2023 } from './animated-content-2023.client';
 import content22Raw from './content-22.json';
 import content23Raw from './content-23.json';
 import languages22Raw from './languages-22.json';
 import languages23Raw from './languages-23.json';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { cn } from '@/shared/cn';
-import { AnimatedAboutContent2023 } from './animated-about-content-2023';
 
 const contentMap = {
   '22': content22Raw as Content,
@@ -76,7 +76,7 @@ export default async function AboutLangPage({
         draggable={false}
         className="object-contain"
       />
-      <div className="grid w-full grid-cols-4 gap-4 md:grid-cols-3">
+      <div className="grid w-full grid-cols-3 gap-4 md:grid-cols-4">
         {languagesMap[yearKey].languages.map((langName: string) => {
           const langCode = getLanguageCode(langName);
 
@@ -92,19 +92,21 @@ export default async function AboutLangPage({
               size="lg"
               asChild
             >
-              <Link href={`/${year}/about/${langCode}`}>{langName}</Link>
+              <Link href={`/${year}/about/${langCode}`} scroll={false}>
+                {langName}
+              </Link>
             </Button>
           );
         })}
       </div>
 
       {yearKey === '22' ? (
-        <AnimatedAboutContent
+        <AnimatedContent2022
           title={(texts as Content)[language].title}
           text={(texts as Content)[language].text}
         />
       ) : (
-        <AnimatedAboutContent2023
+        <AnimatedContent2023
           title={(texts as Content2023)[language].title}
           subtitle1={(texts as Content2023)[language].subtitle1}
           text1={(texts as Content2023)[language].text1}
