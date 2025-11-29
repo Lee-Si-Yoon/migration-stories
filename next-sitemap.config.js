@@ -14,6 +14,8 @@ module.exports = {
     '/22/program', // Exclude base program page (only include specific programs)
     '/23/program',
     '/pdf',
+    '/video',
+    '/videos',
   ],
   robotsTxtOptions: {
     policies: [
@@ -64,6 +66,16 @@ module.exports = {
     }
     // PDF pages
     else if (path.includes('/pdf/')) {
+      priority = 0.7;
+      changefreq = 'monthly';
+    }
+    // Video pages
+    else if (path.includes('/video/')) {
+      priority = 0.7;
+      changefreq = 'monthly';
+    }
+    // Videos pages
+    else if (path.includes('/videos/')) {
       priority = 0.7;
       changefreq = 'monthly';
     }
