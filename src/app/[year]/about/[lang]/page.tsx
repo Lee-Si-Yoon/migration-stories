@@ -83,12 +83,9 @@ export default async function AboutLangPage({
           return (
             <Button
               key={langName}
-              variant="outline"
-              className={cn(
-                'rounded-full bg-transparent',
-                langName === language && 'bg-white text-black',
-                'active:scale-95'
-              )}
+              variant="outline-transparent"
+              rounded="full"
+              className={cn(langName === language && 'bg-white text-black hover:bg-white')}
               size="lg"
               asChild
             >

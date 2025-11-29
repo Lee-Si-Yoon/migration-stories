@@ -6,7 +6,6 @@ import { X } from 'lucide-react';
 import { VimeoPlayer } from '@/widgets/video-player';
 import { Button } from '@/components/ui/button';
 import { Paths } from '@/features/routes';
-import { cn } from '@/shared/cn';
 
 import { AnimatedImage, AnimatedText } from './program-content-animated.client';
 import type { Program as ProgramJSON } from './model';
@@ -43,14 +42,8 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div
-      className={cn(
-        'mx-auto flex flex-col items-center',
-        'mt-36 gap-y-8 p-4 md:p-0 md:pb-4',
-        'max-w-[1024px]'
-      )}
-    >
-      <Button asChild variant="outline" className="size-11 rounded-full bg-transparent">
+    <>
+      <Button asChild variant="outline-transparent" rounded="full" size="icon-lg">
         <Link href={Paths('23').program}>
           <X className="size-6" />
         </Link>
@@ -80,7 +73,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           volume={1}
         />
       )}
-    </div>
+    </>
   );
 }
 

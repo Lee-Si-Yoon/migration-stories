@@ -48,12 +48,9 @@ export default function Page() {
             </div>
             <Button
               asChild
-              variant="outline"
-              className={cn(
-                'rounded-full bg-transparent px-4',
-                'active:scale-95',
-                'text-lg font-normal'
-              )}
+              variant="outline-transparent"
+              rounded="full"
+              className="px-4 text-lg"
               size="lg"
             >
               <Link href={href}>{text}</Link>

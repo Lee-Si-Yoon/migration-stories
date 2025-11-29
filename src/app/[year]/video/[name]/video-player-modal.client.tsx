@@ -37,8 +37,9 @@ export function VideoPlayerModal({ videoSrc, year }: VideoPlayerModalProps) {
 
         <Button
           onClick={() => setConfirmed(true)}
-          className="mt-4 flex h-fit flex-col gap-0 rounded-full bg-transparent py-2"
-          variant="outline"
+          variant="outline-transparent"
+          rounded="full"
+          className="mt-4 flex h-fit flex-col gap-0 py-2"
           size="lg"
         >
           <p>네</p>

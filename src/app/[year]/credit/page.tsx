@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import type { Year } from '@/features/routes';
 import { cn } from '@/shared/cn';
 
@@ -7,7 +9,6 @@ import content22JSON from './content-22.json';
 import content23JSON from './content-23.json';
 import titles22JSON from './title-22.json';
 import titles23JSON from './title-23.json';
-import Image from 'next/image';
 
 const contentMap = {
   '22': content22JSON as CreditContentType,
@@ -43,13 +44,7 @@ export default async function CreditPage({ params }: { params: Promise<{ year: s
   const partnerLogos = partnerLogosMap[yearKey];
 
   return (
-    <div
-      className={cn(
-        'mx-auto flex flex-col items-center',
-        'mt-36 gap-y-14 p-4 md:p-0',
-        'max-w-[1024px]'
-      )}
-    >
+    <>
       <CreditTitle data={titles} />
 
       <div className="leading-relaxed text-white">
@@ -80,6 +75,6 @@ export default async function CreditPage({ params }: { params: Promise<{ year: s
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
