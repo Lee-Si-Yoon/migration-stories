@@ -80,7 +80,7 @@ function WanderOBJ({ text, year, translation, children, onSubmit }: WanderOBJPro
     let targetPosition = {
       x: 0,
       // 0 is center of screen, 48 is header's height
-      y: 0 - height * 0.5 - 48,
+      y: 0 - height * 0.4,
     };
     const f = () => {
       setPosition((pos) => ({
@@ -108,7 +108,7 @@ function WanderOBJ({ text, year, translation, children, onSubmit }: WanderOBJPro
                 setOpen(false);
               }
             }}
-            className={cn('fixed', open ? 'z-[101] scale-110 brightness-150' : '')}
+            className={cn('fixed', open ? 'z-101 scale-110 border-none brightness-150' : '')}
             transition={{ duration: durationState }}
             animate={{
               x: position.x,
@@ -134,8 +134,8 @@ function WanderOBJ({ text, year, translation, children, onSubmit }: WanderOBJPro
             className={cn(
               'z-50',
               'fixed top-[50%] left-[50%] translate-x-[-50%]',
-              'flex flex-col items-center gap-4',
-              'max-w-xl',
+              'flex flex-col items-center gap-2 md:gap-4',
+              'w-full max-w-xl px-4 md:px-0',
               'duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95'
             )}
             onEscapeKeyDown={(e) => {
@@ -149,28 +149,28 @@ function WanderOBJ({ text, year, translation, children, onSubmit }: WanderOBJPro
             }}
           >
             <DialogHeader>
-              <DialogTitle className="text-center text-2xl font-bold text-white">
+              <DialogTitle className="text-center text-base font-bold text-white md:text-2xl">
                 {text}
               </DialogTitle>
-              <DialogDescription className="text-center text-xl font-medium text-gray-400">
+              <DialogDescription className="text-center text-sm font-medium text-gray-400 md:text-xl">
                 {translation}
               </DialogDescription>
             </DialogHeader>
 
-            <DialogFooter className="mt-6 flex !flex-col items-center gap-6">
+            <DialogFooter className="mt-6 flex flex-col! items-center gap-6">
               <button
                 onClick={() => onSubmit()}
                 className={cn(
                   'cursor-pointer',
-                  'w-fit px-8 py-4',
+                  'w-fit px-4 py-4 md:px-8',
                   'rounded-xl bg-gray-400',
-                  'text-xl font-semibold text-black',
+                  'text-base leading-tight font-semibold text-black md:text-xl',
                   'active:scale-95'
                 )}
               >
                 <pre>{`스토리 보기\n`}</pre>
                 {year === '23' && (
-                  <span className="text-base font-medium">смотреть на историю</span>
+                  <span className="text-sm font-medium md:text-base">смотреть на историю</span>
                 )}
               </button>
 
@@ -185,7 +185,7 @@ function WanderOBJ({ text, year, translation, children, onSubmit }: WanderOBJPro
                     'cursor-pointer',
                     'flex items-center justify-center',
                     'size-12 rounded-full',
-                    'border-1 border-white bg-transparent',
+                    'border border-white bg-transparent',
                     'text-white hover:bg-white hover:text-black',
                     'active:scale-95'
                   )}

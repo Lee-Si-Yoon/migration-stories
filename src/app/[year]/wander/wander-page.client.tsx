@@ -4,9 +4,10 @@ import { useRouter } from 'next/navigation';
 
 import Paths from '@/features/routes/model';
 import type { Year } from '@/features/routes';
-import WanderOBJ from '@/app/[year]/wander/wander-obj';
+import { usePageWidth } from '@/widgets/pdf/use-page-width';
 import { ProgressiveImage } from '@/widgets/image/progressive-image';
 
+import WanderOBJ from './wander-obj';
 import storiesData22 from './wander-data-22.json';
 import storiesData23 from './wander-data-23.json';
 
@@ -23,15 +24,16 @@ const storiesMap: Record<Year, Story[]> = {
   '23': storiesData23,
 };
 
-const imageSizeMap = {
-  '22': { width: 600, height: 600 },
-  '23': { width: 400, height: 400 },
-};
-
 export function WanderPageClient({ year }: { year: Year }) {
   const router = useRouter();
   const stories = storiesMap[year];
   const paths = Paths(year);
+  const { isMobile } = usePageWidth();
+
+  const imageSizeMap = {
+    '22': isMobile ? { width: 300, height: 300 } : { width: 600, height: 600 },
+    '23': isMobile ? { width: 200, height: 200 } : { width: 400, height: 400 },
+  };
 
   return stories.map((story) => (
     <WanderOBJ

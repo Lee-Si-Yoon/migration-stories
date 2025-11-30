@@ -4,9 +4,7 @@ import dynamic from 'next/dynamic';
 
 const PDFViewer = dynamic(
   () => import('@/widgets/pdf/pdf-viewer.client').then((mod) => ({ default: mod.PDFViewer })),
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
 
 export function PDFPageClient({ id }: { id: string }) {

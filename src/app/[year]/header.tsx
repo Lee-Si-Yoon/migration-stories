@@ -28,9 +28,9 @@ function Logo({ year }: { year: Year }) {
 
 export function HeaderContent({ year, children }: { year: Year; children: React.ReactNode }) {
   return (
-    <nav className={cn('fixed top-0 right-0 left-0 z-[999]', 'flex justify-between p-8')}>
+    <nav className={cn('fixed top-0 right-0 left-0 z-999', 'flex justify-between p-4 md:p-8')}>
       <Logo year={year} />
-      <ul className="flex list-none items-center gap-10">{children}</ul>
+      <ul className="flex list-none items-center gap-4 md:gap-10">{children}</ul>
     </nav>
   );
 }
