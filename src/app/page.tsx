@@ -30,6 +30,14 @@ const blurImages = [
   },
   {
     id: 0,
+    src: '/imgs/logo/logo25.webp',
+    placeholderSrc: '/imgs/logo/logo25.webp',
+    alt: 'to 2025',
+    href: '/video/1136731489',
+    text: 'to 2025',
+  },
+  {
+    id: 1,
     src: '/imgs/logo/migration-project-research.webp',
     placeholderSrc: '/imgs/logo/migration-project-research.webp',
     alt: 'migration-project-research.webp',
@@ -37,31 +45,63 @@ const blurImages = [
     text: 'Migration Project Research',
   },
   {
-    id: 1,
+    id: 2,
     src: '/imgs/logo/unhomely-map.webp',
     placeholderSrc: '/imgs/logo/unhomely-map.webp',
     alt: 'unhomely-map.webp',
     href: '/pdf/unhomely-map',
-    text: 'Unhomely map',
+    text: 'Unhomely Map',
   },
   {
-    id: 3233,
-    src: 'https://placehold.co/500x680',
-    placeholderSrc: 'https://placehold.co/250x340',
-    alt: 'Seed Workshop',
+    id: 3,
+    src: '/imgs/logo/seed-workshop.webp',
+    placeholderSrc: '/imgs/logo/seed-workshop.webp',
+    alt: 'seed-workshop.webp',
     href: '/video/1089614890',
     text: 'Seed Workshop',
   },
   {
-    id: 3236,
-    src: 'https://placehold.co/500x680',
-    placeholderSrc: 'https://placehold.co/250x340',
-    alt: 'to 2025',
-    href: '/video/1136731489',
-    text: 'to 2025',
+    id: 4,
+    src: '/imgs/logo/ayubowan.webp',
+    placeholderSrc: '/imgs/logo/ayubowan.webp',
+    alt: 'ayubowan.webp',
+    href: '#',
+    text: 'Ayubowan',
   },
   {
-    id: 3235,
+    id: 5,
+    src: '/imgs/logo/home-sound-day.webp',
+    placeholderSrc: '/imgs/logo/home-sound-day.webp',
+    alt: 'home-sound-day.webp',
+    href: '#',
+    text: 'Home Sound Day',
+  },
+  {
+    id: 6,
+    src: '/imgs/logo/the-yatry.webp',
+    placeholderSrc: '/imgs/logo/the-yatry.webp',
+    alt: 'the-yatry.webp',
+    href: '#',
+    text: 'The Yatry',
+  },
+  {
+    id: 7,
+    src: '/imgs/logo/welcome-home.webp',
+    placeholderSrc: '/imgs/logo/welcome-home.webp',
+    alt: 'welcome-home.webp',
+    href: '#',
+    text: 'Welcome Home',
+  },
+  {
+    id: 8,
+    src: '/imgs/logo/local-strange.gif',
+    placeholderSrc: '/imgs/logo/local-strange.gif',
+    alt: 'local-strange.gif',
+    href: '#',
+    text: 'Local Strange',
+  },
+  {
+    id: 999,
     src: 'https://placehold.co/500x680',
     placeholderSrc: 'https://placehold.co/250x340',
     alt: 'Balan',
@@ -81,13 +121,12 @@ export default function Page() {
                 fill
                 src={src}
                 placeholdersrc={placeholderSrc}
-                className="object-contain"
+                className={cn("object-contain", text === 'Local Strange' && 'p-4')}
                 alt={alt}
                 draggable={false}
                 unoptimized={
-                  text === 'Balan' ||
-                  text === 'to 2025' ||
-                  text === 'Seed Workshop'
+                  text === 'Balan'
+                  || text === 'Local Strange'
                 }
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
