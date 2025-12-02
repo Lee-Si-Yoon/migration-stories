@@ -12,6 +12,7 @@ import { ScrollModeViewer } from './scroll-mode-viewer.client';
 import { ClickModeViewer } from './click-mode-viewer.client';
 import { usePDFViewer } from './pdf-viewer-provider';
 import { usePageWidth } from './use-page-width';
+import { useSuppressPDFWarnings } from './suppress-pdf-warnings';
 
 // Configure PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -26,6 +27,7 @@ export function PDFViewer({ fileUrl, className }: PDFViewerProps) {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const { viewMode, scale } = usePDFViewer();
   const { isMobile } = usePageWidth();
+  useSuppressPDFWarnings();
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);

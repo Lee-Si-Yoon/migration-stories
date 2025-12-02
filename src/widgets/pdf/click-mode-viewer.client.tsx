@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Page } from 'react-pdf';
 
@@ -20,6 +21,14 @@ export function ClickModeViewer({
   goToNextPage,
 }: ClickModeViewerProps) {
   const { pageWidth } = usePageWidth();
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   return (
     <div className="flex w-full flex-col items-center gap-4">

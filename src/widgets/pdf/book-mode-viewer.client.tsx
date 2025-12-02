@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Page } from 'react-pdf';
@@ -26,6 +27,14 @@ export function BookModeViewer({
       return Math.floor(availableWidth / 2) - 16;
     },
   });
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   if (isMobile) {
     return (
@@ -41,8 +50,10 @@ export function BookModeViewer({
   return (
     <div className="absolute inset-0 flex items-center justify-center gap-8">
       <div className="flex gap-4">
-        <Page pageNumber={pageNumber} width={pageWidth} />
-        {pageNumber + 1 <= numPages && <Page pageNumber={pageNumber + 1} width={pageWidth} />}
+        <Page pageNumber={pageNumber} width={pageWidth} key={`page-${pageNumber}`} />
+        {pageNumber + 1 <= numPages && (
+          <Page pageNumber={pageNumber + 1} width={pageWidth} key={`page-${pageNumber + 1}`} />
+        )}
       </div>
 
       {numPages > 0 && (
