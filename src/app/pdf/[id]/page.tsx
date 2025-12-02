@@ -7,15 +7,17 @@ interface PDFPageProps {
   params: Promise<{ id: string }>;
 }
 
-const pdfIds = ['sample-local-pdf'];
+const pdfIds = ['unhomely-map', 'migration-project-research'];
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
+  const { id } = await params;
+
   return {
-    title: `Migration Stories`,
+    title: `Migration Stories - ${id}`,
   };
 }
 

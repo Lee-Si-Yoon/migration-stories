@@ -29,12 +29,20 @@ const blurImages = [
     text: 'to 2023',
   },
   {
-    id: 3232,
-    src: 'https://placehold.co/500x680',
-    placeholderSrc: 'https://placehold.co/250x340',
-    alt: 'pdf',
-    href: '/pdf/sample-local-pdf',
-    text: 'pdf',
+    id: 0,
+    src: '/imgs/logo/migration-project-research.webp',
+    placeholderSrc: '/imgs/logo/migration-project-research.webp',
+    alt: 'migration-project-research.webp',
+    href: '/pdf/migration-project-research',
+    text: 'Migration Project Research',
+  },
+  {
+    id: 1,
+    src: '/imgs/logo/unhomely-map.webp',
+    placeholderSrc: '/imgs/logo/unhomely-map.webp',
+    alt: 'unhomely-map.webp',
+    href: '/pdf/unhomely-map',
+    text: 'Unhomely map',
   },
   {
     id: 3233,
@@ -68,7 +76,7 @@ export default function Page() {
       <nav className={cn('grid grid-cols-1 md:grid-cols-2 md:gap-4', 'w-full md:max-w-[1024px]')}>
         {blurImages.map(({ id, src, placeholderSrc, alt, href, text }) => (
           <article className="flex flex-col items-center justify-center" key={id}>
-            <div className="relative h-[480px] w-full md:h-[680px]">
+            <div className="relative h-[480px] aspect-3/4 md:h-[680px]">
               <ProgressiveImage
                 fill
                 src={src}
@@ -77,11 +85,11 @@ export default function Page() {
                 alt={alt}
                 draggable={false}
                 unoptimized={
-                  text === 'pdf' ||
                   text === 'Balan' ||
                   text === 'to 2025' ||
                   text === 'Seed Workshop'
                 }
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <Button
