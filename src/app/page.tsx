@@ -138,7 +138,7 @@ export default function Page() {
               asChild
               variant="outline-transparent"
               rounded="full"
-              className="h-fit px-6 py-2 text-center text-lg whitespace-pre-line leading-tight"
+              className="h-fit px-6 py-2 text-center text-lg leading-tight whitespace-pre-line"
               size="lg"
             >
               <Link href={href}>{text}</Link>
