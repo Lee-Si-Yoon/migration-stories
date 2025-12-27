@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { cn } from '@/shared/cn';
@@ -10,22 +9,6 @@ interface PDFPageProps {
 }
 
 const pdfIds = ['unhomely-map', 'migration-project-research'];
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}): Promise<Metadata> {
-  const { id } = await params;
-
-  return {
-    title: `Migration Stories - ${id}`,
-  };
-}
-
-export async function generateStaticParams() {
-  return pdfIds.map((id) => ({ id }));
-}
 
 export default async function PDFPage({ params }: PDFPageProps) {
   const { id } = await params;
