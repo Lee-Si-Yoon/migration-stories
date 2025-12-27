@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { PDFPageClient } from './pdf-page.client';
+import { cn } from '@/shared/cn';
 
 interface PDFPageProps {
   params: Promise<{ id: string }>;
@@ -32,5 +33,15 @@ export default async function PDFPage({ params }: PDFPageProps) {
     notFound();
   }
 
-  return <PDFPageClient id={id} />;
+  return (
+    <div
+      className={cn(
+        'flex min-h-[calc(100vh-5rem)] w-full flex-col items-center justify-center',
+        'gap-4 px-4 md:px-8'
+        // 'border-2 border-green-500'
+      )}
+    >
+      <PDFPageClient id={id} />
+    </div>
+  );
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { Page } from 'react-pdf';
 import { usePageWidth } from './use-page-width';
 
@@ -9,21 +8,17 @@ interface ScrollModeViewerProps {
 }
 
 export function ScrollModeViewer({ numPages }: ScrollModeViewerProps) {
-  const { pageWidth } = usePageWidth();
-  const isMountedRef = useRef(true);
-
-  useEffect(() => {
-    isMountedRef.current = true;
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
+  const { isMobile, pageWidth } = usePageWidth();
 
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className="flex w-full flex-col items-center gap-4">
       {Array.from(new Array(numPages), (_, index) => (
-        <div key={`page_${index + 1}`} className="shadow-lg">
-          <Page pageNumber={index + 1} width={pageWidth} />
+        <div key={`page_${index + 1}`}>
+          <Page
+            pageNumber={index + 1}
+            width={isMobile ? pageWidth : undefined}
+            height={isMobile ? undefined : window.innerHeight - 76}
+          />
         </div>
       ))}
     </div>

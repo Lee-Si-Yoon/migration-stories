@@ -1,13 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Page } from 'react-pdf';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/shared/cn';
-
-import { usePageWidth } from './use-page-width';
 
 interface ClickModeViewerProps {
   pageNumber: number;
@@ -22,27 +20,19 @@ export function ClickModeViewer({
   goToPrevPage,
   goToNextPage,
 }: ClickModeViewerProps) {
-  const { pageWidth, isMobile } = usePageWidth();
-  const isMountedRef = useRef(true);
-
-  useEffect(() => {
-    isMountedRef.current = true;
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
+  const [height, setHeight] = React.useState(0);
 
   return (
-    <div className="absolute inset-0 flex w-full items-center justify-center gap-4">
-      <Page pageNumber={pageNumber} width={pageWidth} />
+    <div
+      ref={(ref) => {
+        setHeight(ref?.clientHeight || 0);
+      }}
+      className="flex w-full flex-col items-center justify-center"
+    >
+      <Page pageNumber={pageNumber} height={height - 64} />
 
       {numPages > 0 && (
-        <div
-          className={cn(
-            'flex flex-col items-center justify-center gap-4',
-            isMobile && 'absolute right-0 bottom-0 left-0 flex-row pb-4'
-          )}
-        >
+        <div className={cn('flex items-center justify-center gap-4 pt-2')}>
           <Button onClick={goToPrevPage} disabled={pageNumber <= 1} variant="outline-transparent">
             <ChevronUp className="size-4" />
           </Button>

@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { Document, pdfjs } from 'react-pdf';
 
-import { cn } from '@/shared/cn';
-
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { BookModeViewer } from './book-mode-viewer.client';
@@ -50,42 +48,39 @@ export function PDFViewer({ fileUrl, className }: PDFViewerProps) {
   }
 
   return (
-    <div
-      className={cn('flex w-full flex-col items-center gap-4 px-4 py-4 md:px-8 md:py-6', className)}
+    <Document
+      file={fileUrl}
+      onLoadSuccess={onDocumentLoadSuccess}
+      loading={
+        <div className="flex h-[400px] items-center justify-center md:h-[600px]">
+          <p className="text-base md:text-lg">Loading PDF...</p>
+        </div>
+      }
+      error={
+        <div className="flex h-[400px] items-center justify-center md:h-[600px]">
+          <p className="text-base md:text-lg">Error loading PDF</p>
+        </div>
+      }
+      scale={scale}
+      className="flex h-full w-full flex-1"
     >
-      <Document
-        file={fileUrl}
-        onLoadSuccess={onDocumentLoadSuccess}
-        loading={
-          <div className="flex h-[400px] items-center justify-center md:h-[600px]">
-            <p className="text-base md:text-lg">Loading PDF...</p>
-          </div>
-        }
-        error={
-          <div className="flex h-[400px] items-center justify-center md:h-[600px]">
-            <p className="text-base md:text-lg">Error loading PDF</p>
-          </div>
-        }
-        scale={scale}
-      >
-        {viewMode === 'scroll' && <ScrollModeViewer numPages={numPages} />}
-        {viewMode === 'click' && (
-          <ClickModeViewer
-            pageNumber={pageNumber}
-            numPages={numPages}
-            goToPrevPage={goToPrevPage}
-            goToNextPage={goToNextPage}
-          />
-        )}
-        {viewMode === 'book' && (
-          <BookModeViewer
-            pageNumber={pageNumber}
-            numPages={numPages}
-            goToPrevPage={goToPrevPage}
-            goToNextPage={goToNextPage}
-          />
-        )}
-      </Document>
-    </div>
+      {viewMode === 'scroll' && <ScrollModeViewer numPages={numPages} />}
+      {viewMode === 'click' && (
+        <ClickModeViewer
+          pageNumber={pageNumber}
+          numPages={numPages}
+          goToPrevPage={goToPrevPage}
+          goToNextPage={goToNextPage}
+        />
+      )}
+      {viewMode === 'book' && (
+        <BookModeViewer
+          pageNumber={pageNumber}
+          numPages={numPages}
+          goToPrevPage={goToPrevPage}
+          goToNextPage={goToNextPage}
+        />
+      )}
+    </Document>
   );
 }

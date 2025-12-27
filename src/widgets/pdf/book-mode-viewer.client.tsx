@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Page } from 'react-pdf';
@@ -20,21 +20,8 @@ export function BookModeViewer({
   goToPrevPage,
   goToNextPage,
 }: BookModeViewerProps) {
-  const { pageWidth, isMobile } = usePageWidth({
-    mobileWidth: (width: number) => width - 32,
-    desktopWidth: (width: number) => {
-      const availableWidth = Math.min(1400, width - 128);
-      return Math.floor(availableWidth / 2) - 16;
-    },
-  });
-  const isMountedRef = useRef(true);
-
-  useEffect(() => {
-    isMountedRef.current = true;
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
+  const { isMobile } = usePageWidth();
+  const [height, setHeight] = React.useState(0);
 
   if (isMobile) {
     return (
@@ -48,11 +35,16 @@ export function BookModeViewer({
   }
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center gap-8">
-      <div className="flex gap-4">
-        <Page pageNumber={pageNumber} width={pageWidth} key={`page-${pageNumber}`} />
+    <div
+      ref={(ref) => {
+        setHeight(ref?.clientHeight || 0);
+      }}
+      className="flex w-full items-center justify-center gap-8"
+    >
+      <div className="flex gap-0">
+        <Page pageNumber={pageNumber} height={height} key={`page-${pageNumber}`} />
         {pageNumber + 1 <= numPages && (
-          <Page pageNumber={pageNumber + 1} width={pageWidth} key={`page-${pageNumber + 1}`} />
+          <Page pageNumber={pageNumber + 1} height={height} key={`page-${pageNumber + 1}`} />
         )}
       </div>
 

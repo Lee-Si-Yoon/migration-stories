@@ -49,7 +49,7 @@ const blurImages = [
     src: '/imgs/logo/welcome-home.webp',
     placeholderSrc: '/imgs/logo/welcome-home.webp',
     alt: 'welcome-home.webp',
-    href: '#',
+    href: '/videos/1089577016,1089591185',
     text: '웰컴홈\nWelcome Home',
   },
   {
@@ -100,14 +100,6 @@ const blurImages = [
     href: '#',
     text: 'द यात्री',
   },
-  {
-    id: 999,
-    src: 'https://placehold.co/500x680',
-    placeholderSrc: 'https://placehold.co/250x340',
-    alt: 'Balan',
-    href: '/videos/1089577016,1089591185',
-    text: 'Balan',
-  },
 ];
 
 export default function Page() {
@@ -115,8 +107,8 @@ export default function Page() {
     <main className={cn('flex justify-center md:items-center', 'min-h-dvh p-4')}>
       <nav
         className={cn(
-          'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-          'w-full md:max-w-[1000px] lg:max-w-[1500px]',
+          'grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3',
+          'w-full lg:max-w-[1000px] 2xl:max-w-[1500px]',
           'md:gap-y-4'
         )}
       >
