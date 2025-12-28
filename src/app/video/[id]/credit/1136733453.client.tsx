@@ -1,0 +1,59 @@
+'use client';
+
+import React from 'react';
+
+import { getLanguageName, type LanguageCode } from '@/features/about/model';
+import { CreditTitle } from '@/widgets/i18n/credit-title.client';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/shared/cn';
+
+import _data from './data.json';
+
+const data = _data.find((item) => item.id === '1136733453');
+
+export default function Credit1136733453() {
+  const [lang, setLang] = React.useState<LanguageCode>('ko');
+  const [lang2, setLang2] = React.useState<LanguageCode>('ko');
+
+  return (
+    <div className="flex flex-col gap-y-4 pb-4 whitespace-pre-line">
+      <CreditTitle data={data?.titles as string[]} className="text-2xl!" />
+      <div className="grid w-full grid-cols-2 gap-4 pt-4">
+        {data?.langs &&
+          Object.entries(data.langs).map(([key, _]) => (
+            <Button
+              key={key}
+              onClick={() => setLang(key as LanguageCode)}
+              variant="outline-transparent"
+              rounded="full"
+              size="lg"
+              className={cn(lang === key && 'bg-white text-black hover:bg-white')}
+            >
+              {getLanguageName(key)}
+            </Button>
+          ))}
+      </div>
+      {lang && <p>{(data?.langs as unknown as Record<string, string>)[lang]}</p>}
+
+      {/* 2nd title */}
+      <hr className="my-4 w-full bg-white" />
+      <CreditTitle data={data?.titles2 as string[]} className="text-2xl!" />
+      <div className="grid w-full grid-cols-3 gap-4 pt-4">
+        {data?.langs2 &&
+          Object.entries(data.langs2).map(([key, _]) => (
+            <Button
+              key={key}
+              onClick={() => setLang2(key as LanguageCode)}
+              variant="outline-transparent"
+              rounded="full"
+              size="lg"
+              className={cn(lang2 === key && 'bg-white text-black hover:bg-white')}
+            >
+              {getLanguageName(key)}
+            </Button>
+          ))}
+      </div>
+      {lang2 && <p>{(data?.langs2 as unknown as Record<string, string>)[lang2]}</p>}
+    </div>
+  );
+}

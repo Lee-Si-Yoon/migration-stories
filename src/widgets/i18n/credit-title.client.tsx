@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/shared/cn';
 import { m } from 'framer-motion';
 
 const container = {
@@ -17,16 +18,20 @@ const item = {
 
 interface TitleProps {
   data: string[];
+  className?: string;
 }
 
-export function CreditTitle({ data }: TitleProps) {
+export function CreditTitle({ data, className }: TitleProps) {
   return (
     <m.div variants={container} initial="hidden" animate="show" className="flex flex-col">
       {data.map((title, index) => (
         <m.p
           variants={item}
           key={`${title}-${index}`}
-          className="m-0 text-center text-2xl leading-[200%] font-bold text-white md:text-[2.5rem]"
+          className={cn(
+            'm-0 text-center text-2xl leading-[200%] font-bold text-white md:text-[2.5rem]',
+            className
+          )}
         >
           {title}
         </m.p>

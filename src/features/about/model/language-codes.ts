@@ -13,6 +13,7 @@ export const LANGUAGE_CODE_MAP = {
   ru: 'Русский',
   th: 'ไทย',
   zh: '中文',
+  fil: 'Filipino',
 } as const;
 
 export const LANGUAGE_NAME_TO_CODE = {
@@ -26,6 +27,7 @@ export const LANGUAGE_NAME_TO_CODE = {
   Русский: 'ru',
   ไทย: 'th',
   中文: 'zh',
+  Filipino: 'fil',
 } as const;
 
 export type LanguageCode = keyof typeof LANGUAGE_CODE_MAP;

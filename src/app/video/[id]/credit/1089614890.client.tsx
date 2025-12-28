@@ -32,7 +32,7 @@ export default function Credit1089614890() {
             </Button>
           ))}
       </div>
-      {lang && <p>{(data?.langs as Record<string, string>)[lang]}</p>}
+      {lang && <p>{(data?.langs as unknown as Record<string, string>)[lang]}</p>}
       <p>{data?.credit}</p>
       <p>{data?.sponsor}</p>
     </div>
