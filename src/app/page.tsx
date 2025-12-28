@@ -65,7 +65,7 @@ const blurImages = [
     src: '/imgs/logo/ayubowan.webp',
     placeholderSrc: '/imgs/logo/ayubowan.webp',
     alt: 'ayubowan.webp',
-    href: '#',
+    href: '/video/1100973311',
     text: '아유보완!\nආයුබෝවන්!',
   },
   {
@@ -81,7 +81,7 @@ const blurImages = [
     src: '/imgs/logo/local-strange.gif',
     placeholderSrc: '/imgs/logo/local-strange.gif',
     alt: 'local-strange.gif',
-    href: '#',
+    href: '/video/1136733453',
     text: 'Local Strange',
   },
   {

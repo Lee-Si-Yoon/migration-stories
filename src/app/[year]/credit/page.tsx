@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 import type { Year } from '@/features/routes';
 import { cn } from '@/shared/cn';
+import { CreditTitle } from '@/widgets/i18n/credit-title.client';
 
-import { CreditTitle } from './title.client';
 import type { CreditContent as CreditContentType, CreditTitles } from './model';
 import content22JSON from './content-22.json';
 import content23JSON from './content-23.json';

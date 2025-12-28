@@ -11,6 +11,7 @@ export const LANGUAGE_CODE_MAP = {
   si: 'සිංහල',
   my: 'မြန်မာဘာသာ',
   ru: 'Русский',
+  th: 'ไทย',
 } as const;
 
 export const LANGUAGE_NAME_TO_CODE = {
@@ -22,6 +23,7 @@ export const LANGUAGE_NAME_TO_CODE = {
   සිංහල: 'si',
   မြန်မာဘာသာ: 'my',
   Русский: 'ru',
+  ไทย: 'th',
 } as const;
 
 export type LanguageCode = keyof typeof LANGUAGE_CODE_MAP;
