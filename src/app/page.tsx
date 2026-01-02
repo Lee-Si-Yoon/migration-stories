@@ -89,7 +89,7 @@ const blurImages = [
     src: '/imgs/logo/home-sound-day.webp',
     placeholderSrc: '/imgs/logo/home-sound-day.webp',
     alt: 'home-sound-day.webp',
-    href: '#',
+    href: '/videos/1138077407,1137386731,1137387597,1137435078,1137387128,1137401797,1138001618,1137390753,1137435388',
     text: 'गृह ध्वनि दिन\n홈 사운드 데이',
   },
   {
