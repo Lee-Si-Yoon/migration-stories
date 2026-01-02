@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-const videoIds = [1089614890, 1136731489, 1100973311, 1136733453];
+const videoIds = [1089614890, 1136731489, 1100973311, 1136733453, 1150929688];
 
 export async function generateStaticParams() {
   return videoIds.map((id) => ({ id: id.toString() }));

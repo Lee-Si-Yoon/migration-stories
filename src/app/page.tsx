@@ -97,7 +97,7 @@ const blurImages = [
     src: '/imgs/logo/the-yatry.webp',
     placeholderSrc: '/imgs/logo/the-yatry.webp',
     alt: 'the-yatry.webp',
-    href: '#',
+    href: '/video/1150929688',
     text: 'द यात्री',
   },
 ];
