@@ -8,8 +8,3 @@ export interface CreditContent {
 export interface CreditTitles {
   titles: string[];
 }
-
-export interface PartnerLogo {
-  src: string;
-  height?: number;
-}
