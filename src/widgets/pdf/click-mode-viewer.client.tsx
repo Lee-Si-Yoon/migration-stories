@@ -29,10 +29,10 @@ export function ClickModeViewer({
       }}
       className="flex w-full flex-col items-center justify-center"
     >
-      <Page pageNumber={pageNumber} height={height - 64} />
+      <Page pageNumber={pageNumber} height={height - 80} />
 
       {numPages > 0 && (
-        <div className={cn('flex items-center justify-center gap-4 pt-2')}>
+        <div className={cn('flex items-center justify-center gap-4 pt-4')}>
           <Button onClick={goToPrevPage} disabled={pageNumber <= 1} variant="outline-transparent">
             <ChevronUp className="size-4" />
           </Button>

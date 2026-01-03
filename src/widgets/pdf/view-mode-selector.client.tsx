@@ -8,6 +8,7 @@ import { cn } from '@/shared/cn';
 import { usePDFViewer } from './pdf-viewer-provider';
 
 const selectedButtonClass = cn('bg-white text-black');
+const activeButtonClass = cn('active:bg-white active:text-black');
 
 export function ModeSelector() {
   const { viewMode, setViewMode } = usePDFViewer();
@@ -17,21 +18,25 @@ export function ModeSelector() {
       <Button
         onClick={() => setViewMode('scroll')}
         variant="outline-transparent"
-        className={cn(viewMode === 'scroll' && selectedButtonClass)}
+        className={cn(activeButtonClass, viewMode === 'scroll' && selectedButtonClass)}
       >
         <Tablet className="size-4" />
       </Button>
       <Button
         onClick={() => setViewMode('click')}
         variant="outline-transparent"
-        className={cn(viewMode === 'click' && selectedButtonClass)}
+        className={cn(activeButtonClass, viewMode === 'click' && selectedButtonClass)}
       >
         <Mouse className="size-4" />
       </Button>
       <Button
         onClick={() => setViewMode('book')}
         variant="outline-transparent"
-        className={cn(viewMode === 'book' && selectedButtonClass, 'hidden md:block')}
+        className={cn(
+          activeButtonClass,
+          viewMode === 'book' && selectedButtonClass,
+          'hidden md:block'
+        )}
       >
         <BookOpen className="size-4" />
       </Button>

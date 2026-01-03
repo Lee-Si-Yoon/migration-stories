@@ -9,7 +9,7 @@ export default async function CreditPage({ params }: PDFPageProps) {
   const credit = data.find((item) => item.id === id);
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-y-4 whitespace-pre-line">
+    <div className="flex flex-col gap-y-4 pb-4 whitespace-pre-line">
       <h1 className="text-2xl font-bold">{credit?.title}</h1>
       <p>{credit?.credit}</p>
       {credit?.info ? (
