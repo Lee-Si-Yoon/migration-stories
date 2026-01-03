@@ -29,7 +29,7 @@ export function ClickModeViewer({
       }}
       className="flex w-full flex-col items-center justify-center"
     >
-      <Page pageNumber={pageNumber} height={height - 80} />
+      <Page pageNumber={pageNumber} height={height - 120} />
 
       {numPages > 0 && (
         <div className={cn('flex items-center justify-center gap-4 pt-4')}>
