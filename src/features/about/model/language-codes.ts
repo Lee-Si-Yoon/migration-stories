@@ -16,7 +16,7 @@ export const LANGUAGE_CODE_MAP = {
   fil: 'Filipino',
 } as const;
 
-export const LANGUAGE_NAME_TO_CODE = {
+const LANGUAGE_NAME_TO_CODE = {
   한국어: 'ko',
   English: 'en',
   नेपाली: 'ne',
