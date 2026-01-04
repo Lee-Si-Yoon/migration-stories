@@ -1,3 +1,14 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.referencesCodeLens.enabled": true,
+  "files.associations": {
+    "*.svg": "html",
+    "*.css": "tailwindcss",
+    "*.mdx": "markdown"
+  },
+  "tailwindCSS.classAttributes": ["class", "className", ".*(S|s)tyle.*", ".*(C|c)lasses.*"],
+  "tailwindCSS.classFunctions": ["cva", "clsx"],
+  "search.exclude": {
+    "**/*/.next": true
+  }
 }

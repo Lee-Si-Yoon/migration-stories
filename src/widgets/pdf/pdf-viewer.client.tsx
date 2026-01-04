@@ -1,0 +1,86 @@
+'use client';
+
+import { useState } from 'react';
+import { Document, pdfjs } from 'react-pdf';
+
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+import { BookModeViewer } from './book-mode-viewer.client';
+import { ScrollModeViewer } from './scroll-mode-viewer.client';
+import { ClickModeViewer } from './click-mode-viewer.client';
+import { usePDFViewer } from './pdf-viewer-provider';
+import { usePageWidth } from './use-page-width';
+import { useSuppressPDFWarnings } from './suppress-pdf-warnings';
+
+// Configure PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
+interface PDFViewerProps {
+  fileUrl: string;
+  className?: string;
+}
+
+export function PDFViewer({ fileUrl, className }: PDFViewerProps) {
+  const [numPages, setNumPages] = useState<number>(0);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const { viewMode, scale } = usePDFViewer();
+  const { isMobile } = usePageWidth();
+  useSuppressPDFWarnings();
+
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
+    setNumPages(numPages);
+  }
+
+  function goToPrevPage(): void {
+    if (viewMode === 'book' && !isMobile) {
+      setPageNumber((prev) => Math.max(prev - 2, 1));
+    } else {
+      setPageNumber((prev) => Math.max(prev - 1, 1));
+    }
+  }
+
+  function goToNextPage(): void {
+    if (viewMode === 'book' && !isMobile) {
+      setPageNumber((prev) => Math.min(prev + 2, numPages));
+    } else {
+      setPageNumber((prev) => Math.min(prev + 1, numPages));
+    }
+  }
+
+  return (
+    <Document
+      file={fileUrl}
+      onLoadSuccess={onDocumentLoadSuccess}
+      loading={
+        <div className="flex h-[400px] items-center justify-center md:h-[600px]">
+          <p className="text-base md:text-lg">Loading PDF...</p>
+        </div>
+      }
+      error={
+        <div className="flex h-[400px] items-center justify-center md:h-[600px]">
+          <p className="text-base md:text-lg">Error loading PDF</p>
+        </div>
+      }
+      scale={scale}
+      className="flex h-full w-full flex-1"
+    >
+      {viewMode === 'scroll' && <ScrollModeViewer numPages={numPages} />}
+      {viewMode === 'click' && (
+        <ClickModeViewer
+          pageNumber={pageNumber}
+          numPages={numPages}
+          goToPrevPage={goToPrevPage}
+          goToNextPage={goToNextPage}
+        />
+      )}
+      {viewMode === 'book' && (
+        <BookModeViewer
+          pageNumber={pageNumber}
+          numPages={numPages}
+          goToPrevPage={goToPrevPage}
+          goToNextPage={goToNextPage}
+        />
+      )}
+    </Document>
+  );
+}

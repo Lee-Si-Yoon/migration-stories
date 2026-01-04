@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.migrationstoriesproject.net/
+
+# Sitemaps
+Sitemap: https://www.migrationstoriesproject.net/sitemap.xml
