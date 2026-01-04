@@ -10,16 +10,17 @@ import { cn } from '@/shared/cn';
 import _data from './data.json';
 
 const data = _data.find((item) => item.id === '1100973311');
-type LangOverride = Record<string, { title: string; description: string }>;
 
 export default function Credit1100973311() {
   const [lang, setLang] = React.useState<LanguageCode>('ko');
 
   return (
     <div className="flex flex-col gap-y-4 pb-4 whitespace-pre-line">
-      <CreditTitle data={data?.titles as string[]} />
+      <CreditTitle data={data?.titles as string[]} className="text-2xl!" />
       <p>{data?.description}</p>
 
+      <hr className="my-4 w-full bg-white" />
+      <CreditTitle data={data?.titles2 as string[]} className="text-2xl!" />
       <div className="grid w-full grid-cols-2 gap-4 pt-4">
         {data?.langs &&
           Object.entries(data.langs).map(([key, _]) => (
@@ -35,10 +36,8 @@ export default function Credit1100973311() {
             </Button>
           ))}
       </div>
-      {lang && (
-        <p className="text-2xl font-bold">{(data?.langs as unknown as LangOverride)[lang].title}</p>
-      )}
-      {lang && <p>{(data?.langs as unknown as LangOverride)[lang].description}</p>}
+
+      {lang && <p>{(data?.langs as unknown as Record<string, string>)[lang]}</p>}
     </div>
   );
 }
